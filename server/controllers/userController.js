@@ -6,6 +6,7 @@ const getUser = async (req, res, next) => {
   try {
     const user = await userData.getUsers();
     res.send(user);
+// fkjgkdjfhgkjd
   } catch (error) {
     res.status(400).send(error.message);
   }
