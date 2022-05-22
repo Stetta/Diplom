@@ -1,20 +1,21 @@
-INSERT INTO [dbo].[user]
+INSERT INTO [dbo].[client]
     (
         [Surname],
         [Name],
         [Patronymic],
         [Photo],
-        [Login],
+        [Mail],
         [Password],
-        [IdRole]
+        [RegistrationDate],
+        [IdStatusDelete]
     )
 VALUES (
     @Surname,
     @Name,
     @Patronymic,
     @Photo,
-    @Login,
+    @Mail,
     @Password,
-    @IdRole
+    @RegistrationDate,
+    @IdStatusDelete
 )
-

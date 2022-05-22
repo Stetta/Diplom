@@ -1,0 +1,6 @@
+SELECT [IdApplication]
+        ,[Name]
+        ,[Description]
+        ,[IdClient]
+        ,[IdUser]
+FROM [dbo].[application]
