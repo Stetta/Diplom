@@ -1,5 +1,5 @@
 .mainPage{
-    height: 2800px;
+    height: auto;
     margin: 0;
 }
 *{
@@ -21,12 +21,12 @@
     grid-row-start: 1;
 }
 .hText-hMain{
-    font-size: 45px;
+    font-size: 35px;
     margin: 0 0 15px;
-    padding: 0 0 30px;
+    padding: 0 0 10px;
 }
 .textPMain{
-    font-size: 27px;
+    font-size: 22px;
     font-weight: bold;
     color: rgb(58, 58, 58);
 }
@@ -42,12 +42,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    padding: 50px 20px;
+    padding: 30px 10px;
     display: grid;
     grid-template-rows: 20% 80%;
     /* border-width: 3px ; */
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    margin: 25px;
+    margin: 20px;
     width: 70%;
     position: relative;
 }
@@ -56,17 +56,17 @@
     box-shadow: 0 10px 19px 0 rgb(0 0 0 / 20%);
     color: #fff !important;
 }
-.contentMain p{
-    font-size: 18px;
-    margin: 5px 0;
-    
-    /* font-family: 'Sans-serif'; */
-}
 .content-hMain{
     margin: 0 0 20px;
     padding: 0 0 10px;
     font-size: 20px;
     /* color: rgb(58, 58, 58); */
+}
+.contentMain p{
+    font-size: 15px;
+    margin: 5px 0;
+    
+    /* font-family: 'Sans-serif'; */
 }
 /*Plitka*/
 
@@ -85,38 +85,45 @@
     grid-row-start: 2;
     text-align: center;
     justify-content: center;
+    margin-bottom: 60px;
     /* font-size: 30px; */
-    margin-top: 400px;
+    /* margin-top: 20%; */
 }
-/* h1{
-    font-size: 27px;
-} */
 .hText-1Main p{
     /* margin-top: 35px; */
     justify-content: center;
     text-align: center;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
 }
 .hText-2Main{
     text-align: left;
     justify-content: center;
+    text-align: center;
     margin-top: 45px;
-    display: grid;
-    grid-template-columns: 30% 70%;
+    /* display: grid; */
+    /* grid-template-columns: 30% 70%; */
     /* margin-top: 25px; */
 }
-.logoMain{
-    grid-column-start: 1;
-    height: 150px;
-    /* margin-top: 50px; */
-    margin-left: 300px;
+
+.logoMainText{
+    height: 45px;
+    justify-content: center;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
 }
 .hText-2Main p{
-    grid-column-start: 2;
-    margin-left: 150px;
-    width: 70%;
+    /* grid-column-start: 2; */
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
     text-indent: 40px;
+    margin-bottom: 20px;
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
 }
 
 /*2/ .animationText {
@@ -275,6 +282,23 @@
 .containerRR{
     justify-content: right;
     grid-column-start: 2;
+    margin-top: 15%;
+    margin-left: 5%;
+}
+.containerRR p{
+    font-size: 50px;
+}
+.containerRR span{
+    font-size: 35px;
+    /* border-color: #fff;
+    border-width: 3px; */
+    text-shadow:
+    1px 1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    -1px -1px 0 #fff;
+    /* flex-wrap: wrap;
+    width: 100px; */
 }
 #containerRR {
     color:rgb(34, 34, 34);
@@ -314,6 +338,16 @@
     71% {margin-top:0px;}
     99.99% {margin-top:0px;}
     100% {margin-top:-270px;}
+    /* 0% {margin-top:-300px;}//5
+    5% {margin-top:-240px;}
+    21% {margin-top:-240px;}//28
+    26% {margin-top:-180px;}
+    47% {margin-top:-180px}
+    52% {margin-top:-60px}
+    66% {margin-top:-60px;}
+    73% {margin-top:0px;}
+    99.99% {margin-top:0px;}
+    100% {margin-top:-300px;} */
   }
 
 
@@ -321,7 +355,7 @@
 
 @media only screen and (max-width:700px) {
     .mainPage{
-        height: 4500px;
+        height: auto;
     }
     .backMain{
         display: none;
@@ -342,7 +376,7 @@
         font-size: 30px;
     }
     .hText-hMain{
-        font-size: 43px;
+        font-size: 34px;
     }
     .containerMain{
         grid-template-columns: 100%;
@@ -350,7 +384,7 @@
         /* здесь плитка */
     }
     .textPMain{
-        font-size: 25px;
+        font-size: 20px;
     }
     .contentMain{
         text-align: center;
@@ -383,6 +417,7 @@
         padding: 0 0 10px;
         font-size: 20px;
     }
+    
 
 
 
@@ -399,26 +434,30 @@
         font-weight: bold;
     }
     .hText-2Main{
-        text-align: center;
-        justify-items: center;
-        margin-top: 45px;
-        display: grid;
-        grid-template-rows: 30% 70%;
-    }
-    .logoMain{
-        grid-row-start: 1;
-        height: 150px;
-        /* margin-top: 50px; */
-        /* margin-left: 300px; */
-    }
-    .hText-2Main p{
-        grid-row-start: 2;
-        font-size: 18px;
+        text-align: left;
         justify-content: center;
         text-align: center;
-        /* margin-left: 150px; */
-        /* width: 70%; */
+        margin-top: 45px;
+    }
+    
+    .logoMainText{
+        height: 60px;
+        justify-content: center;
+        text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+    
+    }
+    .hText-2Main p{
+        /* grid-column-start: 2; */
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
         text-indent: 40px;
+        margin-bottom: 20px;
+        justify-content: center;
+        text-align: center;
     }
 
     
@@ -457,4 +496,36 @@
         font-size: 35px;
         line-height: 40px;
     } */
+    
+    .containerRR span{
+        font-size: 16px;
+        /* border-color: #fff;
+        border-width: 3px; */
+        
+        text-shadow:
+        1px 1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        -1px -1px 0 #fff;
+        /* flex-wrap: wrap;
+        width: 100px; */
+    }
+    
+    .containerRR{
+        justify-content: center;
+        grid-column-start: 2;
+        margin-top: 35%;
+        margin-left: 5%;
+    }
+    .containerRR p{
+        font-size: 35px;
+    }
+    .logoMainText{
+        height: 28px;
+        justify-content: center;
+        text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+    }
 }

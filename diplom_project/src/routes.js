@@ -1,6 +1,7 @@
 import Main  from './pages/Main/Main'
 import Applic  from './pages/Applic/Applic'
-import { MAIN_ROUTE, APPLIC_ROUTE } from './utils/const'
+import { MAIN_ROUTE, APPLIC_ROUTE, PROFILE_ROUTE } from './utils/const'
+import Profile from './pages/Profile/Profile';
 
 export const PublicRoutes = [
     {
@@ -15,12 +16,8 @@ export const PublicRoutes = [
 
 export const ClientRoutes = [
     {
-        Component: <Main/>,
-        path: MAIN_ROUTE
-    },
-    {
-        Component: <Applic/>,
-        path: APPLIC_ROUTE
+        Component: <Profile/>,
+        path: PROFILE_ROUTE
     }
 ];
 

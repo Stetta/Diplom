@@ -1,0 +1,11 @@
+SELECT [IdClient]
+        ,[Surname]
+        ,[Name]
+        ,[Patronymic]
+        ,[Photo]
+        ,[Mail]
+        ,[Password]
+        ,[RegistrationDate]
+        ,[IdStatusDelete]
+FROM [dbo].[client]
+WHERE [Mail]=@Mail

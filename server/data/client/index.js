@@ -13,8 +13,21 @@ const getClient = async () => {
     } catch (error) {
         return error.message;
     }
-
 }
+
+const getByLogin = async (Mail) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('client');
+        const oneClient = await pool.request()
+                            .input('Mail', sql.NVarChar(30), Mail)
+                            .query(sqlQueries.clientByLogin);
+        return oneClient.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
+
 
 const createClient = async (clientData) => {
     try {
@@ -60,5 +73,6 @@ const updateClient = async (IdClient, clientData) => {
 module.exports = {
     getClient,
     createClient,
-    updateClient
+    updateClient,
+    getByLogin
 }

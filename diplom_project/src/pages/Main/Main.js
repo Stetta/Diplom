@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './Main.css';
 import logo from "../../assets/image/Logo.png";
+import logotext from "../../assets/image/LogoText.png";
 import back from "../../assets/image/back.png";
 import back1 from "../../assets/image/back1.png";
 
@@ -166,7 +167,6 @@ const Main = () => {
             {/*  */}
           <div clacc="textPageMain">
 
-              
             <div class="text-service1Main">
                 <h2 class="hText-hMain">Что мы разрабатываем?</h2>
                 <p class="textPMain">От проектирования до реализации с последующей поддержкой</p>
@@ -220,7 +220,8 @@ const Main = () => {
                     <p>Создание программного обеспечения для вашего бизнеса</p>
                 </div> 
                 <div class="hText-2Main">
-                    <img src={logo} alt="logo" class="logoMain" />
+                    {/* <img src={logo} alt="logo" class="logoMain" /> */}
+                    <img src={logotext} alt="logotext" class="logoMainText" />
                     <p>Наша главная задача — помогать компаниям из различных отраслей реализовывать амбициозные программные обеспечения, 
                         которые приведут к росту и развитию бтзнеса.</p>
                     <p>ИП Кашапов Р.А. — компания, которая предоставляет услуги по разработке программных продуктов на заказ.</p>

@@ -8,8 +8,8 @@
 *::before{
     box-sizing: inherit;
 }
-.container{
-    height: 600px;
+.containerApp{
+    height: 850px;
 }
 .content{
     display: flex;
@@ -40,6 +40,7 @@
     color: black;
 }
 .topic-text{
+    margin-top: 5%;
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -58,6 +59,8 @@
 .right-side p{
     margin-bottom: 20px;
 }
+
+
 
 .label-t1
 {
