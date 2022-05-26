@@ -6,6 +6,5 @@ SELECT [IdClient]
         ,[Mail]
         ,[Password]
         ,[RegistrationDate]
-        ,[IdStatusDelete]
 FROM [dbo].[client]
 WHERE [Mail]=@Mail

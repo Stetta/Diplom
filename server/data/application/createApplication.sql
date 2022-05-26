@@ -1,12 +1,9 @@
-INSERT INTO [dbo].[application]
-    (
-        [Name],
+INSERT INTO [dbo].[application] (
         [Description],
         [IdClient],
         [IdUser]
     )
 VALUES (
-    @Name,
     @Description,
     @IdClient,
     @IdUser

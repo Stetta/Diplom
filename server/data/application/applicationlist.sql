@@ -1,5 +1,4 @@
 SELECT [IdApplication]
-        ,[Name]
         ,[Description]
         ,[IdClient]
         ,[IdUser]

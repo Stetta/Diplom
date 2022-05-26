@@ -1,12 +1,10 @@
 UPDATE [dbo].[application] 
-SET [Name]=@Name,
-    [Description]=@Description,
+SET [Description]=@Description,
     [IdClient]=@IdClient,
     [IdUser]=@IdUser
 WHERE [IdApplication]=@IdApplication
 
 SELECT [IdApplication]
-       ,[Name]
        ,[Description]
        ,[IdClient]
        ,[IdUser]

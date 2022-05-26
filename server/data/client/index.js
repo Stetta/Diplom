@@ -3,17 +3,30 @@ const utils = require('../utils');
 const config = require('../../config');
 const sql = require('mssql');
 
+//Неправильный запрос берет последний непонятный баг
 const getClient = async () => {
     try {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('client');
-        const list = await pool.request().query(sqlQueries.clientlist);
-        console.log(list)
+        const list = await pool.request().query(sqlQueries.clientLast);
         return list.recordset;
     } catch (error) {
         return error.message;
     }
 }
+
+const getLastClient = async () => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('client');
+        const list = await pool.request().query(sqlQueries.clientLast);
+        console.log("a")
+        return list.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
+
 
 const getByLogin = async (Mail) => {
     try {
@@ -40,9 +53,8 @@ const createClient = async (clientData) => {
                             .input('Photo', sql.VarBinary(sql.MAX), clientData.Photo)
                             .input('Mail', sql.NVarChar(50), clientData.Mail)
                             .input('Password', sql.NVarChar(30), clientData.Password)
-                            .input('RegistrationDate', sql.Date, clientData.RegistrationDate)
-                            .input('IdStatusDelete', sql.Int, clientData.IdStatusDelete)
                             .query(sqlQueries.createClient);
+        console.log(insertClient)
         return insertClient.recordset;
     } catch (error) {
         return error.message;
@@ -61,8 +73,6 @@ const updateClient = async (IdClient, clientData) => {
                         .input('Photo', sql.VarBinary(sql.MAX), clientData.Photo)
                         .input('Mail', sql.NVarChar(50), clientData.Mail)
                         .input('Password', sql.NVarChar(30), clientData.Password)
-                        .input('RegistrationDate', sql.Date, clientData.RegistrationDate)
-                        .input('IdStatusDelete', sql.Int, clientData.IdStatusDelete)
                         .query(sqlQueries.updateClient);
         return update.recordset;
     } catch (error) {
@@ -74,5 +84,6 @@ module.exports = {
     getClient,
     createClient,
     updateClient,
-    getByLogin
+    getByLogin,
+    getLastClient
 }

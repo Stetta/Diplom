@@ -13,6 +13,15 @@ const getClient = async (req, res, next) => {
   }
 };
 
+const getLastClient = async (req, res, next) => {
+  try {
+    const client = await clientData.getLastClient();
+    res.send(client);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
 const addClient = async (req, res, next) => {
   try {
     const data = req.body;
@@ -34,7 +43,6 @@ const updateClient = async (req, res, next) => {
   }
 }
 
-
 const sendMail = async(req, res, next) => {
   try {
     require('dotenv').config()
@@ -47,22 +55,20 @@ const sendMail = async(req, res, next) => {
         pass: process.env.PASSWORD
       }
     })
-
     let x = Math.round(Math.random() * 100000);
-
     const mailOptions = {
       from: 'ipkashapovra@gmail.com',
       to: req.body.email,
       subject: 'Данные для авторизации',
       text: 'Ваш логин: ' + req.body.email + '; '+ 'Ваш пароль: ' + x
     }
-
     transporter.sendMail(mailOptions)
     res.send("sucess")
-  } catch (error) {
-    res.status(400).send(error.message);
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
   }
-}
+
 const generateAccessToken = (mail) => {
   const payload = {
     mail
@@ -98,11 +104,13 @@ const getByLogin = async (req, res, next) => {
   }
 }
 
+
 module.exports = {
   getClient,
   addClient,
   updateClient,
   sendMail,
   login,
-  getByLogin
+  getByLogin,
+  getLastClient
 };

@@ -6,8 +6,7 @@ INSERT INTO [dbo].[client]
         [Photo],
         [Mail],
         [Password],
-        [RegistrationDate],
-        [IdStatusDelete]
+        [RegistrationDate]
     )
 VALUES (
     @Surname,
@@ -16,6 +15,7 @@ VALUES (
     @Photo,
     @Mail,
     @Password,
-    @RegistrationDate,
-    @IdStatusDelete
+    CURRENT_TIMESTAMP
 )
+
+SELECT MAX(IdClient) as "IdClient" FROM [dbo].[client]

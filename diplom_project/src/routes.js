@@ -1,7 +1,8 @@
 import Main  from './pages/Main/Main'
 import Applic  from './pages/Applic/Applic'
-import { MAIN_ROUTE, APPLIC_ROUTE, PROFILE_ROUTE } from './utils/const'
+import { MAIN_ROUTE, APPLIC_ROUTE, PROFILE_ROUTE, APPLICTEXT_ROUTE } from './utils/const'
 import Profile from './pages/Profile/Profile';
+import ApplicText from './pages/ApplicText/ApplicText';
 
 export const PublicRoutes = [
     {
@@ -11,6 +12,10 @@ export const PublicRoutes = [
     {
         Component: <Applic/>,
         path: APPLIC_ROUTE
+    },
+    {
+        Component: <ApplicText/>,
+        path: APPLICTEXT_ROUTE
     }
 ];
 

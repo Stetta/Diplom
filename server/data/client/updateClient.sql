@@ -5,8 +5,7 @@ SET [Surname]=@Surname,
     [Photo]=@Photo,
     [Mail]=@Mail,
     [Password]=@Password,
-    [RegistrationDate]=@RegistrationDate,
-    [IdStatusDelete]=@IdStatusDelete
+    [RegistrationDate]=@RegistrationDate
 WHERE [IdClient]=@IdClient
 
 SELECT [IdClient]
@@ -17,6 +16,5 @@ SELECT [IdClient]
        ,[Mail]
        ,[Password]
        ,[RegistrationDate]
-       ,[IdStatusDelete]
 FROM [dbo].[client]
 WHERE [IdClient]=@IdClient
