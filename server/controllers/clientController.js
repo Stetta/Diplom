@@ -49,25 +49,31 @@ const sendMail = async(req, res, next) => {
     const nodemailer = require('nodemailer')
 
     const transporter = nodemailer.createTransport({
+      // host: 'smtp.mail.ru',
+      // port: 465,
+      // secure: true,
+      // auth: {
+      //   user: 'ipkashapovra@mail.ru',
+      //   pass: 'AJpRT7YtHIqDZlK7jMxm'
+      // }
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
       }
     })
-    let x = Math.round(Math.random() * 100000);
     const mailOptions = {
-      from: 'ipkashapovra@gmail.com',
+      from: 'ipkashapovra@mail.ru',
       to: req.body.email,
       subject: 'Данные для авторизации',
-      text: 'Ваш логин: ' + req.body.email + '; '+ 'Ваш пароль: ' + x
+      text: 'Ваш логин: ' + req.body.email + '; '+ 'Ваш пароль: ' + req.body.password
     }
     transporter.sendMail(mailOptions)
     res.send("sucess")
-    } catch (error) {
-      res.status(400).send(error.message);
-    }
+  } catch (error) {
+    res.status(400).send(error.message);
   }
+}
 
 const generateAccessToken = (mail) => {
   const payload = {
@@ -88,7 +94,7 @@ const login = async (req, res) => {
     }
 
     const token = generateAccessToken(user[0]['IdClient'])
-    res.json({token: token});
+    res.json({token: token, clientId: user[0]['IdClient']});
   } catch (error) {
     res.status(400).send(error.message);
   }
@@ -104,6 +110,16 @@ const getByLogin = async (req, res, next) => {
   }
 }
 
+const getById = async (req, res, next) => {
+  try {
+    const IdClient = req.params.id;
+    const oneId = await clientData.getById(IdClient);
+    res.send(oneId);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
+
 
 module.exports = {
   getClient,
@@ -112,5 +128,6 @@ module.exports = {
   sendMail,
   login,
   getByLogin,
-  getLastClient
+  getLastClient,
+  getById
 };

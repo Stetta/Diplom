@@ -32,8 +32,18 @@ const updateChat = async (req, res, next) => {
   }
 }
 
+const getChatByClient = async (req, res, next) => {
+  try {
+    const chat = await chatData.getChatByClient(req.params.id);
+    res.send(chat);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
 module.exports = {
   getChat,
   addChat,
-  updateChat
+  updateChat,
+  getChatByClient
 };

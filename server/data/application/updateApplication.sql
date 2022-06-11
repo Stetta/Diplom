@@ -1,12 +1,18 @@
 UPDATE [dbo].[application] 
 SET [Description]=@Description,
     [IdClient]=@IdClient,
-    [IdUser]=@IdUser
+    [IdUser]=@IdUser,
+    [IdStatus]=@IdStatus,
+    [IdStatusPayment]=@IdStatusPayment,
+    [Date]=@Date
 WHERE [IdApplication]=@IdApplication
 
 SELECT [IdApplication]
        ,[Description]
        ,[IdClient]
        ,[IdUser]
+       ,[IdStatus]=@IdStatus
+       ,[IdStatusPayment]=@IdStatusPayment
+       ,[Date]=@Date
 FROM [dbo].[application]
 WHERE [IdApplication]=@IdApplication

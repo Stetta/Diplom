@@ -11,7 +11,7 @@
 .containerApp{
     height: 850px;
 }
-.content{
+.contentApp{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,12 +20,12 @@
     border-radius: 5px;
     z-index: 200;
 }
-.formbox{
+.formboxApp{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.right-side{
+.right-sideApp{
     width: 100%;
     margin-left: 30px;
     margin-right: 30px;
@@ -39,7 +39,7 @@
     margin-bottom: 7px;
     color: black;
 }
-.topic-text{
+.topic-textApp{
     margin-top: 5%;
     align-items: center;
     text-align: center;
@@ -49,14 +49,14 @@
     color: #3B377C;
     margin-bottom: 0px;
 }
-.p-text{
+.p-textApp{
     align-items: center;
     text-align: center;
     justify-content: center;
     color: black;
     font-size: 20px;
 }
-.right-side p{
+.right-sideApp p{
     margin-bottom: 20px;
 }
 
@@ -118,29 +118,29 @@
 }
 
 @media only screen and (max-width:700px) {
-    .container{
-        height: 600px;
+    .containerApp{
+        height: 300px;
         margin-top: 300px;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .content{
+    .contentApp{
         height: 0%;
         flex-direction: column-reverse;
         width: 100%;
     }
-    .right-side{
+    .right-sideApp{
         width: 100%;
         margin-left: 0px;
         margin-right: 0px;
     }
-    .topic-text{
+    .topic-textApp{
         font-size: 20px;
         margin-bottom: 5px;
     }
-    .p-text{
+    .p-textApp{
         font-size: 14px;
         margin: 0px 0px 5px;
     }
@@ -194,4 +194,7 @@
         outline: none;
         text-align: left;
     }
+    /* .formbox{
+
+    } */
 }

@@ -4,8 +4,7 @@ SET [Surname]=@Surname,
     [Patronymic]=@Patronymic,
     [Photo]=@Photo,
     [Mail]=@Mail,
-    [Password]=@Password,
-    [RegistrationDate]=@RegistrationDate
+    [Password]=@Password
 WHERE [IdClient]=@IdClient
 
 SELECT [IdClient]

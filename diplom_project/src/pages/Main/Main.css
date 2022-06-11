@@ -1,6 +1,7 @@
 .mainPage{
     height: auto;
     margin: 0;
+    width: 100%;
 }
 *{
     box-sizing: border-box;
@@ -57,7 +58,7 @@
     color: #fff !important;
 }
 .content-hMain{
-    margin: 0 0 20px;
+    margin: 20px 0 20px;
     padding: 0 0 10px;
     font-size: 20px;
     /* color: rgb(58, 58, 58); */
@@ -284,6 +285,7 @@
     grid-column-start: 2;
     margin-top: 15%;
     margin-left: 5%;
+    margin-right: 0 !important;
 }
 .containerRR p{
     font-size: 50px;
@@ -307,7 +309,6 @@
     font-weight:bold;
     /* padding-top:200px;   */
     position: absolute;
-    width:100%;
     /* bottom:45%; */
     /* display:block; */
     z-index: 1;
@@ -391,7 +392,8 @@
         align-items: center;
         justify-content: center;
         border-radius: 5px;
-        padding: 50px 20px;
+        /* margin-top: 30px; */
+        padding: 40px 20px 20px;
         display: grid;
         grid-template-rows: 20% 80%;
         border-width: 3px ;
@@ -399,7 +401,7 @@
         /* margin: 35px; */
         width: 80%;
         position: relative;
-        height: 80%;
+        height: 70%;
         
     }
     .contentMain:hover{
@@ -409,11 +411,11 @@
     }
     .contentMain p{
         font-size: 18px;
-        margin: 5px 0;
+        margin: 5px 0 0;
         /* font-family: 'Sans-serif'; */
     }
     .content-hMain{
-        margin: 0 0 20px;
+        margin: 0 0 10px;
         padding: 0 0 10px;
         font-size: 20px;
     }

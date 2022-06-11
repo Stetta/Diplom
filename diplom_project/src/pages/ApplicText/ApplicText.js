@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./ApplicText.css";
 import MyInput from "../../components/interfase/MyInput/MyInput";
 import MyButton from "../../components/interfase/MyButton/MyButton";
@@ -6,6 +6,8 @@ import { useHttp } from "../../hooks/useHttp";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+import { MAIN_ROUTE } from "../../utils/const";
 
 const ApplicText = () => {
   const [IdClient, setIdClient] = useState("");
@@ -19,25 +21,44 @@ const ApplicText = () => {
   //     setIdClient(client.IdClient)
   // }
 
-  useEffect(async () => {
-    const curClient = await request("http://localhost:8080/api/client/");
-    setId(curClient[0]["IdClient"]);
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function getId () {
+    if (!!JSON.parse(localStorage.getItem("clientData")).IdClient == false) {
+      await sleep(500);
+      const curClient = await request("/api/client/getlast/last");
+      setId(curClient[0]["IdClient"]); 
+    } else {
+      setId(JSON.parse(localStorage.getItem("clientData")).IdClient)
+    }
+  }
+  const navigate = useNavigate();
+  useEffect(() => {
+    getId()
   }, []);
+
   const [id, setId] = useState();
-  async function bHandler() {
-    const data = await request(
-    "http://localhost:8080/api/application",
-    "POST",
+  const bHandler = async () => {
+    try {
+      if (message === "") {
+        toast.error("Заполните описание заявки");
+        return;
+      }
+    const data = await request("/api/application", "POST",
     {
         IdClient: id,
         IdUser: 1,
         Description: message,
-    }
-    );
-    
+    }).then(
+    toast.success("Успешно.\n Авторизуйтесь данными которые пришли вам на почту"))
+    } catch (error) {
       
+    }
   }
 
+  
   // const [name, setName] = useState("");
   // const [surname, setSurname] = useState("");
   // const [email, setEmail] = useState("");
@@ -45,7 +66,6 @@ const ApplicText = () => {
 
   return (
     <div>
-        <ToastContainer/>
       <div class="containerAppText">
         <div class="contentText">
           <div class="right-sideText">
@@ -59,16 +79,13 @@ const ApplicText = () => {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   class="input-tText"
-                  placeholder="Сообщение"></textarea>
+                  placeholder="Описание заявки"></textarea>
               </div>
-              <MyButton
-                style={{ width: 150, height: 45 }}
-                onClick={() => bHandler()}>
-                Отправить
-              </MyButton>
+              <MyButton style={{ width: 150, height: 45 }} onClick={() => bHandler()}>Отправить</MyButton>
             </div>
           </div>
         </div>
+        <ToastContainer/>
       </div>
     </div>
   );

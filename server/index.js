@@ -15,7 +15,7 @@ const chatRoutes = require('./routes/chatRoutes');
 const app = express();
 
 app.use(cors());
-app.use(express.json({extended: true}));
+app.use(express.json({extended: true, limit: '50mb'}));
 app.use(bodyParser.json());
 
 app.use('/api', userRoutes.routes);

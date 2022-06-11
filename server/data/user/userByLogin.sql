@@ -7,4 +7,4 @@ SELECT [IdUser]
         ,[Password]
         ,[IdRole]
 FROM [dbo].[user]
-WHERE [IdUser]=@IdUser
+WHERE [Login]=@Login

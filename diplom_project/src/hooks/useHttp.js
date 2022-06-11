@@ -19,7 +19,6 @@ export const useHttp = () => {
                 throw new Error(data.message || 'Неизвестная ошибка')
             }
             setLoading(false)
-            console.log(data);
             return data;
         } catch(error) {
             setLoading(false)

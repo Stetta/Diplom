@@ -31,9 +31,18 @@ const updateApplication = async (req, res, next) => {
     res.status(400).send(error.message);
   }
 }
+const getApplicationByClient = async (req, res, next) => {
+  try {
+    const application = await applicationData.getApplicationByClient(req.params.id);
+    res.send(application);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
 
 module.exports = {
   getApplication,
   addApplication,
-  updateApplication
+  updateApplication,
+  getApplicationByClient
 };

@@ -8,7 +8,7 @@ const getClient = async () => {
     try {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('client');
-        const list = await pool.request().query(sqlQueries.clientLast);
+        const list = await pool.request().query(sqlQueries.clientlist);
         return list.recordset;
     } catch (error) {
         return error.message;
@@ -20,7 +20,6 @@ const getLastClient = async () => {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('client');
         const list = await pool.request().query(sqlQueries.clientLast);
-        console.log("a")
         return list.recordset;
     } catch (error) {
         return error.message;
@@ -41,6 +40,19 @@ const getByLogin = async (Mail) => {
     }
 }
 
+const getById = async (IdClient) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('client');
+        const oneClient = await pool.request()
+                            .input('IdClient', sql.Int, IdClient)
+                            .query(sqlQueries.clientById);
+        return oneClient.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
+
 
 const createClient = async (clientData) => {
     try {
@@ -50,14 +62,14 @@ const createClient = async (clientData) => {
                             .input('Surname', sql.NVarChar(50), clientData.Surname)
                             .input('Name', sql.NVarChar(50), clientData.Name)
                             .input('Patronymic', sql.NVarChar(50), clientData.Patronymic)
-                            .input('Photo', sql.VarBinary(sql.MAX), clientData.Photo)
+                            .input('Photo', sql.NVarChar(sql.MAX), clientData.Photo)
                             .input('Mail', sql.NVarChar(50), clientData.Mail)
                             .input('Password', sql.NVarChar(30), clientData.Password)
                             .query(sqlQueries.createClient);
         console.log(insertClient)
         return insertClient.recordset;
     } catch (error) {
-        return error.message;
+        return error.message;   
     }
 }
 
@@ -70,7 +82,7 @@ const updateClient = async (IdClient, clientData) => {
                         .input('Surname', sql.NVarChar(50), clientData.Surname)
                         .input('Name', sql.NVarChar(50), clientData.Name)
                         .input('Patronymic', sql.NVarChar(50), clientData.Patronymic)
-                        .input('Photo', sql.VarBinary(sql.MAX), clientData.Photo)
+                        .input('Photo', sql.NVarChar(sql.MAX), clientData.Photo)
                         .input('Mail', sql.NVarChar(50), clientData.Mail)
                         .input('Password', sql.NVarChar(30), clientData.Password)
                         .query(sqlQueries.updateClient);
@@ -85,5 +97,6 @@ module.exports = {
     createClient,
     updateClient,
     getByLogin,
-    getLastClient
+    getLastClient,
+    getById
 }

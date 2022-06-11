@@ -24,7 +24,7 @@ const createUser = async (userData) => {
                             .input('Surname', sql.NVarChar(50), userData.Surname)
                             .input('Name', sql.NVarChar(50), userData.Name)
                             .input('Patronymic', sql.NVarChar(50), userData.Patronymic)
-                            .input('Photo', sql.VarBinary(sql.MAX), userData.Photo)
+                            .input('Photo', sql.NVarChar(sql.MAX), userData.Photo)
                             .input('Login', sql.NVarChar(50), userData.Login)
                             .input('Password', sql.NVarChar(30), userData.Password)
                             .input('IdRole', sql.Int, userData.IdRole)
@@ -44,7 +44,7 @@ const updateUser = async (IdUser, userData) => {
                         .input('Surname', sql.NVarChar(50), userData.Surname)
                         .input('Name', sql.NVarChar(50), userData.Name)
                         .input('Patronymic', sql.NVarChar(50), userData.Patronymic)
-                        .input('Photo', sql.VarBinary(sql.MAX), userData.Photo)
+                        .input('Photo',  sql.NVarChar(sql.MAX), userData.Photo)
                         .input('Login', sql.NVarChar(50), userData.Login)
                         .input('Password', sql.NVarChar(30), userData.Password)
                         .input('IdRole', sql.Int, userData.IdRole)
@@ -54,9 +54,34 @@ const updateUser = async (IdUser, userData) => {
         return error.message;
     }
 }
-
+const getByIdUser = async (IdUser) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('user');
+        const oneUser = await pool.request()
+                            .input('IdUser', sql.Int, IdUser)
+                            .query(sqlQueries.userbyId);
+        return oneUser.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
+const getByLoginUser = async (Login) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('user');
+        const oneUser = await pool.request()
+                            .input('Login', sql.NVarChar(30), Login)
+                            .query(sqlQueries.userByLogin);
+        return oneUser.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
 module.exports = {
     getUsers,
     createUser,
-    updateUser
+    updateUser,
+    getByIdUser,
+    getByLoginUser
 }

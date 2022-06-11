@@ -21,13 +21,11 @@ const createChat= async (chatData) => {
         const sqlQueries = await utils.loadSqlQueries('chat');
         const insertChat= await pool.request()
                             .input('Date', sql.Date, chatData.Date)
-                            .input('IdStatus', sql.Int, chatData.IdStatus)
                             .input('IdUser', sql.Int, chatData.IdUser)
                             .input('IdClient', sql.Int, chatData.IdClient)
                             .input('IdApplication', sql.Int, chatData.IdApplication)
                             .input('Text', sql.Text, chatData.Text)
                             .input('Photo', sql.VarBinary(sql.MAX), chatData.Photo)
-                            .input('IdStatusPayment', sql.Int, chatData.IdStatusPayment)
                             .query(sqlQueries.createChat);
         return insertChat.recordset;
     } catch (error) {
@@ -42,15 +40,26 @@ const updateChat = async (IdChat, chatData) => {
         const update = await pool.request()
                         .input('IdChat', sql.Int, IdChat)
                         .input('Date', sql.Date, chatData.Date)
-                        .input('IdStatus', sql.Int, chatData.IdStatus)
                         .input('IdUser', sql.Int, chatData.IdUser)
                         .input('IdClient', sql.Int, chatData.IdClient)
                         .input('IdApplication', sql.Int, chatData.IdApplication)
                         .input('Text', sql.Text, chatData.Text)
                         .input('Photo', sql.VarBinary(sql.MAX), chatData.Photo)
-                        .input('IdStatusPayment', sql.Int, chatData.IdStatusPayment)
                         .query(sqlQueries.updateChat);
         return update.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
+
+const getChatByClient = async (IdClient) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('chat');
+        const list = await pool.request()
+                            .input('IdClient', sql.Int, IdClient)
+                            .query(sqlQueries.chatByClient);                    
+        return list.recordset;
     } catch (error) {
         return error.message;
     }
@@ -59,5 +68,6 @@ const updateChat = async (IdChat, chatData) => {
 module.exports = {
     getChat,
     createChat,
-    updateChat
+    updateChat,
+    getChatByClient
 }
