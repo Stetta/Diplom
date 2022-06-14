@@ -11,6 +11,7 @@ const statuspaymentRoutes = require('./routes/statuspaymentRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
 const clientRoutes = require('./routes/clientRoutes');
 const chatRoutes = require('./routes/chatRoutes');
+const typeRoutes = require('./routes/typeRoutes')
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/api', statuspaymentRoutes.routes);
 app.use('/api', applicationRoutes.routes);
 app.use('/api', clientRoutes.routes);
 app.use('/api', chatRoutes.routes);
+app.use('/api', typeRoutes.routes)
 
 
 app.listen(config.port, () => console.log('Server is listening on http://localhost:' + config.port));

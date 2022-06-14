@@ -8,20 +8,47 @@
 *::before{
     box-sizing: inherit;
 }
-/* .headerTop{
-  background: #5e5e5e;
+.headerTop{
+  /* background: #5e5e5e; */
+  background-color: #303030;
   justify-content: center;
   align-content: center;
-  height: 50px;
+  height: 40px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
-.headerTop a{
+.headerTop .headerTopA{
   color: rgba(255, 255, 255, 0.95);
-  font-size: 18px;
-  margin: 20px;
-} */
+  font-size: 16px; 
+  margin: 10px;
+  text-decoration: none;
+  display: inline-block;
+}
+.headerTop .headerTopButton{
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 16px;
+  /* margin: 10px; */
+  justify-content: center;
+  text-align: center;
+  padding-top: 10px;
+  /* padding-bottom: 10px; */
+  width: 200px;
+  height: 30px !important;
+  /* float: right; */
+  float: left;
+  /* line-height: 36px; */
+  background-color: #3B377C;
+  cursor: pointer;
+}
+
+.headerBottom{
+  /* display: inline-block; */
+  display: flex;
+  justify-content: center;
+}
 .header {
   background-color: rgba(255, 255, 255, 0.95);
-  height: 75px;
+  height: 95px;
   text-align: center;
   color: Blue;
   font-size: 30px;
@@ -34,22 +61,6 @@
   display: grid;
   grid-template-columns: 25% 75%;
 }
-/* .header {
-  background-color: rgb(255, 255, 255);
-  height: 75px;
-  text-align: center;
-  color: Blue;
-  font-size: 30px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  margin: 0;
-  width: 100%;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-  display: grid;
-  grid-template-columns: 15% 75%;
-  z-index: 1;
-} */
 
 .header-vertical-center {
   display: flex;
@@ -77,26 +88,6 @@ p {
   margin-right: 15px;
   margin-left: 15px;
 }
-
-/* .btn-list {
-  display: none;
-  position: absolute;
-  grid-column-start: 2;
-  justify-self: right;
-  padding-right: 5%;
-  margin-right: 15px;
-} */
-
-/* .toggle-btn {
-  background: transparent;
-  display: none;
-  grid-column-start: 3;
-  grid-row-start: 2;
-  position: absolute;
-  justify-self: right;
-  align-self: center;
-  cursor: pointer;
-} */
 .toggle-btn{
   display: none;
   justify-self: right;
@@ -115,13 +106,17 @@ p {
   align-items: center;
   width: 650px;
   grid-template-columns: 25% 30% 45%;
-  /* grid-template-columns: 20% 25% 35% 20%; */
   font-size: 20px;
   cursor: pointer;
   padding-right: 0;
 }
-
+.navigate .navigate__link + .navigate__link{
+  padding-left: 10px;
+}
 .navigate__link {
+  /*  */
+  /* list-style: none; */
+  /*  */
   display: inline-block;
   vertical-align: top;
   margin: 0 5px;
@@ -129,6 +124,7 @@ p {
   color: black;
   text-decoration: none;
   transition: color 0.1s linear;
+  border: 3px solid transparent;
 }
 
 .navigate__link::after {
@@ -141,11 +137,12 @@ p {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1;
-  transition: opasity 0.1s linear;
+  /* z-index: 1;
+  transition: opasity 0.1s linear; */
 }
 .navigate__link:hover {
   color: #3b377c;
+  /* border-color: #3b377c; */
 }
 .navigate__link:hover::after {
   display: block;
@@ -168,18 +165,11 @@ p {
   background: #fff;
 }
 .input-wrapperModal{
-  /* margin-top: 20px;
-  margin-left: 20px;
-  box-shadow: rgba(113,113,113,0.15)
-  -5px -5px 11px,
-  rgba(0,0,0,0.15) 5px 5px 11px;
-  border-radius: 20px; */
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 440px;
 }
- /*  */
 .input-icon {
   width: 20px;
   height: 20px;
@@ -188,15 +178,6 @@ p {
   border-radius: 50px;
   padding: 3px 3px;
   cursor: pointer;
-  /* border-color: black; */
-  /* border: black; */
-  /* color: black; */
-  /* background: black; */
-  /* box-shadow: rgba(113,113,113,0.15)
-  -5px -5px 11px,
-  rgba(0,0,0,0.15) 5px 5px 11px;
-  border-radius: 20px; */
-  /* visibility: visible; */
   transition: all .4s ease;
 }
 .input-icon.selected {
@@ -205,22 +186,6 @@ p {
 .input-icon img {
   max-width: 100%;
 }
-/* ::-webkit-input-placeholder {
-  color: #B2BECD;
-} */
-/* .formbox input{
-  background: transparent;
-  border: none;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  text-indent: 20px;
-  color: #B2BECD;
-  font-size: 14px;
-  outline: 0;
-} */
- /*  */
-
 .right-sideModal {
   width: 100%;
   margin-left: 30px;
@@ -310,9 +275,82 @@ p {
 }
 .buttonFormboxModal{
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.aFormboxModal{
+  font-size: 14px;
+  margin-top: 5px;
+  color:#454545;
+  cursor: pointer;
+}
+.aFormboxModal:hover{
+  color: #3B377C;
+}
+
+@media only screen and (max-width: 1200){
+  .headerTop .headerTopButton{
+    /* color: rgba(255, 255, 255, 0.95); */
+    /* font-size: 16px; */
+    /* margin: 10px; */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 10px;
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 30px;
+    margin-top: 10px;
+    /* float: right; */
+    /* line-height: 36px; */
+    background-color: #3B377C;
+    cursor: pointer;
+  }
 }
 
 @media only screen and (max-width: 700px) {
+  /*  */
+  .headerTop{
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    height: auto;
+    margin: 0 auto;
+    padding: 0 15px;
+    /* grid-template-rows: 30% 30% 35%; */
+    /* grid-template-columns: none; */
+    /* grid-column-start: 1; */
+    justify-content: center;
+    vertical-align: top;
+    /* display: grid;
+    grid-row: 30% 30% 40%; */
+  }
+  .headerTop .headerTopA{
+    /* display: inline-block; */
+    /* color: rgba(255, 255, 255, 0.95); */
+    font-size: 15px;
+    margin: 7px;
+  }
+  .headerTop .headerTopButton{
+    /* color: rgba(255, 255, 255, 0.95); */
+    /* font-size: 16px; */
+    /* margin: 10px; */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 10px;
+    width: 350px;
+    height: 30px;
+    margin-top: 10px;
+    /* float: right; */
+    /* line-height: 36px; */
+    background-color: #3B377C;
+    cursor: pointer;
+  }
+  /*  */
   .logo-text {
     grid-column-start: 1;
     grid-row-start: 2;
@@ -341,7 +379,7 @@ p {
     grid-column-start: 1;
     justify-content: center;
     position: absolute;
-    z-index: 1;
+    z-index: 10000;
   }
   .navigate a{
     margin: 8px;
@@ -361,15 +399,6 @@ p {
     background-color: #665;
     margin: 3px 0;
   }
-  /* .toggle-btn span {
-    display: block;
-    width: 25px;
-    height: 4px;
-    background-color: #665;
-    margin: 3px 0;
-  } */
-
-  /* */
   .contentModal {
     height: 0%;
     flex-direction: column-reverse;

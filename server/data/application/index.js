@@ -24,8 +24,9 @@ const createApplication = async (applicationData) => {
                     .input('Description', sql.Text, applicationData.Description)
                     .input('IdClient', sql.Int, applicationData.IdClient)
                     .input('IdUser', sql.Int, applicationData.IdUser)
-                    .input('IdStatus', sql.Int, chatData.IdStatus)
-                    .input('IdStatusPayment', sql.Int, chatData.IdStatusPayment)
+                    .input('IdStatus', sql.Int, applicationData.IdStatus)
+                    .input('IdStatusPayment', sql.Int, applicationData.IdStatusPayment)
+                    .input('IdType', sql.Int, applicationData.IdType)
                     .query(sqlQueries.createApplication);
         return insertApplication.recordset;
     } catch (error) {
@@ -42,8 +43,9 @@ const updateApplication = async (IdApplication, applicationData) => {
                         .input('Description', sql.Text, applicationData.Description)
                         .input('IdClient', sql.Int, applicationData.IdClient)
                         .input('IdUser', sql.Int, applicationData.IdUser)
-                        .input('IdStatus', sql.Int, chatData.IdStatus)
-                        .input('IdStatusPayment', sql.Int, chatData.IdStatusPayment)
+                        .input('IdStatus', sql.Int, applicationData.IdStatus)
+                        .input('IdStatusPayment', sql.Int, applicationData.IdStatusPayment)
+                        .input('IdType', sql.Int, applicationData.IdType)
                         .query(sqlQueries.updateApplication);
         return update.recordset;
     } catch (error) {

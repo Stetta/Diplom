@@ -82,46 +82,54 @@ const Header = () => {
   return (
     // <header className="header">
     <header>
-      {/* <div class="headerTop">
-        <a href="tel:+79053727702">&#9990;&nbsp;+7 905 372-77-02</a>
-        <a href="mailto:ipkashapovra@gmail.com">&#9993;&nbsp;ipkashapovra@gmail.com</a>
-      </div> */}
-      <div class="header">
-      <div className="header-vertical-center">
-        <img src={logo_text} alt="logo-text" className="logo-text" />
-        <div className="divider" />
+      <div class="headerTop">
+        <a class="headerTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
+        <a class="headerTopA" href="tel:+79053727702">&#9990;&nbsp;+7 905 372-77-02</a>
+        <a class="headerTopA" href="mailto:ipkashapovra@gmail.com">&#9993;&nbsp;ipkashapovra@gmail.com</a>
       </div>
+      <div class="headerBottom">
+      <div class="header">
+        <div className="header-vertical-center">
+          <img src={logo_text} alt="logo-text" className="logo-text" />
+        <div className="divider" />
+        </div>
 
-      {isNavVisible && !auth.token &&(
-        <nav class="navigate">
+        {isNavVisible && !auth.token &&(
+        <nav class="navigate" style={{marginTop: 15}}>
           <a class="navigate__link" onClick={() => navigate(MAIN_ROUTE)}>Главная</a>
           <a class="navigate__link" onClick={() => setLogin(true)}>Авторизация</a>
           <a class="navigate__link" onClick={() => navigate(APPLIC_ROUTE)}>Оставить заявку</a>
           {/* <a class="navigate__link" href="#">Контакты</a> */}
         </nav>
-      )}
+        )} 
 
-  {isNavVisible && auth.token && ( 
+        {isNavVisible && auth.token && ( 
         <nav class="navigate" style={{zIndex: 1000}}>
-          <a class="navigate__link" onClick={() => navigate(MYAPPLIC_ROUTE)} style={{marginTop: 20}}>Мои заявки</a>
-          <a class="navigate__link" onClick={() => navigate(APPLICTEXT_ROUTE)} style={{marginTop: 20}}>Создать заявку</a>
-          <a class="navigate__link" onClick={() => navigate(PROFILE_ROUTE)} style={{marginTop: 3}}>Профиль</a>
+          <a class="navigate__link" onClick={() => navigate(MYAPPLIC_ROUTE)} style={{marginTop: 25}}>Мои заявки</a>
+          {JSON.parse(localStorage.getItem("clientData")).IdRole && (
+          <a class="navigate__link" onClick={() => navigate()} style={{marginTop: 25}}>Статистика</a>
+          )}
+          {!JSON.parse(localStorage.getItem("clientData")).IdRole && (
+          <a class="navigate__link" onClick={() => navigate(APPLICTEXT_ROUTE)} style={{marginTop: 25}}>Создать заявку</a>
+          )}
+          <a class="navigate__link" onClick={() => navigate(PROFILE_ROUTE)} style={{padding: 0, marginTop: 3, width: 130, alignSelf: 'center'}}>Профиль</a>
           <a/>
           <a/>
-          <a class="navigate__link" onClick={() => Logoout()} style={{marginTop: 0}}>Выход</a>
+          <a class="navigate__link" onClick={() => Logoout()} style={{marginTop: 0, width: 130, alignSelf: 'center'}}>Выход</a>
           {/* <MyButton style={{ width: 100, height: 40, marginRight: 5, marginLeft: 5 }} onClick={() => Logoout()} id="SendApplic">Выход</MyButton> */}
         </nav>
-      )}
-      
-      <button
+        )}
+
+    
+        <button
         onClick={() => setIsNavVisible(!isNavVisible)} className="toggle-btn">
         <div>
           <span class="span-btn"></span>
           <span class="span-btn"></span>
           <span class="span-btn"></span>
         </div>
-      </button>
-      <MyModal visible={login} setVisible={setLogin}>
+        </button>
+        <MyModal visible={login} setVisible={setLogin}>
         <div class="containerModal">
           <div class="contentModal">
             <div class="right-sideModal">
@@ -139,16 +147,18 @@ const Header = () => {
                 </div>
                 {/* <ToastContainer/> */}
                 <div class="buttonFormboxModal">
-                  <MyButton style={{ width: 130, height: 40, marginRight: 5, marginLeft: 5 }} onClick={registrr} id="SendApplic">Авторизоваться</MyButton>
-                  <MyButton style={{ width: 130, height: 40, marginLeft: 5, marginRight: 5 }} onClick={registrrUser} id="SendApplic">Авторизоваться как сотрудник</MyButton>
+                  <MyButton style={{ width: 200, height: 35, marginRight: 5, marginLeft: 5 }} onClick={registrr} id="SendApplic">Авторизоваться</MyButton>
+                  <a class="aFormboxModal" onClick={registrrUser} id="SendApplic">Авторизоваться как сотрудник</a>
+                  {/* <MyButton style={{ width: 130, height: 40, marginLeft: 5, marginRight: 5 }} onClick={registrrUser} id="SendApplic">Авторизоваться как сотрудник</MyButton> */}
                 </div>
 
               </div>
             </div>
           </div>
         </div>
-      </MyModal>
-      <div>
+        </MyModal>
+        <div>
+        </div>
       </div>
       </div>
     </header>

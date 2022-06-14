@@ -65,9 +65,23 @@ const getChatByClient = async (IdClient) => {
     }
 }
 
+const getChatByUser = async (IdApplication) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('chat');
+        const list = await pool.request()
+                            .input('IdApplication', sql.Int, IdApplication)
+                            .query(sqlQueries.chatByUser);                    
+        return list.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
+
 module.exports = {
     getChat,
     createChat,
     updateChat,
-    getChatByClient
+    getChatByClient,
+    getChatByUser
 }

@@ -4,94 +4,32 @@ import logo from "../../assets/image/Logo.png";
 import logotext from "../../assets/image/LogoText.png";
 import back from "../../assets/image/back.png";
 import back1 from "../../assets/image/back1.png";
+import { APPLIC_ROUTE } from '../../utils/const';
+import { useNavigate } from "react-router-dom";
+import MyButton from "../../components/interfase/MyButton/MyButton";
 
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import img1 from "../../assets/image/1.jpg";
+import img2 from "../../assets/image/2.jpg";
+import img3 from "../../assets/image/3.jpg";
+import img4 from "../../assets/image/4.jpg";
+import img5 from "../../assets/image/5.jpg";
 
 const Main = () => {
-    //1// if(document.getElementById("App"))
-    // {
-    //     const txts = document.getElementsByName(".animationText").children 
-    //     const txtsLen = txts.length;
-    //     const index = 0;
-    //     const textInTimer = 3000, textOutTimer = 2800;
-    //     function animateText () {
-    //                         for(let i=0; i<txtsLen; i++){
-    //                             txts[i].classList.remove("text-in", "text-out");
-    //                         }
-    //                         txts[index].classList.add("text-in");
-                            
-    //                         setTimeout(function(){
-    //                             txts[index].classList.add("text-out");
-    //                         }, textOutTimer)
-                            
-                            
-    //                         setTimeout(function(){
-    //                             if(index == txtsLen-1) {
-    //                                 index=0;
-    //                             } else {
-    //                                 index++;
-    //                             }
-    //                             animateText();
-    //                         },textInTimer);
-    //                     }
-                        
-    //                     window.onload = animateText();
-    //                  }
-
-
-
-
-        // 2// if(document.getElementById("App"))
-        // {
-        //     var words = document.getElementsByClassName('word');
-        //     var wordArray = [];
-        //     var currentWord = 0;
-        //     words[currentWord].style.opacity = 1;
-        //     for (var i = 0; i < words.length; i++) {
-        //       splitLetters(words[i]);
-        //     }
-        //     function changeWord() {
-        //       var cw = wordArray[currentWord];
-        //       var nw = currentWord == words.length-1 ? wordArray[0] : wordArray[currentWord+1];
-        //       for (var i = 0; i < cw.length; i++) {
-        //         animateLetterOut(cw, i);
-        //       }
-  
-        //       for (var i = 0; i < nw.length; i++) {
-        //         nw[i].className = 'letter behind';
-        //         nw[0].parentElement.style.opacity = 1;
-        //         animateLetterIn(nw, i);
-        //       }
-        //       currentWord = (currentWord == wordArray.length-1) ? 0 : currentWord+1;
-        //     }
-        //     function animateLetterOut(cw, i) {
-        //       setTimeout(function() {
-        //         cw[i].className = 'letter out';
-        //       }, i*80);
-        //     }
-        //     function animateLetterIn(nw, i) {
-        //       setTimeout(function() {
-        //         nw[i].className = 'letter in';
-        //       }, 340+(i*80));
-        //     }
-        //     function splitLetters(word) {
-        //       var content = word.innerHTML;
-        //       word.innerHTML = '';
-        //       var letters = [];
-        //       for (var i = 0; i < content.length; i++) {
-        //         var letter = document.createElement('span');
-        //         letter.className = 'letter';
-        //         letter.innerHTML = content.charAt(i);
-        //         word.appendChild(letter);
-        //         letters.push(letter);
-        //       }
-        //       wordArray.push(letters);
-        //     }
-        //     changeWord();
-        //     setInterval(changeWord, 4000);
-        // }
     
-
-
+    const navigate = useNavigate();
+    
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
+    
     return (
         <div class="mainPage" >
             <div>
@@ -214,24 +152,201 @@ const Main = () => {
                     </div>
                 </div>
             </div>
+
+
+            <div class="slider">
+            {/* <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
+            <a class="slick-next slider__control_next" href="#" role="button" data-slide="next"></a> */}
+            {/* <div class="sliderButton sliderButtonPrev">
+            <MyButton style={{width: 10, height:15}} data-slide="prev" href="#">&lt;</MyButton>
+            </div> */}
+                <div class="sliderTitle">
+                    <p class="sliderTitleP">Наши работы</p>
+                </div>
+            <Slider {...settings}>
+                <div>
+                    {/* <div class="slidaerText">
+                        <p class="sliderTextP">Примеры работ бла бла</p>
+                    </div> */}
+                    <div class="imgPSlider">
+                        <img src={img1} alt="img1" class="imgSlider"/>
+                        <div>
+                        <p class="pSlider">Готовое приложение по доставке еды</p>
+                        <div class="ppSlider">
+                        <p>&ndash;&nbsp;Личный кабинет</p>
+                        <p>&ndash;&nbsp;Каталог</p>
+                        <p>&ndash;&nbsp;Корзина</p>
+                        <p>&ndash;&nbsp;Оплата</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="sliderBtn">
+                        <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
+                    </div>
+                </div>
+
+                <div>
+                    {/* <div class="slidaerText">
+                        <p class="sliderTextP">Примеры работ бла бла</p>
+                    </div> */}
+                    <div class="imgPSlider">
+                        <img src={img2} alt="img2" class="imgSlider"/>
+                        <div>
+                        <p class="pSlider">dgh</p>
+                        <div class="ppSlider">
+                        <p>&ndash;&nbsp;fgh</p>
+                        <p>&ndash;&nbsp;dgh</p>
+                        <p>&ndash;&nbsp;gdh</p>
+                        <p>&ndash;&nbsp;gdh</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="sliderBtn">
+                        <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
+                    </div>
+                </div>
+
+                <div>
+                    {/* <div class="slidaerText">
+                        <p class="sliderTextP">Примеры работ бла бла</p>
+                    </div> */}
+                    <div class="imgPSlider">
+                        <img src={img3} alt="img3" class="imgSlider"/>
+                        <div>
+                        <p class="pSlider">Информационный сайт для рынка компании</p>
+                        <div class="ppSlider">
+                        <p>&ndash;&nbsp;Оптимальный дизайн</p>
+                        <p>&ndash;&nbsp;Каталог продукции</p>
+                        <p>&ndash;&nbsp;Формы обратной связи</p>
+                        <p>&ndash;&nbsp;Адаптация под несколько языков</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="sliderBtn">
+                        <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
+                    </div>
+                </div>
+
+                <div>
+                    {/* <div class="slidaerText">
+                        <p class="sliderTextP">Примеры работ бла бла</p>
+                    </div> */}
+                    <div class="imgPSlider">
+                        <img src={img4} alt="img4" class="imgSlider"/>
+                        <div>
+                        <p class="pSlider">Сайт для агенства недвижимости</p>
+                        <div class="ppSlider">
+                        <p>&ndash;&nbsp;Адаптивный дизайн на каждой странице</p>
+                        <p>&ndash;&nbsp;Информативность об услугах целевой аудитории</p>
+                        <p>&ndash;&nbsp;Формы обратной связи</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="sliderBtn">
+                        <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
+                    </div>
+                </div>
+
+                <div>
+                    {/* <div class="slidaerText">
+                        <p class="sliderTextP">Примеры работ бла бла</p>
+                    </div> */}
+                    <div class="imgPSlider">
+                        <img src={img2} alt="img2" class="imgSlider"/>
+                        <div>
+                        <p class="pSlider">efgrtg</p>
+                        <div class="ppSlider">
+                        <p>&ndash;&nbsp;rgt</p>
+                        <p>&ndash;&nbsp;trg</p>
+                        <p>&ndash;&nbsp;trg</p>
+                        <p>&ndash;&nbsp;rg</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="sliderBtn">
+                        <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
+                    </div>
+                </div>
+            </Slider> 
+            {/* <a class="slick-next slider__control_next" href="#" role="button" data-slide="next"></a> */}
+            {/* <div class="sliderButtonNext">
+            <MyButton style={{width: 10, height:15}} data-slide="next" href="#">&gt;</MyButton>
+            </div> */}
+            </div>
+            {/* <div class="slider">
+                <div class="sliderMain" id="sliderMain1">
+                    <div class="sliderTitle">
+                        <p>Наши работы</p>
+                    </div>
+                    <div class="slidaerText">
+                        Примеры работ бла бла
+                    </div>
+                    <div class="sliderBtn">
+                    <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
+                    <a class="mainTopButton">&gt;</a>
+                    </div>
+                </div>
+                <div class="sliderMain" id="sliderMain2">
+                    <div class="sliderTitle">
+                        <p>Наши работы</p>
+                    </div>
+                    <div class="slidaerText">
+                        Примеры работ бла бла
+                    </div>
+                    <div class="sliderBtn">
+                        <p>Оставить заявку</p>
+                    </div>
+                </div>
+                <div class="sliderMain" id="sliderMain3">
+                    <div class="sliderTitle">
+                        <p>Наши работы</p>
+                    </div>
+                    <div class="slidaerText">
+                        Примеры работ бла бла
+                    </div>
+                    <div class="sliderBtn">
+                        <p>Оставить заявку</p>
+                    </div>
+                </div>
+            </div> */}
+
+
             {/*  */}
             <div class="text-service2Main">
                 <div class="hText-1Main">
                     <p>Создание программного обеспечения для вашего бизнеса</p>
                 </div> 
-                <div class="hText-2Main">
-                    {/* <img src={logo} alt="logo" class="logoMain" /> */}
+                {/* <div class="hText-2Main">
                     <img src={logotext} alt="logotext" class="logoMainText" />
                     <p>Наша главная задача — помогать компаниям из различных отраслей реализовывать амбициозные программные обеспечения, 
-                        которые приведут к росту и развитию бтзнеса.</p>
+                        которые приведут к росту и развитию бизнеса.</p>
                     <p>ИП Кашапов Р.А. — компания, которая предоставляет услуги по разработке программных продуктов на заказ.</p>
                     <p>Мы ежедневно работаем над проектами по разработке на  Java, C#, PHP, Bitrix, JavaScript, Python,
-                    {/* Go, Swift, Objective-C, Flutter, Vue.js, */}
                         Android, iOS, React Native, Angular, React.js, 
                         проекты по обеспечению качества для банков и финансовых организаций, ритейла, сектора 
                         здравоохранения и сервисных компаний. Все услуги предоставляются высокой технологичностью 
                         и наличием уникальной экспертизы в разработке.
                     </p>
+                </div> */}
+                <div class="aboutImage">
+                    <div class="aboutInnerMain">
+                        <div class="aboutTitleMain">
+                            <p class="aboutTitlePMain">О компании</p>
+                        </div>
+                        <div class="aboutTextMain">
+                            Наша главная задача — помогать компаниям из различных отраслей реализовывать амбициозные программные обеспечения, 
+                                которые приведут к росту и развитию бизнеса.<br></br>
+                            ИП Кашапов Р.А. — компания, которая предоставляет услуги по разработке программных продуктов на заказ.<br></br>
+                            Мы ежедневно работаем над проектами по разработке на  Java, C#, PHP, Bitrix, JavaScript, Python,
+                                Android, iOS, React Native, Angular, React.js, 
+                                проекты по обеспечению качества для банков и финансовых организаций, ритейла, сектора 
+                                здравоохранения и сервисных компаний. Все услуги предоставляются высокой технологичностью 
+                                и наличием уникальной экспертизы в разработке.
+                        </div>
+                    </div>
+                    <div class="aboutLogoImg">
+                        <img src={logotext} alt="logotext" />
+                    </div>
                 </div>
             </div>
           </div>

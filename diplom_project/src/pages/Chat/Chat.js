@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import account from "../../assets/image/account.png";
 import { useHttp } from "../../hooks/useHttp";
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { APPLICTEXT_ROUTE, CHAT_ROUTE } from '../../utils/const';
 import { useNavigate } from "react-router-dom";
 
@@ -16,10 +16,13 @@ const Chat = () => {
     const navigate = useNavigate();
 
     const [data, setData] = useState({});
+    
+    const { state } = useLocation();
+    const {param} = state;
 
     useEffect(() => {
         const getData = async () => {
-            const result = await request("/api/chat/getchat/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET");
+            const result = await request("/api/chat/getchatuser/" + param, "GET");
             setData(result);
           }
         getData()
@@ -38,7 +41,11 @@ const Chat = () => {
                     return (
                         <div class="containerChat">
                             <div class="pChat">
-                                <p class="clientChat">{apl.Client}</p>
+                                    <p class="emailChat">{apl.UserEmail}</p>
+                                <div class="surnameNameChat">
+                                    <p class="clientSurnameChat">{apl.UserSurname}</p>
+                                    <p class="clientNameChat">{apl.UserName}</p>
+                                </div>
                                 <p class="textChat">{apl.Text}</p>
                             </div>
                             <div class="buttonListChat">

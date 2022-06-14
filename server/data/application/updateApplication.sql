@@ -4,6 +4,7 @@ SET [Description]=@Description,
     [IdUser]=@IdUser,
     [IdStatus]=@IdStatus,
     [IdStatusPayment]=@IdStatusPayment,
+    [IdType]=@IdType,
     [Date]=@Date
 WHERE [IdApplication]=@IdApplication
 
@@ -13,6 +14,7 @@ SELECT [IdApplication]
        ,[IdUser]
        ,[IdStatus]=@IdStatus
        ,[IdStatusPayment]=@IdStatusPayment
+       ,[IdType]=@IdType
        ,[Date]=@Date
 FROM [dbo].[application]
 WHERE [IdApplication]=@IdApplication

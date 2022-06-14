@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./ApplicText.css";
 import MyInput from "../../components/interfase/MyInput/MyInput";
 import MyButton from "../../components/interfase/MyButton/MyButton";
+import MySelect from "../../components/interfase/MySelect/MySelect";
 import { useHttp } from "../../hooks/useHttp";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,23 +11,25 @@ import { useNavigate } from "react-router-dom";
 import { MAIN_ROUTE } from "../../utils/const";
 
 const ApplicText = () => {
+
+  const [type, setType] = useState("");
+  const [curType, setCurType] = useState()
+
+  async function getType() {
+    const result = await request('/api/type');
+    setType(result);
+  };
+
+
   const [IdClient, setIdClient] = useState("");
   const { error, request, clearError } = useHttp();
-  // async function applicHandler () {
-  //     const client = await request('http://localhost:8080/api/client', "POST", {
-  //         Name: name,
-  //         Surname: surname,
-  //         Mail: email
-  //     })
-  //     setIdClient(client.IdClient)
-  // }
 
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   async function getId () {
-    if (!!JSON.parse(localStorage.getItem("clientData")).IdClient == false) {
+    if (JSON.parse(localStorage.getItem("clientData")) == null) {
       await sleep(500);
       const curClient = await request("/api/client/getlast/last");
       setId(curClient[0]["IdClient"]); 
@@ -36,7 +39,7 @@ const ApplicText = () => {
   }
   const navigate = useNavigate();
   useEffect(() => {
-    getId()
+    getId().then(getType());
   }, []);
 
   const [id, setId] = useState();
@@ -51,6 +54,7 @@ const ApplicText = () => {
         IdClient: id,
         IdUser: 1,
         Description: message,
+        IdType: curType,
     }).then(
     toast.success("Успешно.\n Авторизуйтесь данными которые пришли вам на почту"))
     } catch (error) {
@@ -58,10 +62,6 @@ const ApplicText = () => {
     }
   }
 
-  
-  // const [name, setName] = useState("");
-  // const [surname, setSurname] = useState("");
-  // const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
   return (
@@ -73,6 +73,18 @@ const ApplicText = () => {
             <p class="p-textText">
               Опишите Вашу заявку и мы вместе обсудим Ваш проект.
             </p>
+            <div class="descriptionAppText">
+          <p>Что вам требуется разработать?</p>
+          <MySelect value={curType} onChange={(e) => {setCurType(e.target.value)}}>
+            <option key="0" value="0">Выберите платформу</option>
+            {Array.from(type).map((type, index) => {
+              return (
+                <option key={index} value={type.IdType}>{type.Name}</option>
+              )
+            })}
+          </MySelect>
+        </div>
+        {/*  */}
             <div action="#" class="formboxText">
               <div class="message-boxText">
                 <textarea

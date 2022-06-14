@@ -74,7 +74,7 @@
 .backMain{
     width: 100%;
     display: flex;
-    opacity: 0.75;
+    opacity: 0.85;
 }
 .back1Main{
     display: none;
@@ -291,7 +291,7 @@
     font-size: 50px;
 }
 .containerRR span{
-    font-size: 35px;
+    font-size: 25px;
     /* border-color: #fff;
     border-width: 3px; */
     text-shadow:
@@ -325,7 +325,7 @@
     display:inline-block;
   }
   #flipRR div:first-child {
-    animation: show 5s linear infinite;
+    animation: show 7s linear infinite;
   }
   #flipRR div span {
     color:#3B377C;
@@ -351,6 +351,324 @@
     100% {margin-top:-300px;} */
   }
 
+
+
+  /*  */
+  /*  */
+  .mainTopButton{
+    /* color: rgba(255, 255, 255, 0.95);
+    font-size: 16px;
+    justify-content: center;
+    text-align: center;
+    padding-top: 10px;
+    width: 200px;
+    height: 30px;
+    float: left;
+    background-color: #3B377C; */
+    cursor: pointer;
+    font-size: 17px;
+    line-height: 24px;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 30px 5px 24px;
+    margin-top: 10px;
+    border: 5px solid #3B377C;
+    display: inline-block;
+    background: rgba(59, 55, 124, 0.5);
+    border-right-width: 20px;
+    border-left-width: 20px;
+      /* padding-right: 50px; */
+  }
+  .sliderTitleP{
+      font-size: 35px;
+      color: #fff;
+      padding-top: 30px;
+      font-weight: bold;
+  }
+  .sliderButtonPrev{
+   position: absolute;   
+   /* justify-content: center; */
+   /* text-align: center; */
+   /* align-items: center;
+   align-content: center;
+   align-self: center; */
+   margin-top: 220px;
+   margin-left: 5%;
+   float: left;
+  }
+  .sliderButtonNext{
+      float: right;
+    /* position: absolute; */
+    /* margin-top: 200px; */
+    margin-right: 5%;
+    margin-top: -210px;
+    /* padding-top: 0px; */
+   }
+   .aboutImage{
+       margin-top: 15px;
+       background-image: url(C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\aboutFon.jpg);
+       background-size: cover;
+       background-position: center;
+       min-height: 300px;
+       background-repeat: no-repeat;
+       padding: 25px 0px 45px;
+    }
+   .aboutInnerMain{
+       max-width: 745px;
+       justify-content: left;
+       text-align: left;
+   }
+   .aboutTitleMain{
+       padding: 10px 120px 25px;
+       /* margin-bottom: 20px; */
+       font-size: 24px;
+       line-height: 24px;
+       color: #fff;
+       font-weight: 500;
+   }
+   .aboutTextMain{
+       margin-bottom: 30px;
+       padding-left: 100px;
+       letter-spacing: 0.1px;
+       line-height: 24px;
+       color: #d3d2d2;
+   }
+   .aboutLogoImg{
+    float: right;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    margin-right: 2%;
+    margin-top: -2%;
+   }
+   .aboutLogoImg img{
+    height: 20px;
+   }
+  /* .slider__control{
+      background: black;
+  }
+  .slick-next
+  {
+      right: 50px;
+  }
+  .slider__control_prev{
+      margin-left: 70px;
+  }
+  .slider__control_next{
+      margin-right: 70px;
+  } */
+  /* .sliderTextP{ */
+      /* color: #3B377C; */
+      /* color: #d3d2d2;
+      font-size: 25px;
+      padding-bottom: 10px; */
+      /* text-shadow:
+    1px 1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    -1px -1px 0 #fff; */
+  /* } */
+  /* .mainTopButton::after{ */
+    /* content: "\003E"; */
+    /* content: "\276F"; */
+    /* transform: rotate(45deg); */
+  /* } */
+  .slick-arrow{
+    display: none !important;
+  }
+  .slider{
+      background-image: url(C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\slider-fon.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      min-height: 500px;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 35px;
+      /* background: #303030; */
+  }
+  .imgPSlider{
+      display: flex;
+      justify-content: center;
+  }
+  .imgSlider{
+      height: 250px;
+      margin: 25px;
+      /* padding: 30px; */
+      border: #3B377C;
+      border: 5px solid #3B377C;
+      display: inline-block;
+  }
+  .pSlider{
+      /* margin: 30px; */
+      /* height: 50px; */
+      /* margin-left: 50%; */
+      color: #d3d2d2;
+      margin-top: 50px;
+      font-size: 26px;
+      font-weight: bold;
+  }
+  .ppSlider{
+      /* justify-content: left; */
+      text-align: left;
+      margin-left: 60px;
+    /* float: left; */
+      margin-top: 15px;
+      color: #d3d2d2;
+  }
+  .ppSlider p{
+      font-size: 20px;
+  }
+  /* .sliderMain{
+      animation: fade 24s infinite;
+  }
+  #sliderMain1 {
+    animation-delay: 0s;
+  }
+  #sliderMain2 {
+    animation-delay: 8s;
+  }
+  #sliderMain3 {
+    animation-delay: 16s;
+  }
+  @keyframes fade {
+    0% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 1;
+    }
+    34% {
+      opacity: 0;
+    }
+    88% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  } */
+  /*  */
+  /* Slider */
+/* .slick-slider
+{
+    position: relative;
+
+    display: block;
+    box-sizing: border-box;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide
+{
+    display: block;
+
+    height: auto;
+
+    border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+} */
+
+  /*  */
 
 
 

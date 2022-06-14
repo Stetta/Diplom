@@ -10,15 +10,30 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+// import Slider from "react-slick";
 
 const Applic = () => {
+
+    // var settings = {
+    //     dots: true,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1
+    //   };
+
 
     const navigate = useNavigate();
 
     
     const {error, request, clearError} = useHttp();
 
-    let x = String( Math.round(Math.random() * 100000));
+    function generatePassword () {
+        let x = String( Math.round(Math.random() * 100000));
+        setPassword(x);
+    }
 
     async function applicHandler () {
         const client = await request('/api/client', "POST", {
@@ -27,23 +42,16 @@ const Applic = () => {
             Mail: email,
             Patronymic: null,
             Photo: null,
-            Password: x
+            Password: password
         });
     }
 
     async function sendMail () {
         const client = await request('http://localhost:8080/api/client/sendmail', "POST", {
             email: name,
-            password: x
+            password: password
         });
     }
-    // async function bHandler () {
-    //     const data = await request('http://localhost:8080/api/application', "POST", {
-    //         IdClient: IdClient,
-    //         IdUser: 1,
-    //         Description: message
-    //     });
-    // }
 
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
@@ -51,7 +59,7 @@ const Applic = () => {
     const [password, setPassword] = useState("");
     
     const registr = () => {
-        if (name === "" || surname === "" || email === "" ) {
+        if (name === "" || surname === "" || email === "" || password === "") {
             toast.error("Заполните все поля");
             return;
           }
@@ -66,6 +74,23 @@ const Applic = () => {
     } 
     return (
         <div>
+            {/* <Slider {...settings}>
+      <div>
+        <img src="C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\1.jpg" alt="logo-text"/>
+      </div>
+      <div>
+        <img src="C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\2.jpg" alt="logo-text"/>
+      </div>
+      <div>
+        <img src="C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\3.jpg" alt="logo-text"/>
+      </div>
+      <div>
+        <img src="C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\4.jpg" alt="logo-text"/>
+      </div>
+      <div>
+        <img src="C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\5.jpg" alt="logo-text"/>
+      </div>
+    </Slider> */}
             <ToastContainer/>
             <div class="containerApp">
                 <div class="contentApp">
@@ -80,9 +105,10 @@ const Applic = () => {
                                 <MyInput value={surname} onChange={(e) => setSurname(e.target.value)} placeholder="Введите фамилию" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="surname" name="surname" pattern="^[А-я ё Ё]+" title="Только русские буквы"/>
 
                                 <MyInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="email" name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/>
-                                
-                                <MyInput value={x} placeholder="Введите пароль" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" title="Только цифры"/>
-
+                                <div class="passwordBoxApp">
+                                    <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" title="Только цифры"/>
+                                    <MyButton  onClick={() => generatePassword()} style={{width: 200, fontSize: 16}}>Сгенерировать пароль</MyButton>
+                                </div>
                                 <MyButton style={{width: 150, height: 45}} onClick={() => registr()} >Далее</MyButton>
                             </div>                            
                         </div>

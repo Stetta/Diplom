@@ -28,6 +28,7 @@ const MyApplic = () => {
 
     console.log(data)
 
+    if(data != ""){
     return (
         <div class="elementMyApp">
             {/* <div class="buttonMyApp">
@@ -40,10 +41,11 @@ const MyApplic = () => {
                         <div class="containerMyApp">
                             <div class="pMyApp">
                                 <p class="descriptionMyApp">{apl.Description}</p>
-                                <p class="clientMyApp">{apl.Client}</p>
+                                <p class="typeMyApp">&bull;	&shy;{apl.Type}</p>
+                                {/* <p class="clientMyApp">{apl.Client}</p> */}
                             </div>
                             <div class="buttonListMyApp">
-                                <MyButton style={{ width: 70, height: 20}} onClick={() => navigate(CHAT_ROUTE)}>Чат</MyButton>
+                                <MyButton style={{ width: 70, height: 20}} onClick={() => navigate(CHAT_ROUTE, {state: {param: apl.IdApplication}})}>Чат</MyButton>
                                 <p class="dateMyApp">{apl.Date.replace('T', ' ').replace('00:00:00.000Z', '')}</p>
                             </div>
                         </div>
@@ -53,5 +55,13 @@ const MyApplic = () => {
             </div>
         </div>
     )
+} else{
+    return(
+        <div class="elementNotMyApp">
+            <p class="notApplic">У вас отсутствуют заявки</p>
+            <a class="notAApplic" onClick={() => (navigate(APPLICTEXT_ROUTE))}>Создать новую заявку...</a>
+        </div>
+    )
+}
 }
 export default MyApplic;

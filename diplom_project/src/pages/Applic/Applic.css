@@ -60,7 +60,11 @@
     margin-bottom: 20px;
 }
 
-
+.passwordBoxApp{
+    display: flex;
+    width: 1151px;
+    margin-right: 8px;
+}
 
 .label-t1
 {

@@ -36,9 +36,22 @@ pChat */
     margin-top: 15px;
     margin-bottom: 15px;
 }
-.containerChat .clientChat {
+.containerChat .clientSurnameChat {
     font-size: 25px;
-    margin: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    margin-right: 0;
+}
+.containerChat .clientNameChat {
+    font-size: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 0;
+}
+.emailChat {
+    font-size: 18px;
+    margin: 5px;
 }
 .containerChat .textChat {
     font-size: 18px;
@@ -58,4 +71,6 @@ pChat */
     font-size: 14px;
     margin-top: 50px;
 }
-
+.surnameNameChat {
+    display: flex;
+}

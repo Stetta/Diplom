@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    height: auto;
     box-sizing: border-box;
 }
 *,
@@ -9,7 +10,7 @@
     box-sizing: inherit;
 }
 .containerAppText{
-    height: 450px;
+    height: auto;
 }
 .contentText{
     display: flex;
@@ -116,7 +117,35 @@
     align-items: center;
     justify-content: center;
 }
-
+/*  */
+.descriptionAppText{
+    margin-top: 5%;
+    text-align: center;
+    font-size: 24px;
+}
+.descriptionAppText option{
+    font-size: 16px;
+    color: #464646;
+}
+.selectAppText{
+    margin-top: 0px;
+    margin-bottom: 25px;
+    font-size: 18px;
+    /* width: 300px; */
+    width: 80%;
+    padding: 10px 20px;
+    border-color: #3B377C;
+    border-width: 3px;
+    border-radius: 5px;
+    background: #f0f1f8;
+    border: none;
+    outline: none;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    color: #8f8f8f;
+}
+/*  */
 @media only screen and (max-width:700px) {
     .containerAppText{
         height: 400px;
