@@ -316,6 +316,10 @@ const Main = () => {
                 <div class="hText-1Main">
                     <p>Создание программного обеспечения для вашего бизнеса</p>
                 </div> 
+                <div>
+
+
+                </div>
                 {/* <div class="hText-2Main">
                     <img src={logotext} alt="logotext" class="logoMainText" />
                     <p>Наша главная задача — помогать компаниям из различных отраслей реализовывать амбициозные программные обеспечения, 
@@ -329,8 +333,12 @@ const Main = () => {
                     </p>
                 </div> */}
                 <div class="aboutImage">
+                    <div class="aboutFormboxMain">
                     <div class="aboutInnerMain">
                         <div class="aboutTitleMain">
+                            <div class="aboutLogoImg">
+                                <img src={logotext} alt="logotext" />
+                            </div>
                             <p class="aboutTitlePMain">О компании</p>
                         </div>
                         <div class="aboutTextMain">
@@ -342,10 +350,12 @@ const Main = () => {
                                 проекты по обеспечению качества для банков и финансовых организаций, ритейла, сектора 
                                 здравоохранения и сервисных компаний. Все услуги предоставляются высокой технологичностью 
                                 и наличием уникальной экспертизы в разработке.
+                        </div>                    
                         </div>
+                        <div class="aboutMapMain">
+                        <iframe class="mapAboutMain" src="https://yandex.ru/map-widget/v1/?um=constructor%3Aef96730b9557470214b42d4e5c25a0135889b1ea45c9094193e7b07c08b6f5de&amp;source=constructor"
+                          style={{marginRight: 0}} frameborder="0"></iframe>
                     </div>
-                    <div class="aboutLogoImg">
-                        <img src={logotext} alt="logotext" />
                     </div>
                 </div>
             </div>
@@ -413,3 +423,7 @@ const Main = () => {
 };
 
 export default Main;
+                        // <script type="text/javascript" charset="utf-8" 
+                        //     async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aef96730b9557470214b42d4e5c25a0135889b1ea45c9094193e7b07c08b6f5de&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true">
+                                
+                        //     </script>

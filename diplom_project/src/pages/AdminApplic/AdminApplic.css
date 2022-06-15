@@ -21,14 +21,13 @@
 .pageMyApp {
     min-height: 400px;
     margin-top: 5%;
-    margin-bottom: 5%;
     grid-column-start: 1;
 }
 .listMyApp {
     display: grid;
     grid-template-columns: 80px auto 80px;
 }
-.containerMyApp {
+/* .containerMyApp {
     grid-column-start: 2;
     width: 100%;
     display: grid;
@@ -41,20 +40,19 @@
     margin-top: 15px;
     margin-bottom: 15px;
     background: #f0f1f8;
-    /* outline: none; */
     border: none;
     padding: 15px;
-}
-.containerMyApp .descriptionMyApp {
+} */
+/* .containerMyApp .descriptionMyApp {
     font-size: 25px;
     margin: 15px;
-}
-.containerMyApp .clientMyApp {
+} */
+/* .containerMyApp .clientMyApp {
     font-size: 18px;
     margin-left: 15px;
     margin-bottom: 10px;
-}
-.buttonListMyApp {
+} */
+/* .buttonListMyApp {
     align-items: center;
     grid-column-start: 2;
     margin-top: 10px;
@@ -67,12 +65,12 @@
     font-size: 14px;
     margin-top: 5px;
     padding-top: 10px;
-}
-.typeMyApp{
+} */
+/* .typeMyApp{
     margin-left: 15px;
     margin-bottom: 10px;
     font-size: 18px;
-}
+} */
 .elementNotMyApp{
     height: auto;
     display: flex;

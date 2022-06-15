@@ -5,7 +5,7 @@ import MyModal from "../interfase/MyModal/MyModal";
 import MyInput from "../interfase/MyInput/MyInput";
 import MyButton from "../interfase/MyButton/MyButton";
 import { useNavigate } from "react-router-dom";
-import { MAIN_ROUTE, APPLIC_ROUTE, PROFILE_ROUTE, MYAPPLIC_ROUTE, APPLICTEXT_ROUTE } from "../../utils/const";
+import { MAIN_ROUTE, APPLIC_ROUTE, PROFILE_ROUTE, MYAPPLIC_ROUTE, APPLICTEXT_ROUTE, ADMINPROFILE_ROUTE, ADMINAPPLIC_ROUTE, CHART_ROUTE } from "../../utils/const";
 import { useHttp } from "../../hooks/useHttp";
 import { AuthContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
@@ -38,8 +38,8 @@ const Header = () => {
       username: email,
       password: password
     })
-    auth.login(data.token, data.IdRole, data.userId)
-    navigate(PROFILE_ROUTE);
+    auth.login(data.token, data.userId, data.IdRole)
+    navigate(ADMINPROFILE_ROUTE);
   }
 
   const registrr = () => {
@@ -105,9 +105,27 @@ const Header = () => {
 
         {isNavVisible && auth.token && ( 
         <nav class="navigate" style={{zIndex: 1000}}>
+          {/* {JSON.parse(localStorage.getItem("clientData")).IdRole && (
+            <div>
+          <a class="navigate__link" onClick={() => navigate(ADMINAPPLIC_ROUTE)} style={{marginTop: 25}}>Заявки</a>
+          <a class="navigate__link" onClick={() => navigate(CHART_ROUTE)} style={{marginTop: 25}}>Статистика</a>
+          </div>
+          )}
+          {!JSON.parse(localStorage.getItem("clientData")).IdRole && (
+            <div>
           <a class="navigate__link" onClick={() => navigate(MYAPPLIC_ROUTE)} style={{marginTop: 25}}>Мои заявки</a>
+          <a class="navigate__link" onClick={() => navigate(APPLICTEXT_ROUTE)} style={{marginTop: 25}}>Создать заявку</a>
+          </div>
+          )} */}
+         
           {JSON.parse(localStorage.getItem("clientData")).IdRole && (
-          <a class="navigate__link" onClick={() => navigate()} style={{marginTop: 25}}>Статистика</a>
+          <a class="navigate__link" onClick={() => navigate(ADMINAPPLIC_ROUTE)} style={{marginTop: 25}}>Заявки</a>
+          )}
+          {!JSON.parse(localStorage.getItem("clientData")).IdRole && (
+          <a class="navigate__link" onClick={() => navigate(MYAPPLIC_ROUTE)} style={{marginTop: 25}}>Мои заявки</a>
+          )}
+          {JSON.parse(localStorage.getItem("clientData")).IdRole && (
+          <a class="navigate__link" onClick={() => navigate(CHART_ROUTE)} style={{marginTop: 25}}>Статистика</a>
           )}
           {!JSON.parse(localStorage.getItem("clientData")).IdRole && (
           <a class="navigate__link" onClick={() => navigate(APPLICTEXT_ROUTE)} style={{marginTop: 25}}>Создать заявку</a>

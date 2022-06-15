@@ -1,0 +1,72 @@
+.containerMyApp {
+    grid-column-start: 2;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 125px;
+    align-items: center;
+    border: solid;
+    border-radius: 5px;
+    border-color: #2d2d2d !important;
+    border-width: 1px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background: #f0f1f8;
+    /* outline: none; */
+    border: none;
+    padding: 15px;
+}
+.containerMyApp .descriptionMyApp {
+    font-size: 25px;
+    margin: 15px;
+}
+.containerMyApp .clientMyApp {
+    font-size: 18px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+.typeMyApp{
+    margin-left: 15px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.buttonListMyApp {
+    align-items: center;
+    grid-column-start: 2;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+.dateMyApp{
+    font-size: 14px;
+    margin-top: 5px;
+    padding-top: 10px;
+    
+}
+.mailMyApp{
+    font-size: 15px;
+    margin-top: 3px;
+    /* padding-left: 25px; */
+    /* margin-bottom: 5px; */
+    color: #767676;
+}
+.clientLoginName{
+    display: flex;
+    /* flex-direction: column; */
+    /* align-self: center; */
+    /* align-items: center; */
+    /* align-content: center; */
+    text-align: center;
+}
+.selectBoxAppl{
+    display: flex;
+}
+.labelSelectApplic{
+    display: grid;
+}
+.labelSelectApp{
+    padding-left: 10px;
+    font-size: 15px;
+    color: #767676;
+}

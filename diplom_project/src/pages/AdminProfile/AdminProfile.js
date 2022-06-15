@@ -1,15 +1,16 @@
-'use strict';
-
-import React, { useEffect, useState } from 'react'
-import "./Profile.css";
+import React, { useCallback, useEffect, useState } from "react";
+import "./AdminProfile.css";
 import MyInput from "../../components/interfase/MyInput/MyInput";
 import MyButton from "../../components/interfase/MyButton/MyButton";
+import MySelect from "../../components/interfase/MySelect/MySelect";
+import { useHttp } from "../../hooks/useHttp";
+import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import account from "../../assets/image/account.png";
-import { useHttp } from "../../hooks/useHttp";
+import { useNavigate } from "react-router-dom";
+import { MAIN_ROUTE } from "../../utils/const";
 
-const Profile = () => {
+const AdminProfile = () => {
 
     const {request} = useHttp();
     const defaultImg = require("../../assets/image/account.png");
@@ -170,5 +171,6 @@ const Profile = () => {
 //       </div>
 //     );
 // }
-}
-export default Profile;
+};
+
+export default AdminProfile;

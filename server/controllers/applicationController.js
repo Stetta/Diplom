@@ -40,9 +40,43 @@ const getApplicationByClient = async (req, res, next) => {
   }
 };
 
+const getApplicationByUser = async (req, res, next) => {
+  try {
+    const application = await applicationData.getApplicationByUser(req.params.id);
+    res.send(application);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+const updateStatusApplication = async (req, res, next) => {
+  try {
+    const applicationId = req.params.id;
+    const data = req.body;
+    const updated = await applicationData.updateStatusApplication(applicationId, data);
+    res.send(updated)
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
+
+const updateStatusPaymentApplication = async (req, res, next) => {
+  try {
+    const applicationId = req.params.id;
+    const data = req.body;
+    const updated = await applicationData.updateStatusPaymentApplication(applicationId, data);
+    res.send(updated)
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
+
 module.exports = {
   getApplication,
   addApplication,
   updateApplication,
-  getApplicationByClient
+  getApplicationByClient,
+  getApplicationByUser,
+  updateStatusApplication,
+  updateStatusPaymentApplication
 };

@@ -96,6 +96,7 @@
     text-align: center;
     font-size: 30px;
     font-weight: bold;
+    margin-bottom: 30px;
 }
 .hText-2Main{
     text-align: left;
@@ -413,18 +414,23 @@
        background-repeat: no-repeat;
        padding: 25px 0px 45px;
     }
+    .aboutFormboxMain{
+        display: flex;
+        flex-direction:row;
+    }
    .aboutInnerMain{
-       max-width: 745px;
+       max-width: 740px;
        justify-content: left;
        text-align: left;
    }
    .aboutTitleMain{
-       padding: 10px 120px 25px;
+       padding: 10px 100px 25px;
        /* margin-bottom: 20px; */
        font-size: 24px;
        line-height: 24px;
        color: #fff;
        font-weight: 500;
+       display: flex;
    }
    .aboutTextMain{
        margin-bottom: 30px;
@@ -435,13 +441,30 @@
    }
    .aboutLogoImg{
     float: right;
-    background: rgba(255, 255, 255, 0.7);
-    padding: 10px;
+    background: rgb(255, 255, 255);
+    padding: 5px;
     margin-right: 2%;
     margin-top: -2%;
    }
    .aboutLogoImg img{
-    height: 20px;
+    height: 15px;
+   }
+   .aboutFormboxMain{
+    align-items: center;
+    margin-right: 2%;
+   }
+   .mapAboutMain{
+    display: flex !important;
+    /* margin: 10px; */
+    /* margin-right: 10%; */
+    width: 400px;
+    height: 200px !important;
+    margin-left: 5%;
+    margin-right: 2%;
+    padding-left: 15px;
+    align-self: center;
+    /* float: right; */
+    /* margin-right: 5%; */
    }
   /* .slider__control{
       background: black;
