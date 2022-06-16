@@ -12,9 +12,44 @@
     height: auto;
     display: grid;
 }
+.backElementChat{
+    margin-top: 2%;
+    /* margin-left: 10%; */
+    display: grid;
+    grid-template-columns: 80px auto 80px;
+}
+.backBoxElementChat{
+    grid-column-start: 2;
+}
+.pBackBox{
+    width: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    margin: 0;
+}
+.pBackBox::before{
+    content: "";
+    display: block;
+    width: 0px;
+    height: 24px;
+    margin-right: 5px;
+    overflow: hidden;
+    background-image: url("../../assets/image/backk.png");
+    background-size: 24px;
+    transition: width 200ms, margin-right 200ms;
+}
+.pBackBox:is(:hover,:focus)::before{
+    width: 24px;
+    margin-right: 8px;
+}
+
+
+
 .pageChat {
     min-height: 400px;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-bottom: 5%;
 }
 .listChat {
@@ -85,7 +120,11 @@
 }
 .dateChat{
     font-size: 14px;
-    /* margin-top: 50px; */
+    margin-bottom: 0;
+}
+.timeChat{
+    font-size: 14px;
+    margin-top: -35px;
 }
 .surnameNameChat{
     display: flex;
@@ -103,4 +142,70 @@
     height: 100px;
     width: 100px;
     border-radius: 90px;
+}
+
+
+.addChat{
+    height: auto;
+    background: #f0f1f8;
+    text-align: center;
+    justify-content: center;
+    padding: 3%;
+    display: flex;
+}
+.textareaChat{
+    height: 80%;
+    min-height: 100px;
+    min-width: 300px;
+    width: 80%;
+    margin: 15px;
+    resize: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: #fff;
+    outline: none;
+}
+.buttonMessageChat{
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    /* text-align: center; */
+}
+.buttonMessageChat::after{
+    content: "";
+    display: block;
+    width: 0px;
+    height: 24px;
+    overflow: hidden;
+    background-image: url("../../assets/image/addMesBtn.png");
+    background-size: 25px;
+    transition: width 200ms, margin-left 200ms;
+}
+.buttonMessageChat:is(:hover,:focus)::after{
+    width: 24px;
+    margin-left: 8px;
+}
+
+.pAddPhotoBtn{
+    height: 25px;
+    width: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 0;
+}
+.imgphotoAddBox {
+    margin: auto;
+    margin-top: 10px;
+    width: 30%;
+    height: 30%;
 }

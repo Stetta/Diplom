@@ -185,10 +185,7 @@ const Main = () => {
                     </div>
                 </div>
 
-                <div>
-                    {/* <div class="slidaerText">
-                        <p class="sliderTextP">Примеры работ бла бла</p>
-                    </div> */}
+                {/* <div>
                     <div class="imgPSlider">
                         <img src={img2} alt="img2" class="imgSlider"/>
                         <div>
@@ -204,7 +201,7 @@ const Main = () => {
                     <div class="sliderBtn">
                         <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
                     </div>
-                </div>
+                </div> */}
 
                 <div>
                     {/* <div class="slidaerText">
@@ -247,10 +244,7 @@ const Main = () => {
                     </div>
                 </div>
 
-                <div>
-                    {/* <div class="slidaerText">
-                        <p class="sliderTextP">Примеры работ бла бла</p>
-                    </div> */}
+                {/* <div>
                     <div class="imgPSlider">
                         <img src={img2} alt="img2" class="imgSlider"/>
                         <div>
@@ -266,7 +260,7 @@ const Main = () => {
                     <div class="sliderBtn">
                         <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
                     </div>
-                </div>
+                </div> */}
             </Slider> 
             {/* <a class="slick-next slider__control_next" href="#" role="button" data-slide="next"></a> */}
             {/* <div class="sliderButtonNext">

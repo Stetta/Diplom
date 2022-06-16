@@ -10,6 +10,7 @@ import { useHttp } from "../../hooks/useHttp";
 import { Navigate } from 'react-router-dom';
 import { APPLICTEXT_ROUTE, CHAT_ROUTE } from '../../utils/const';
 import { useNavigate } from "react-router-dom";
+import chatBtn from "../../assets/image/chatBtn.png";
 
 const MyApplic = () => {
     const { request } = useHttp();
@@ -45,7 +46,12 @@ const MyApplic = () => {
                                 {/* <p class="clientMyApp">{apl.Client}</p> */}
                             </div>
                             <div class="buttonListMyApp">
-                                <MyButton style={{ width: 70, height: 20}} onClick={() => navigate(CHAT_ROUTE, {state: {param: apl.IdApplication}})}>Чат</MyButton>
+                                {/* <MyButton style={{ width: 70, height: 20}} onClick={() => navigate(CHAT_ROUTE, {state: {param: apl.IdApplication}})}>Чат</MyButton> */}
+                                <MyButton onClick={() => navigate(CHAT_ROUTE, {state: {param: apl.IdApplication}})}>
+                                    <p class="pBtnMyApp" style={{ width: 70, height: 20}} 
+                                    >Чат
+                                    </p>
+                                </MyButton>
                                 <p class="dateMyApp">{apl.Date.replace('T', ' ').replace('00:00:00.000Z', '')}</p>
                             </div>
                         </div>

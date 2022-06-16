@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,51 +8,106 @@
 *::before{
     box-sizing: inherit;
 }
-.elementMyApp{
-    height: auto;
-    min-height: 600px;
+.elementMyAppAdmin{
     display: grid;
+    grid-template-rows: 120px auto;
 }
-/* .buttonMyApp {
-    display: flex;
-    height: 100px;
-    justify-content: center;
-} */
-.pageMyApp {
+.pageMyAppAdmin {
     min-height: 400px;
     margin-top: 5%;
     grid-column-start: 1;
 }
-.listMyApp {
+.listMyAppAdmin {
     display: grid;
     grid-template-columns: 80px auto 80px;
 }
-/* .containerMyApp {
-    grid-column-start: 2;
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto 125px;
+.elementNotMyAppAdmin{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
     align-items: center;
-    border: solid;
-    border-radius: 5px;
-    border-color: #2d2d2d !important;
-    border-width: 1px;
+    justify-content: center;
+}
+.notApplicAdmin{
+    color:#454545;
+    font-size: 35px;
+}
+.notAApplicAdmin{
+    color:#454545;
+    font-size: 20px;
     margin-top: 15px;
-    margin-bottom: 15px;
-    background: #f0f1f8;
-    border: none;
-    padding: 15px;
+    cursor: pointer;
+}
+.notAApplicAdmin:hover{
+    color: #3B377C;
+}
+.countBoxAdmin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 7px
+}
+.labelCountApllAdmin{
+    margin-left: 15px;
+}
+.labelCountApllAdmin label{
+    font-size: 17px;
+    text-decoration: underline #3B377C 3px;
 } */
-/* .containerMyApp .descriptionMyApp {
+
+
+.elementMyAppAdmin{
+    height: auto;
+    min-height: 600px;
+    display: grid;
+    grid-column-start: 2;
+
+}
+.pageMyAppAdmin {
+    min-height: 400px;
+    margin-top: 1%;
+    margin-bottom: 5%;
+    grid-column-start: 1;
+}
+.countBoxAdmin{
+    background: '#f0f1f8';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 7px
+}
+.labelCountApllAdmin{
+    margin-left: 15px;
+}
+.labelCountApllAdmin label{
+    font-size: 17px;
+    text-decoration: underline #3B377C 3px;
+}
+.listMyAppAdmin {
+    display: grid;
+    grid-template-columns: 120px auto 120px;
+}
+.containerMyAppAdmin .descriptionMyAppAdmin {
     font-size: 25px;
     margin: 15px;
-} */
-/* .containerMyApp .clientMyApp {
+}
+.containerMyAppAdmin .clientMyAppAdmin {
     font-size: 18px;
     margin-left: 15px;
     margin-bottom: 10px;
-} */
-/* .buttonListMyApp {
+}
+.buttonListMyAppAdmin {
     align-items: center;
     grid-column-start: 2;
     margin-top: 10px;
@@ -61,17 +116,18 @@
     align-items: center;
     justify-content: center;
 }
-.dateMyApp{
+.dateMyAppAdmin{
     font-size: 14px;
     margin-top: 5px;
     padding-top: 10px;
-} */
-/* .typeMyApp{
+}
+.typeMyAppAdmin{
     margin-left: 15px;
     margin-bottom: 10px;
     font-size: 18px;
-} */
-.elementNotMyApp{
+}
+.elementNotMyAppAdmin{
+    grid-column-start: 2;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -79,9 +135,10 @@
     /* display: grid; */
     /* margin-top: 7%; */
     align-items: center;
+    text-align: center;
     justify-content: center;
 }
-.notApplic{
+.notApplicAdmin{
     /* display: grid; */
     /* align-items: center;
     justify-content: center; */
@@ -91,7 +148,7 @@
     /* height: 100px;  */
     font-size: 35px;
 }
-.notAApplic{
+.notAApplicAdmin{
     /* display: flex; */
     /* align-items: center;
     justify-content: center; */
@@ -101,6 +158,6 @@
     margin-top: 15px;
     cursor: pointer;
 }
-.notAApplic:hover{
+.notAApplicAdmin:hover{
     color: #3B377C;
 }

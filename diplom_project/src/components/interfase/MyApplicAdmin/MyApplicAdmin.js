@@ -7,6 +7,7 @@ import { useHttp } from '../../../hooks/useHttp';
 import { CHAT_ROUTE } from '../../../utils/const';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import chatBtn from "../../../assets/image/chatBtn.png";
 
 const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate, Status, StatusPayment}) => {
 
@@ -34,14 +35,14 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
 
     if (status && statusPayment) {
         return (
-            <div class="containerMyApp">
-            <div class="pMyApp">
+            <div class="containerMyAppAdm">
+            <div class="pMyAppAdm">
                 <ToastContainer/>
-                <p class="descriptionMyApp">{Description}</p>
-                <p class="typeMyApp">&bull;	&shy;{Type}</p>
-                <div class="selectBoxAppl">
-                    <div class="labelSelectApplic">
-                    <label class="labelSelectApp">Статус заявки</label>
+                <p class="descriptionMyAppAdm">{Description}</p>
+                <p class="typeMyAppAdm">&bull;	&shy;{Type}</p>
+                <div class="selectBoxApplAdm">
+                    <div class="labelSelectApplicAdm">
+                    <label class="labelSelectAppAdm">Статус заявки</label>
                     <MySelect value={curStatus} style={{height: 35, background: '#fff', fontSize: 16, width: 220, margin: 5}}                     
                         onChange={async (e) => {
                             setCurStatus(e.target.value)
@@ -58,8 +59,8 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
                         })}
                     </MySelect>
                     </div>
-                    <div class="labelSelectApplic">
-                    <label class="labelSelectApp">Статус оплаты заявки</label>
+                    <div class="labelSelectApplicAdm">
+                    <label class="labelSelectAppAdm">Статус оплаты заявки</label>
                     <MySelect value={curStatusPayment} style={{height: 35, background: '#fff', fontSize: 16, width: 220, margin: 5}} 
                         onChange={async (e) => {
                             setCurStatusPayment(e.target.value)
@@ -77,14 +78,16 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
                     </MySelect>
                     </div>
                 </div>
-                <div class="clientLoginName">
-                    <p class="clientMyApp">{Client}</p>
-                    <p class="mailMyApp">{Mail}</p>
+                <div class="clientLoginNameAdm">
+                    <p class="clientMyAppAdm">{Client}</p>
+                    <p class="mailMyAppAdm">{Mail}</p>
                 </div>
             </div>
-            <div class="buttonListMyApp">
-                <MyButton style={{ width: 70, height: 20}} onClick={() => navigate(CHAT_ROUTE, {state: {param: IdApplication}})}>Чат</MyButton>
-                <p class="dateMyApp">{CurDate.replace('T', ' ').replace('00:00:00.000Z', '')}</p>
+            <div class="buttonListMyAppAdm">
+                <MyButton onClick={() => navigate(CHAT_ROUTE, {state: {param: IdApplication}})} >
+                <p class="btnPListMyAppAdm" style={{ width: 70, height: 20}}>Чат</p>
+                </MyButton>
+                <p class="dateMyAppAdm">{CurDate.replace('T', ' ').replace('00:00:00.000Z', '')}</p>
             </div>
         </div>
         );

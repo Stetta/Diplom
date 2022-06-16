@@ -8,7 +8,7 @@ INSERT INTO [dbo].[chat]
         [Photo]
     )
 VALUES (
-    @Date,
+    CURRENT_TIMESTAMP,
     @IdUser,
     @IdClient,
     @IdApplication,

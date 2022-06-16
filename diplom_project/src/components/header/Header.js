@@ -99,6 +99,7 @@ const Header = () => {
           <a class="navigate__link" onClick={() => navigate(MAIN_ROUTE)}>Главная</a>
           <a class="navigate__link" onClick={() => setLogin(true)}>Авторизация</a>
           <a class="navigate__link" onClick={() => navigate(APPLIC_ROUTE)}>Оставить заявку</a>
+          <a class="navigate__link"></a>
           {/* <a class="navigate__link" href="#">Контакты</a> */}
         </nav>
         )} 
@@ -119,21 +120,21 @@ const Header = () => {
           )} */}
          
           {JSON.parse(localStorage.getItem("clientData")).IdRole && (
-          <a class="navigate__link" onClick={() => navigate(ADMINAPPLIC_ROUTE)} style={{marginTop: 25}}>Заявки</a>
+          <a class="navigate__link" onClick={() => navigate(ADMINAPPLIC_ROUTE)}>Заявки</a>
           )}
           {!JSON.parse(localStorage.getItem("clientData")).IdRole && (
-          <a class="navigate__link" onClick={() => navigate(MYAPPLIC_ROUTE)} style={{marginTop: 25}}>Мои заявки</a>
+          <a class="navigate__link" onClick={() => navigate(MYAPPLIC_ROUTE)}>Мои заявки</a>
           )}
           {JSON.parse(localStorage.getItem("clientData")).IdRole && (
-          <a class="navigate__link" onClick={() => navigate(CHART_ROUTE)} style={{marginTop: 25}}>Статистика</a>
+          <a class="navigate__link" onClick={() => navigate(CHART_ROUTE)}>Статистика</a>
           )}
           {!JSON.parse(localStorage.getItem("clientData")).IdRole && (
-          <a class="navigate__link" onClick={() => navigate(APPLICTEXT_ROUTE)} style={{marginTop: 25}}>Создать заявку</a>
+          <a class="navigate__link" onClick={() => navigate(APPLICTEXT_ROUTE)}>Создать заявку</a>
           )}
-          <a class="navigate__link" onClick={() => navigate(PROFILE_ROUTE)} style={{padding: 0, marginTop: 3, width: 130, alignSelf: 'center'}}>Профиль</a>
-          <a/>
-          <a/>
-          <a class="navigate__link" onClick={() => Logoout()} style={{marginTop: 0, width: 130, alignSelf: 'center'}}>Выход</a>
+          <a class="navigate__link" onClick={() => navigate(PROFILE_ROUTE)} style={{padding: 0, width: 130, marginRight:0, alignSelf: 'center'}}>Профиль</a>
+          {/* <a/>
+          <a/> */}
+          <a class="navigate__link" onClick={() => Logoout()} style={{marginLeft: -80, width: 100, alignSelf: 'center'}}>Выход</a>
           {/* <MyButton style={{ width: 100, height: 40, marginRight: 5, marginLeft: 5 }} onClick={() => Logoout()} id="SendApplic">Выход</MyButton> */}
         </nav>
         )}

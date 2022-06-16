@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "./Chat.css";
 import MyInput from "../../components/interfase/MyInput/MyInput";
 import MyButton from "../../components/interfase/MyButton/MyButton";
@@ -7,9 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import account from "../../assets/image/account.png";
 import { useHttp } from "../../hooks/useHttp";
 import { Navigate, useLocation } from 'react-router-dom';
-import { APPLICTEXT_ROUTE, CHAT_ROUTE } from '../../utils/const';
+import { ADMINAPPLIC_ROUTE, APPLICTEXT_ROUTE, CHAT_ROUTE, MYAPPLIC_ROUTE } from '../../utils/const';
 import { useNavigate } from "react-router-dom";
 import accountimg from "../../assets/image/account.png";
+import addMesBtn from "../../assets/image/addMesBtn.png";
+import back from "../../assets/image/backk.png";
 
 
 const Chat = () => {
@@ -18,6 +20,7 @@ const Chat = () => {
     const navigate = useNavigate();
 
     const [data, setData] = useState({});
+    const [time, setTime] = useState(Date.now())
     
     const { state } = useLocation();
     const {param} = state;
@@ -25,33 +28,100 @@ const Chat = () => {
     const [message, setMessage] = useState('');
     const defaultImg = require("../../assets/image/account.png");
     const [photo, setPhoto] = useState("");
-    
-    useEffect(() => {
-        const getData = async () => {
-            const result = await request("/api/chat/getchatuser/" + param, "GET");
-            setData(result);
-          }
-        getData()
-    }, [request])
+    const [photoMess, setPhotoMess] = useState("");
 
-    // console.log(data)
+    const inputFile = useRef(null);
+    const getImage = (e) => {
+        let file = e.target.files[0];
+    
+        let firstReader = new FileReader();
+        let secondReader = new FileReader();
+    
+        firstReader.readAsText(file);
+        secondReader.readAsDataURL(file);
+        
+        secondReader.onload = function () {
+          setPhotoMess(secondReader.result.split(',')[1])
+        };
+    
+        secondReader.onerror = function () {
+        toast.error(secondReader.error);
+        };
+      };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(Date.now())
+            getData()
+        }, 5000)
+        return () => {
+            clearInterval(interval)
+        }
+    }, [request, data, setData])
+
+    function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    const id = JSON.parse(localStorage.getItem("clientData")).IdClient;
+    const roleId = JSON.parse(localStorage.getItem("clientData")).IdRole;
+
+    const getData = async () => {
+        const result = await request("/api/chat/getchatuser/" + param, "GET");
+        setData(result);
+      }
+
+    async function sendMessage() {
+        if (message == "") {
+            toast.error("Введите сообщение");
+            return;
+        } 
+        await sleep(100);
+        if (roleId === undefined) {            
+            const send = await request("/api/chat", "POST", {
+                Text: message,
+                IdApplication: param,
+                Photo: photoMess,
+                IdClient: id
+            }).then(setMessage('')).then(setPhotoMess(null))
+        } else {
+            const send = await request("/api/chat", "POST", {
+                Text: message,
+                IdApplication: param,
+                Photo: photoMess,
+                IdUser: id
+            }).then(setMessage('')).then(setPhotoMess(null))
+        }
+    
+    }
+    async function NavigateApplic(){
+        if(roleId ===undefined) {
+            navigate(MYAPPLIC_ROUTE)
+        } else{
+            navigate(ADMINAPPLIC_ROUTE)
+        }
+    }
+
     if(data != ""){
-    return (
-        <div class="elementChat">
-            {/* <div class="buttonMyApp">
-                <MyButton style={{marginTop: 30, width: 150, height: 45}} onClick={() => navigate(APPLICTEXT_ROUTE)}>Создать зявку</MyButton>
-            </div> */}
+        return (
+            <div class="elementChat">
+                <div class="backElementChat">
+                    <div class="backBoxElementChat">
+                        <MyButton style={{paddingLeft: 0, paddingRight: 5}} onClick={NavigateApplic}>
+                            <p class="pBackBox">Вернуться к заявкам</p>
+                        </MyButton>
+
+                    </div>
+                </div>
+                <ToastContainer/>
             <div class="pageChat">
             <div class="listChat">
                 {Array.from(data).map((apl) => {
                     return (
                         <div class="containerChat">
-                            {/* <div class="imgProfileChat">
-                                <img>{apl.UserPhoto}</img>
-                            </div> */}
                             <div class="pChat">
                                 <div class="surnameNameChat">
-                                    <img className="profileImgChat" src={`data:image/png;base64,${message.Photo}`} onError={(e) => {
+                                    <img className="profileImgChat" src={`data:image/png;base64,${apl.UserPhoto}`} onError={(e) => {
                                             e.target.onerror = null;
                                             e.target.src = defaultImg;
                                         }} />
@@ -65,28 +135,85 @@ const Chat = () => {
                                 </div>
                             </div>
                             <div class="buttonListChat">
-                                {/* <MyButton style={{ width: 70, height: 20}} onClick={() => navigate(CHAT_ROUTE)}>Чат</MyButton> */}
-                                <p class="dateChat">{apl.Date.replace('T', ' ').replace('00:00:00.000Z', '')}</p>
+                                <p class="dateChat">{apl.Date.split('T')[0].split('-')[0] + '.' + apl.Date.split('T')[0].split('-')[2] + '.' + apl.Date.split('T')[0].split('-')[1] + ' '}</p>
+                                <p class="timeChat">{apl.Date.split('T')[1].split(':')[0]+':'+apl.Date.split('T')[1].split(':')[1]}</p>
                             </div>
                             <div className="pTextChat">
                                 <p class="textChat">{apl.Text}</p>
+                                {apl.Photo && (  
+                                    <div>
+                                        <div style={{margin: 10}}>
+                                            <img class="imgphotoAddBox" src={`data:image/png;base64,${apl.Photo}`} onError={(e) => {e.target.onerror = null;}}>
+                                        </img>
+                                    </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     );
+                    
                 })}
             </div>
             </div>
             <div class="addChat">
-                <textarea class="textareaChat" onChange={(e) => setMessage(e.target.value)} value={message}/>
-                <MyButton>Отправить</MyButton>
+                <input style={{display: 'none'}} onChange={getImage} ref={inputFile} type="file" accept='.jpeg, .png, .jpg'></input>
+                <MyButton style={{width: 30, height:30, textAlign: 'center', alignItem: 'center', padding: 5, marginTop: 50}} 
+                onClick={() => {inputFile.current.click()}}>
+                    <p class="pAddPhotoBtn" src={`data:image/png;base64,${photoMess}`} >+</p>
+                </MyButton>
+                <div>
+                    <div class="photoAddBox">
+                        <textarea class="textareaChat" onChange={(e) => setMessage(e.target.value)} value={message}/>
+                        {photoMess && (
+                        <img class="imgphotoAddBox"
+                            src={`data:image/png;base64,${photoMess}`}
+                            onError={(e) => {e.target.onerror = null;}}>
+                        </img>
+                        )}
+                    </div>
+                </div>
+                <MyButton style={{marginTop: 50}} onClick={sendMessage}>
+                    <p class="buttonMessageChat">Отправить</p>
+                </MyButton>
+            
             </div>
         </div>
     )
 } else{
     return(
+        <div>
         <div class="elementNotMyApp">
             <p class="notApplic">История чата пуста</p>
             <a class="notAApplic" onClick={() => (navigate(APPLICTEXT_ROUTE))}>Напишите Ваше сообщение, чтобы начать чат...</a>
+        </div>
+        
+        <div class="addChat">
+                <input style={{display: 'none'}} onChange={getImage} ref={inputFile} type="file" accept='.jpeg, .png, .jpg'></input>
+                <MyButton style={{width: 30, height:30, textAlign: 'center', alignItem: 'center', padding: 5, marginTop: 50}} 
+                onClick={() => {inputFile.current.click()}}>
+                    <p class="pAddPhotoBtn" src={`data:image/png;base64,${photoMess}`} >+</p>
+                </MyButton>
+                <div>
+                    <div class="photoAddBox">
+                        <textarea class="textareaChat" onChange={(e) => setMessage(e.target.value)} value={message}/>
+                        {photoMess && (
+                        <img class="imgphotoAddBox"
+                            src={`data:image/png;base64,${photoMess}`}
+                            onError={(e) => {e.target.onerror = null;}}>
+                        </img>
+                        )}
+                    </div>
+                </div>
+                
+                <MyButton style={{marginTop: 50}}
+                onClick={sendMessage}
+                >
+                    <p class="buttonMessageChat">
+                    Отправить
+                    </p>
+                    </MyButton>
+            
+            </div>
         </div>
     )
 }

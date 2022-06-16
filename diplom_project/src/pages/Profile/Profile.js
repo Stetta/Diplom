@@ -86,12 +86,10 @@ const Profile = () => {
         secondReader.readAsDataURL(file);
         
         secondReader.onload = function () {
-        //   console.log(secondReader.result.split(',')[1]);
           setPhoto(secondReader.result.split(',')[1])
         };
     
         secondReader.onerror = function () {
-        //   console.log(secondReader.error);
         toast.error(secondReader.error);
         };
       };

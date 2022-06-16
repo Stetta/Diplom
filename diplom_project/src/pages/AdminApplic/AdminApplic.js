@@ -35,32 +35,10 @@ const AdminApplic = () => {
         getStatus().then(getStatusPayment());
       }, []);
 
-    // const [type, setType] = useState("");
-    // const [curType, setCurType] = useState()
-    // async function getType() {
-    //     const result = await request('/api/type');
-    //     setType(result);
-    //   };
-    // const bHandler = async () => {
-    //     try {
-    //       if (message === "") {
-    //         toast.error("Заполните описание заявки");
-    //         return;
-    //       }
-    //     const data = await request("/api/application", "POST",
-    //     {
-    //         IdClient: id,
-    //         IdUser: 1,
-    //         Description: message,
-    //         IdType: curType,
-    //     }).then(
-    //     toast.success("Успешно.\n Авторизуйтесь данными которые пришли вам на почту"))
-    //     } catch (error) {
-    //     }
-    //   }
-
-
-
+      const getData = async () => {
+        const result = await request("/api/application/getapplicbyuser/" + 1, "GET");
+        setData(result);
+      }
     useEffect(() => {
         const getData = async () => {
             const result = await request("/api/application/getapplicbyuser/" + 1, "GET");
@@ -72,20 +50,26 @@ const AdminApplic = () => {
     function Update() {
         this.target.setState({ state: this.target.state});
     }
-    // console.log(JSON.parse(localStorage.getItem("clientData")).IdClient)
 
-                // console.log((data).count)
-                // console.log(Object.keys(data).length)
-    if(data != ""){
+    function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    // const [search, setSearch] = useState('');
+    // const 
     return (
-        <div class="elementMyApp">
-            <div class="countBox">
-                <label>Количество заявок: </label>
-                <label>{Object.keys(data).length}</label>
-                <MySelect value={curStatus} style={{height: 35, background: '#f0f1f8', fontSize: 16, width: 220, margin: 5}}                     
-                        onChange={(e) => {data = Array.from(data).filter(c => c.Status == e.target.value) 
-                            Update()
-                        }}>
+        <div class="elementMyAppAdmin">
+            {/* <div class="countBoxColor" style={{background: '#f0f1f8'}}> */}
+            <div class="countBoxAdmin" style={{background: '#f0f1f8'}}>
+                <MySelect value={curStatus} style={{height: 35, background: '#fff', fontSize: 16, width: 220, margin: 5}}                     
+                        onChange={async (e) => { 
+                            if (e.target.value == 0) {
+                                getData()
+                                return;
+                            }
+                            await sleep(100)
+                            setData(Array.from(await request("/api/application/getapplicbyuser/" + 1, "GET")).filter(c => c.Status == e.target.value))
+                            }}>
                         <option key="0" value="0">Выберите статус</option>
                         {Array.from(status).map((status, index) => {
                             return (
@@ -93,63 +77,34 @@ const AdminApplic = () => {
                             )
                         })}
                     </MySelect>
-                {/* Подсчеот количества заявок в зависимости от типа, статуса и статуса оплаты */}
+                    <div class="labelCountApllAdmin">
+                <label>Количество заявок: </label>
+                <label>{Object.keys(data).length}</label>
+                </div>
+                {/* <MyInput placeholder="Поиск по описанию заявки..." style={{background: '#fff', width: 600, marginLeft: 15, height: 35}} title="Только русские буквы" 
+                onChange={(e) => setSearch(e.target.value)}
+                ></MyInput> */}
             </div>
-            {/* <div class="buttonMyApp">
-                <MyButton style={{marginTop: 30, width: 150, height: 45}} onClick={() => navigate(APPLICTEXT_ROUTE)}>Создать зявку</MyButton>
-            </div> */}
-            <div class="pageMyApp">
-            <div class="listMyApp">
-                {/* {Array.from(data).map((appl) => {
-                    return (
-                        <div class="containerMyApp">
-                            <div class="pMyApp">
-                                <p class="descriptionMyApp">{appl.Description}</p>
-                                <p class="typeMyApp">&bull;	&shy;{appl.Type}</p>
-                                <div >
-                                    <MySelect value={curStatus} style={{height: 35, background: '#fff', fontSize: 16, width: 220, margin: 5}} onChange={(e) => {setCurStatus(e.target.value)}}>
-                                        <option key="0" value="0">Выберите статус</option>
-                                        {Array.from(status).map((status, index) => {
-                                            return (
-                                                <option key={index} value={status.IdStatus}>{status.Name}</option>
-                                            )
-                                        })}
-                                    </MySelect>
-                                    <MySelect value={curStatusPayment} style={{height: 35, background: '#fff', fontSize: 16, width: 220, margin: 5}} onChange={(e) => {setCurStatusPayment(e.target.value)}}>
-                                        <option key="0" value="0">Выберите статус оплаты</option>
-                                        {Array.from(statusPayment).map((statusPayment, index) => {
-                                            return (
-                                                <option key={index} value={statusPayment.IdStatusPayment}>{statusPayment.Name}</option>
-                                            )
-                                        })}
-                                    </MySelect>
-                                </div>
-                            </div>
-                            <div class="buttonListMyApp">
-                                <MyButton style={{ width: 70, height: 20}} onClick={() => navigate(CHAT_ROUTE, {state: {param: appl.IdApplication}})}>Чат</MyButton>
-                                <p class="dateMyApp">{appl.Date.replace('T', ' ').replace('00:00:00.000Z', '')}</p>
-                            </div>
-                        </div>
-                    );
-                })} */}
-                {Array.from(data).map((d) => {
-                    return (
-                        <MyApplicAdmin Description={d.Description} Type={d.Type} IdApplication={d.IdApplication} Client={d.Client} Mail={d.Mail} CurDate={d.Date} Status={d.Status} StatusPayment={d.StatusPayment}/>
-                    )
-                })}
+            <div class="pageMyAppAdmin">
+            <div class="listMyAppAdmin">
+                {data != "" && (
+                    <div class='elementMyAppAdmin'>
+                        {Array.from(data).map((d) => {
+                            return (
+                                <MyApplicAdmin Description={d.Description} Type={d.Type} IdApplication={d.IdApplication} Client={d.Client} Mail={d.Mail} CurDate={d.Date} Status={d.Status} StatusPayment={d.StatusPayment}/>
+                            )
+                        })}
+                    </div>
+                )}
+                {data == "" && (                    
+                    <div class="elementNotMyAppAdmin">
+                        <p class="notApplicAdmin">У вас отсутствуют заявки</p>
+                    </div>
+                )}
             </div>
             </div>
         </div>
     )
-} 
-else{
-    return(
-        <div class="elementNotMyApp">
-            <p class="notApplic">У вас отсутствуют заявки</p>
-            {/* <a class="notAApplic" onClick={() => (navigate(APPLICTEXT_ROUTE))}>Создать новую заявку...</a> */}
-        </div>
-    )
-}
 };
 
 export default AdminApplic;

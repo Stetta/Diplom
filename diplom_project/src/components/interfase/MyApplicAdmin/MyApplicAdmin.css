@@ -1,57 +1,53 @@
-.containerMyApp {
-    grid-column-start: 2;
+.containerMyAppAdm {
     width: 100%;
-    display: grid;
-    grid-template-columns: auto 125px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    border: solid;
     border-radius: 5px;
-    border-color: #2d2d2d !important;
-    border-width: 1px;
-    margin-top: 15px;
-    margin-bottom: 15px;
     background: #f0f1f8;
-    /* outline: none; */
     border: none;
     padding: 15px;
+    margin: 15px;
 }
-.containerMyApp .descriptionMyApp {
+.containerMyAppAdm .descriptionMyAppAdm {
     font-size: 25px;
     margin: 15px;
 }
-.containerMyApp .clientMyApp {
+.containerMyAppAdm .clientMyAppAdm {
     font-size: 18px;
     margin-left: 15px;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
-.typeMyApp{
+.typeMyAppAdm{
     margin-left: 15px;
     margin-bottom: 10px;
     font-size: 18px;
 }
-.buttonListMyApp {
-    align-items: center;
+.buttonListMyAppAdm {
+    margin-left: auto;
+    padding-right: 20px;
     grid-column-start: 2;
     margin-top: 10px;
     margin-bottom: 10px;
     display: grid;
-    align-items: center;
     justify-content: center;
 }
-.dateMyApp{
+.dateMyAppAdm{
     font-size: 14px;
     margin-top: 5px;
     padding-top: 10px;
     
 }
-.mailMyApp{
+.mailMyAppAdm{
     font-size: 15px;
-    margin-top: 3px;
+    margin-top: 13px;
     /* padding-left: 25px; */
     /* margin-bottom: 5px; */
     color: #767676;
 }
-.clientLoginName{
+.clientLoginNameAdm{
     display: flex;
     /* flex-direction: column; */
     /* align-self: center; */
@@ -59,14 +55,40 @@
     /* align-content: center; */
     text-align: center;
 }
-.selectBoxAppl{
+.selectBoxApplAdm{
     display: flex;
+    margin-right: 35px;
 }
-.labelSelectApplic{
+.labelSelectApplicAdm{
     display: grid;
 }
-.labelSelectApp{
+.labelSelectAppAdm{
     padding-left: 10px;
     font-size: 15px;
     color: #767676;
+}
+.pMyAppAdm{
+    display: grid;
+    /* grid-template-columns: 80px auto 80px; */
+}
+.btnPListMyAppAdm{
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+.btnPListMyAppAdm::after{
+    content: "";
+    display: block;
+    width: 0px;
+    height: 24px;
+    overflow: hidden;
+    background-image: url("../../../assets/image/chatBtn.png");
+    background-size: 25px;
+    transition: width 200ms, margin-left 200ms;
+}
+.btnPListMyAppAdm:is(:hover,:focus)::after{
+    width: 24px;
+    margin-left: 8px;
 }

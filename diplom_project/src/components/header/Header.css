@@ -48,7 +48,7 @@
 }
 .header {
   background-color: rgba(255, 255, 255, 0.95);
-  height: 95px;
+  height: 75px;
   text-align: center;
   color: Blue;
   font-size: 30px;
@@ -105,7 +105,7 @@ p {
   justify-self: right;
   align-items: center;
   width: 650px;
-  grid-template-columns: 25% 30% 45%;
+  grid-template-columns: 25% 25% 35% 15%;
   font-size: 20px;
   cursor: pointer;
   padding-right: 0;
