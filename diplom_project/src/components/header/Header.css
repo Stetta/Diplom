@@ -313,6 +313,9 @@ p {
 
 @media only screen and (max-width: 700px) {
   /*  */
+  .navlinklast {
+    margin: 15px !important;
+  }
   .headerTop{
     justify-content: center;
     text-align: center;
@@ -372,7 +375,7 @@ p {
     grid-template-rows: 25% 25% 25%;
     grid-template-columns: none;
     font-size: 18px;
-    margin-top: 75px;
+    margin-top: 75px !important;
     width: 100%;
     padding: 10px;
     background-color: rgba(240, 241, 248, 0.9);

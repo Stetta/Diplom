@@ -161,3 +161,12 @@
 .notAApplicAdmin:hover{
     color: #3B377C;
 }
+
+@media only screen and (max-width: 700px) {
+    .listMyAppAdmin {
+        grid-template-columns: 10px auto 10px !important;
+    }
+    .containerMyAppAdmin {
+        width: 80%;
+    }
+}

@@ -417,6 +417,8 @@
     .aboutFormboxMain{
         display: flex;
         flex-direction:row;
+        align-items: center;
+        margin-right: 2%;
     }
    .aboutInnerMain{
        max-width: 740px;
@@ -449,18 +451,17 @@
    .aboutLogoImg img{
     height: 15px;
    }
-   .aboutFormboxMain{
-    align-items: center;
+   .aboutMapMain{
+    display: flex !important;
+    margin-left: 10%;
     margin-right: 2%;
+
    }
    .mapAboutMain{
-    display: flex !important;
     /* margin: 10px; */
     /* margin-right: 10%; */
     width: 400px;
     height: 200px !important;
-    margin-left: 5%;
-    margin-right: 2%;
     padding-left: 15px;
     align-self: center;
     /* float: right; */
@@ -541,157 +542,6 @@
   .ppSlider p{
       font-size: 20px;
   }
-  /* .sliderMain{
-      animation: fade 24s infinite;
-  }
-  #sliderMain1 {
-    animation-delay: 0s;
-  }
-  #sliderMain2 {
-    animation-delay: 8s;
-  }
-  #sliderMain3 {
-    animation-delay: 16s;
-  }
-  @keyframes fade {
-    0% {
-      opacity: 1;
-    }
-    20% {
-      opacity: 1;
-    }
-    34% {
-      opacity: 0;
-    }
-    88% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  } */
-  /*  */
-  /* Slider */
-/* .slick-slider
-{
-    position: relative;
-
-    display: block;
-    box-sizing: border-box;
-
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-
-    -webkit-touch-callout: none;
-    -khtml-user-select: none;
-    -ms-touch-action: pan-y;
-        touch-action: pan-y;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.slick-list
-{
-    position: relative;
-
-    display: block;
-    overflow: hidden;
-
-    margin: 0;
-    padding: 0;
-}
-.slick-list:focus
-{
-    outline: none;
-}
-.slick-list.dragging
-{
-    cursor: pointer;
-    cursor: hand;
-}
-
-.slick-slider .slick-track,
-.slick-slider .slick-list
-{
-    -webkit-transform: translate3d(0, 0, 0);
-       -moz-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-         -o-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-}
-
-.slick-track
-{
-    position: relative;
-    top: 0;
-    left: 0;
-
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.slick-track:before,
-.slick-track:after
-{
-    display: table;
-
-    content: '';
-}
-.slick-track:after
-{
-    clear: both;
-}
-.slick-loading .slick-track
-{
-    visibility: hidden;
-}
-
-.slick-slide
-{
-    display: none;
-    float: left;
-
-    height: 100%;
-    min-height: 1px;
-}
-[dir='rtl'] .slick-slide
-{
-    float: right;
-}
-.slick-slide img
-{
-    display: block;
-}
-.slick-slide.slick-loading img
-{
-    display: none;
-}
-.slick-slide.dragging img
-{
-    pointer-events: none;
-}
-.slick-initialized .slick-slide
-{
-    display: block;
-}
-.slick-loading .slick-slide
-{
-    visibility: hidden;
-}
-.slick-vertical .slick-slide
-{
-    display: block;
-
-    height: auto;
-
-    border: 1px solid transparent;
-}
-.slick-arrow.slick-hidden {
-    display: none;
-} */
-
-  /*  */
 
 
 
@@ -708,9 +558,53 @@
         opacity: 0.75;
     }
 
+    .sliderTitleP{
+        font-size: 22px;
+    }
+    .aboutFormboxMain{
+        display: grid;
+    }
+    .aboutInnerMain{
+        max-width: 350px;
+        justify-content: left;
+        text-align: left;
+    }
+    .aboutTextMain{
+        margin-bottom: 30px;
+        padding-left: 30px;
+    }
+    .aboutTitleMain{
+        padding: 20px 30px 25px;
+    }
+    .aboutMapMain{
+        display: grid ;
+        justify-content: center;
+        text-align: center;
+        margin-left: 3%;
+        margin-right: 3%;
     
+       }
+       .mapAboutMain{
+        width: 300px;
+        height: 200px !important;
+       }
 
 
+
+
+
+
+
+    .aboutImage{
+        background-size: cover;
+        background-position: center;
+        min-height: 500px;
+        background-repeat: no-repeat;
+        padding: 5px 0px 25px;
+     }
+    .slider{
+        display: none;
+    }
 
     .text-service1Main{
         text-align: center;
@@ -768,12 +662,12 @@
         grid-row-start: 2;
         text-align: center;
         justify-content: center;
-        margin-top: 250px;
+        margin-top: 5%;
     }
     .hText-1Main p{
         justify-content: center;
         text-align: center;
-        font-size: 35px;
+        font-size: 25px;
         font-weight: bold;
     }
     .hText-2Main{

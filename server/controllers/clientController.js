@@ -49,21 +49,32 @@ const sendMail = async(req, res, next) => {
     const nodemailer = require('nodemailer')
 
     const transporter = nodemailer.createTransport({
+      //
+      // host: 'smtp.yandex.ru',
+      // port: 587,
+      // secure: true,
+      // auth: {
+      //   user: 'talondip@yandex.ru',
+      //   pass: 'taldip23'
+      // }
       // host: 'smtp.mail.ru',
       // port: 465,
       // secure: true,
       // auth: {
-      //   user: 'ipkashapovra@mail.ru',
-      //   pass: 'AJpRT7YtHIqDZlK7jMxm'
-      // }
-      service: 'gmail',
-      auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD
-      }
+        //   user: 'ipkashapovra@mail.ru',
+        //   pass: 'AJpRT7YtHIqDZlK7jMxm'
+        // }
+        
+        
+        service: 'gmail',
+        auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
+        }
     })
     const mailOptions = {
       from: 'ipkashapovra@mail.ru',
+      // from: 'talondip@yandex.ru',
       to: req.body.email,
       subject: 'Данные для авторизации',
       text: 'Ваш логин: ' + req.body.email + '; '+ 'Ваш пароль: ' + req.body.password

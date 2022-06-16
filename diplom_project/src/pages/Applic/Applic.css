@@ -201,4 +201,62 @@
     /* .formbox{
 
     } */
+    .passwordBoxApp{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        /* margin-left: -15px;*/
+        margin-right: 0px; 
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .backElementChat {
+        grid-template-columns: 10px auto 70px !important;
+    }
+    
+    .backBoxElementChat {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .listChat {
+        grid-template-columns: 10px auto 10px !important;
+    }
+
+    .profileImgChat {
+        height: 40px !important;
+        width: 40px !important;
+    }
+
+    .timeChat {
+        font-size: 12px !important;
+        margin: 5px !important;
+    }
+
+    .dateChat {
+        font-size: 12px !important;
+        margin: 5px !important;
+    }
+
+    .emailChat {
+        font-size: 12px !important;
+        margin: 5px !important;
+    }
+
+    .clientSurnameChat {
+        font-size: 18px !important;
+    }
+    .clientNameChat {
+        font-size: 18px !important;
+    }
+    .textChat {
+        font-size: 16px !important;
+    }
+    .containerChat {
+        max-width: fit-content;
+    }
 }

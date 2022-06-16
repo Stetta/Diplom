@@ -172,8 +172,11 @@ const Chat = () => {
                         )}
                     </div>
                 </div>
-                <MyButton style={{marginTop: 50}} onClick={sendMessage}>
+                <button class="btnPAddChat" onClick={sendMessage}>
                     <p class="buttonMessageChat">Отправить</p>
+                </button>
+                <MyButton onClick={sendMessage}>
+                    <p class="buttonTelMessageChat"></p>
                 </MyButton>
             
             </div>

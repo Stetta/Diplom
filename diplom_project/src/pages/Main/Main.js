@@ -185,24 +185,6 @@ const Main = () => {
                     </div>
                 </div>
 
-                {/* <div>
-                    <div class="imgPSlider">
-                        <img src={img2} alt="img2" class="imgSlider"/>
-                        <div>
-                        <p class="pSlider">dgh</p>
-                        <div class="ppSlider">
-                        <p>&ndash;&nbsp;fgh</p>
-                        <p>&ndash;&nbsp;dgh</p>
-                        <p>&ndash;&nbsp;gdh</p>
-                        <p>&ndash;&nbsp;gdh</p>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="sliderBtn">
-                        <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
-                    </div>
-                </div> */}
-
                 <div>
                     {/* <div class="slidaerText">
                         <p class="sliderTextP">Примеры работ бла бла</p>
@@ -225,9 +207,6 @@ const Main = () => {
                 </div>
 
                 <div>
-                    {/* <div class="slidaerText">
-                        <p class="sliderTextP">Примеры работ бла бла</p>
-                    </div> */}
                     <div class="imgPSlider">
                         <img src={img4} alt="img4" class="imgSlider"/>
                         <div>
@@ -243,66 +222,8 @@ const Main = () => {
                         <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
                     </div>
                 </div>
-
-                {/* <div>
-                    <div class="imgPSlider">
-                        <img src={img2} alt="img2" class="imgSlider"/>
-                        <div>
-                        <p class="pSlider">efgrtg</p>
-                        <div class="ppSlider">
-                        <p>&ndash;&nbsp;rgt</p>
-                        <p>&ndash;&nbsp;trg</p>
-                        <p>&ndash;&nbsp;trg</p>
-                        <p>&ndash;&nbsp;rg</p>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="sliderBtn">
-                        <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
-                    </div>
-                </div> */}
             </Slider> 
-            {/* <a class="slick-next slider__control_next" href="#" role="button" data-slide="next"></a> */}
-            {/* <div class="sliderButtonNext">
-            <MyButton style={{width: 10, height:15}} data-slide="next" href="#">&gt;</MyButton>
-            </div> */}
             </div>
-            {/* <div class="slider">
-                <div class="sliderMain" id="sliderMain1">
-                    <div class="sliderTitle">
-                        <p>Наши работы</p>
-                    </div>
-                    <div class="slidaerText">
-                        Примеры работ бла бла
-                    </div>
-                    <div class="sliderBtn">
-                    <a class="mainTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
-                    <a class="mainTopButton">&gt;</a>
-                    </div>
-                </div>
-                <div class="sliderMain" id="sliderMain2">
-                    <div class="sliderTitle">
-                        <p>Наши работы</p>
-                    </div>
-                    <div class="slidaerText">
-                        Примеры работ бла бла
-                    </div>
-                    <div class="sliderBtn">
-                        <p>Оставить заявку</p>
-                    </div>
-                </div>
-                <div class="sliderMain" id="sliderMain3">
-                    <div class="sliderTitle">
-                        <p>Наши работы</p>
-                    </div>
-                    <div class="slidaerText">
-                        Примеры работ бла бла
-                    </div>
-                    <div class="sliderBtn">
-                        <p>Оставить заявку</p>
-                    </div>
-                </div>
-            </div> */}
 
 
             {/*  */}
@@ -312,20 +233,7 @@ const Main = () => {
                 </div> 
                 <div>
 
-
                 </div>
-                {/* <div class="hText-2Main">
-                    <img src={logotext} alt="logotext" class="logoMainText" />
-                    <p>Наша главная задача — помогать компаниям из различных отраслей реализовывать амбициозные программные обеспечения, 
-                        которые приведут к росту и развитию бизнеса.</p>
-                    <p>ИП Кашапов Р.А. — компания, которая предоставляет услуги по разработке программных продуктов на заказ.</p>
-                    <p>Мы ежедневно работаем над проектами по разработке на  Java, C#, PHP, Bitrix, JavaScript, Python,
-                        Android, iOS, React Native, Angular, React.js, 
-                        проекты по обеспечению качества для банков и финансовых организаций, ритейла, сектора 
-                        здравоохранения и сервисных компаний. Все услуги предоставляются высокой технологичностью 
-                        и наличием уникальной экспертизы в разработке.
-                    </p>
-                </div> */}
                 <div class="aboutImage">
                     <div class="aboutFormboxMain">
                     <div class="aboutInnerMain">
@@ -347,9 +255,9 @@ const Main = () => {
                         </div>                    
                         </div>
                         <div class="aboutMapMain">
-                        <iframe class="mapAboutMain" src="https://yandex.ru/map-widget/v1/?um=constructor%3Aef96730b9557470214b42d4e5c25a0135889b1ea45c9094193e7b07c08b6f5de&amp;source=constructor"
+                            <iframe class="mapAboutMain" src="https://yandex.ru/map-widget/v1/?um=constructor%3Aef96730b9557470214b42d4e5c25a0135889b1ea45c9094193e7b07c08b6f5de&amp;source=constructor"
                           style={{marginRight: 0}} frameborder="0"></iframe>
-                    </div>
+                    </div> 
                     </div>
                 </div>
             </div>

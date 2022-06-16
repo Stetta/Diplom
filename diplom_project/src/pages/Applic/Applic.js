@@ -68,7 +68,7 @@ const Applic = () => {
             // applicHandler().then(
             //     sendMail()
             // );
-            // console.log("a");
+            //console.log("a");
             navigate(APPLICTEXT_ROUTE);
         } 
     } 

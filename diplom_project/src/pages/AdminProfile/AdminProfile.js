@@ -151,7 +151,9 @@ const AdminProfile = () => {
                 {/* <MyButton style={{marginTop: 0, marginBottom: 10, width: 130, height: 40 }} 
                     onClick={registrre} accept=".jpeg, .png, .jpg" onChange={getImage}
                     id="SendPhoto">Загрузить фото</MyButton> */}
+                    {/* <MyButton> */}
                     <input class="tasks-create-form-file" type="file" accept=".jpeg, .png, .jpg" onChange={getImage}></input>
+                    {/* </MyButton> */}
                 <div class="inputBox">
                     <MyInput value={surname} onChange={(e) => setSurname(e.target.value)} placeholder="Введите фамилию" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="surname" name="surname" pattern="^[А-я ё Ё]+" title="Только русские буквы"/>
                     <MyInput value={name} onChange={(e) => setName(e.target.value)} placeholder="Введите имя" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="name" name="name" data-reg="^[А-я ё Ё]+" title="Только русские буквы"/>
