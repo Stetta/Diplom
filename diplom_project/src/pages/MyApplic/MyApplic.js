@@ -17,7 +17,7 @@ const MyApplic = () => {
 
     const navigate = useNavigate();
 
-    const [data, setData] = useState({});
+    const [data, setData] = useState({}); 
 
     useEffect(() => {
         const getData = async () => {
@@ -27,7 +27,6 @@ const MyApplic = () => {
         getData()
     }, [request])
 
-    console.log(data)
 
     if(data != ""){
     return (
@@ -38,16 +37,19 @@ const MyApplic = () => {
             <div class="pageMyApp">
             <div class="listMyApp">
                 {Array.from(data).map((apl) => {
+                        console.log(apl.Status)
                     return (
-                        <div class="containerMyApp">
+                        <div class={apl.Status == '5' ? 'containerMyApp canceled' : 'containerMyApp'}>
                             <div class="pMyApp">
                                 <p class="descriptionMyApp">{apl.Description}</p>
                                 <p class="typeMyApp">&bull;	&shy;{apl.Type}</p>
+                                <p class="typeStyleMyApp">&#8195;&bull;&shy;Статус заявки: {apl.StatusName}</p>
+                                <p class="typeStyleMyApp">&#8195;&bull;&shy;Статус оплаты заявки: {apl.StatusPaymentName}</p>
                                 {/* <p class="clientMyApp">{apl.Client}</p> */}
                             </div>
                             <div class="buttonListMyApp">
                                 {/* <MyButton style={{ width: 70, height: 20}} onClick={() => navigate(CHAT_ROUTE, {state: {param: apl.IdApplication}})}>Чат</MyButton> */}
-                                <MyButton onClick={() => navigate(CHAT_ROUTE, {state: {param: apl.IdApplication}})}>
+                                <MyButton onClick={() => navigate(CHAT_ROUTE, {state: {param: apl.IdApplication, status: apl.Status}})}>
                                     <p class="pBtnMyApp" style={{ width: 70, height: 20}} 
                                     >Чат
                                     </p>

@@ -29,13 +29,27 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
         setStatusPayment(result);
       }; 
 
+
+
+      async function sendMessage() {
+        const send = await request("/api/chat", "POST", {
+            Text: 'Заявка отменена',
+            IdApplication: IdApplication,
+            IdUser: JSON.parse(localStorage.getItem("clientData")).IdClient
+        })
+    }
+
+    console.log(Status)
+
+
     useEffect(() => {
         getStatus().then(getStatusPayment());
       }, []);
 
     if (status && statusPayment) {
+        
         return (
-            <div class="containerMyAppAdm">
+            <div class={curStatus == '5' ? 'containerMyAppAdm canceled' : 'containerMyAppAdm'}>
             <div class="pMyAppAdm">
                 <ToastContainer/>
                 <p class="descriptionMyAppAdm">{Description}</p>
@@ -45,6 +59,9 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
                     <label class="labelSelectAppAdm">Статус заявки</label>
                     <MySelect value={curStatus} style={{height: 35, background: '#fff', fontSize: 16, width: 220, margin: 5}}                     
                         onChange={async (e) => {
+                            if (e.target.value == '5') {
+                                sendMessage()
+                            }
                             setCurStatus(e.target.value)
                             await request("/api/application/applicationstatus/" + IdApplication, 'PUT', {
                             IdStatus: e.target.value
@@ -84,7 +101,7 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
                 </div>
             </div>
             <div class="buttonListMyAppAdm">
-                <MyButton onClick={() => navigate(CHAT_ROUTE, {state: {param: IdApplication}})} >
+                <MyButton onClick={() => navigate(CHAT_ROUTE, {state: {param: IdApplication, status: Status}})} >
                 <p class="btnPListMyAppAdm" style={{ width: 70, height: 20}}>Чат</p>
                 </MyButton>
                 {/* <p class="dateMyAppAdm">{CurDate.replace('T', ' ').replace('00:00:00.000Z', '')}</p> */}

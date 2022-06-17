@@ -1,4 +1,5 @@
-SELECT [Application].IdApplication, [Application].[Date], [Status].[IdStatus] as [Status], [StatusPayment].[IdStatusPayment] as [StatusPayment],
+SELECT [Application].IdApplication, [Application].[Date], [Status].[IdStatus] as [Status], [Status].[Name] as [StatusName],
+ [StatusPayment].[IdStatusPayment] as [StatusPayment], [StatusPayment].[Name] as [StatusPaymentName],
  [Type].[Name] AS [Type], [Application].[Description], Client.Surname+' '+Client.Name as "Client" 
 FROM [dbo].[application]
 INNER JOIN Client on [Application].IdClient = Client.IdClient 

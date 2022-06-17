@@ -10,6 +10,11 @@
     padding: 15px;
     margin: 15px;
 }
+
+.canceled {
+    background-color: rgb(255, 208, 208);
+}
+
 .containerMyAppAdm .descriptionMyAppAdm {
     font-size: 25px;
     margin: 15px;

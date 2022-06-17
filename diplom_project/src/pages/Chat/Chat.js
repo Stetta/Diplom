@@ -23,7 +23,7 @@ const Chat = () => {
     const [time, setTime] = useState(Date.now())
     
     const { state } = useLocation();
-    const {param} = state;
+    const { param, status } = state;
 
     const [message, setMessage] = useState('');
     const defaultImg = require("../../assets/image/account.png");
@@ -94,6 +94,7 @@ const Chat = () => {
         }
     
     }
+    console.log(status)
     async function NavigateApplic(){
         if(roleId ===undefined) {
             navigate(MYAPPLIC_ROUTE)
@@ -155,31 +156,37 @@ const Chat = () => {
                 })}
             </div>
             </div>
-            <div class="addChat">
-                <input style={{display: 'none'}} onChange={getImage} ref={inputFile} type="file" accept='.jpeg, .png, .jpg'></input>
-                <MyButton style={{width: 30, height:30, textAlign: 'center', alignItem: 'center', padding: 5, marginTop: 50}} 
-                onClick={() => {inputFile.current.click()}}>
-                    <p class="pAddPhotoBtn" src={`data:image/png;base64,${photoMess}`} >+</p>
-                </MyButton>
-                <div>
-                    <div class="photoAddBox">
-                        <textarea class="textareaChat" onChange={(e) => setMessage(e.target.value)} value={message}/>
-                        {photoMess && (
-                        <img class="imgphotoAddBox"
-                            src={`data:image/png;base64,${photoMess}`}
-                            onError={(e) => {e.target.onerror = null;}}>
-                        </img>
-                        )}
-                    </div>
+            {status == '5' && (
+                <div class='addChat'>
+                    <h4>Заявка отменена, отправка запрещена</h4>
                 </div>
-                <button class="btnPAddChat" onClick={sendMessage}>
-                    <p class="buttonMessageChat">Отправить</p>
-                </button>
-                {/* <MyButton onClick={sendMessage}>
-                    <p class="buttonTelMessageChat"></p>
-                </MyButton> */}
-            
+            )}
+            {status != '5' && (
+                <div class="addChat">
+                    <input style={{display: 'none'}} onChange={getImage} ref={inputFile} type="file" accept='.jpeg, .png, .jpg'></input>
+                    <MyButton style={{width: 30, height:30, textAlign: 'center', alignItem: 'center', padding: 5, marginTop: 50}} 
+                    onClick={() => {inputFile.current.click()}}>
+                        <p class="pAddPhotoBtn" src={`data:image/png;base64,${photoMess}`} >+</p>
+                    </MyButton>
+                    <div>
+                        <div class="photoAddBox">
+                            <textarea class="textareaChat" onChange={(e) => setMessage(e.target.value)} value={message}/>
+                            {photoMess && (
+                            <img class="imgphotoAddBox"
+                                src={`data:image/png;base64,${photoMess}`}
+                                onError={(e) => {e.target.onerror = null;}}>
+                            </img>
+                            )}
+                        </div>
+                    </div>
+                    <button class="btnPAddChat" onClick={sendMessage}>
+                        <p class="buttonMessageChat">Отправить</p>
+                    </button>
+                    {/* <MyButton onClick={sendMessage}>
+                        <p class="buttonTelMessageChat"></p>
+                    </MyButton> */}
             </div>
+            )}
         </div>
     )
 } else{
@@ -190,33 +197,37 @@ const Chat = () => {
             <a class="notAApplic" onClick={() => (navigate(APPLICTEXT_ROUTE))}>Напишите Ваше сообщение, чтобы начать чат...</a>
         </div>
         
-        <div class="addChat">
-                <input style={{display: 'none'}} onChange={getImage} ref={inputFile} type="file" accept='.jpeg, .png, .jpg'></input>
-                <MyButton style={{width: 30, height:30, textAlign: 'center', alignItem: 'center', padding: 5, marginTop: 50}} 
-                onClick={() => {inputFile.current.click()}}>
-                    <p class="pAddPhotoBtn" src={`data:image/png;base64,${photoMess}`} >+</p>
-                </MyButton>
-                <div>
-                    <div class="photoAddBox">
-                        <textarea class="textareaChat" onChange={(e) => setMessage(e.target.value)} value={message}/>
-                        {photoMess && (
-                        <img class="imgphotoAddBox"
-                            src={`data:image/png;base64,${photoMess}`}
-                            onError={(e) => {e.target.onerror = null;}}>
-                        </img>
-                        )}
-                    </div>
+        {status == '5' && (
+                <div class='addChat'>
+                    <h4>Заявка отменена, отправка запрещена</h4>
                 </div>
-                
-                <MyButton style={{marginTop: 50}}
-                onClick={sendMessage}
-                >
-                    <p class="buttonMessageChat">
-                    Отправить
-                    </p>
+            )}
+            {status != '5' && (
+                <div class="addChat">
+                    <input style={{display: 'none'}} onChange={getImage} ref={inputFile} type="file" accept='.jpeg, .png, .jpg'></input>
+                    <MyButton style={{width: 30, height:30, textAlign: 'center', alignItem: 'center', padding: 5, marginTop: 50}} 
+                    onClick={() => {inputFile.current.click()}}>
+                        <p class="pAddPhotoBtn" src={`data:image/png;base64,${photoMess}`} >+</p>
                     </MyButton>
-            
+                    <div>
+                        <div class="photoAddBox">
+                            <textarea class="textareaChat" onChange={(e) => setMessage(e.target.value)} value={message}/>
+                            {photoMess && (
+                            <img class="imgphotoAddBox"
+                                src={`data:image/png;base64,${photoMess}`}
+                                onError={(e) => {e.target.onerror = null;}}>
+                            </img>
+                            )}
+                        </div>
+                    </div>
+                    <button class="btnPAddChat" onClick={sendMessage}>
+                        <p class="buttonMessageChat">Отправить</p>
+                    </button>
+                    {/* <MyButton onClick={sendMessage}>
+                        <p class="buttonTelMessageChat"></p>
+                    </MyButton> */}
             </div>
+            )}
         </div>
     )
 }
