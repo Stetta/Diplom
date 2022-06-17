@@ -54,6 +54,9 @@ const ApplicText = () => {
         IdClient: id,
         IdUser: 1,
         Description: message,
+        IdStatus: 1,
+        IdStatusPayment: 1,
+        // IdType: 1
         IdType: curType,
     }).then(
     toast.success("Успешно.\n Авторизуйтесь данными которые пришли вам на почту"))

@@ -48,7 +48,7 @@ const Applic = () => {
 
     async function sendMail () {
         const client = await request('http://localhost:8080/api/client/sendmail', "POST", {
-            email: name,
+            mail: email,
             password: password
         });
     }
@@ -64,10 +64,10 @@ const Applic = () => {
             return;
           }
            else{
-            applicHandler();
-            // applicHandler().then(
-            //     sendMail()
-            // );
+            //applicHandler();
+            applicHandler().then(
+                sendMail()
+            );
             //console.log("a");
             navigate(APPLICTEXT_ROUTE);
         } 

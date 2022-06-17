@@ -46,38 +46,24 @@ const updateClient = async (req, res, next) => {
 const sendMail = async(req, res, next) => {
   try {
     require('dotenv').config()
-    const nodemailer = require('nodemailer')
+    let nodemailer = require('nodemailer')
 
-    const transporter = nodemailer.createTransport({
-      //
-      // host: 'smtp.yandex.ru',
-      // port: 587,
-      // secure: true,
-      // auth: {
-      //   user: 'talondip@yandex.ru',
-      //   pass: 'taldip23'
-      // }
-      // host: 'smtp.mail.ru',
-      // port: 465,
-      // secure: true,
-      // auth: {
-        //   user: 'ipkashapovra@mail.ru',
-        //   pass: 'AJpRT7YtHIqDZlK7jMxm'
-        // }
-        
-        
-        service: 'gmail',
-        auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD
-        }
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.yandex.ru',
+      port: 587,
+      secure: false,
+      auth: {
+        user: 'ip.kashapov.r.a@yandex.ru',
+        pass: 'D1864433'
+      }
     })
-    const mailOptions = {
-      from: 'ipkashapovra@mail.ru',
-      // from: 'talondip@yandex.ru',
-      to: req.body.email,
+    let mailOptions = {
+      from: 'ip.kashapov.r.a@yandex.ru',
+      to: req.body.mail,
+      
       subject: 'Данные для авторизации',
-      text: 'Ваш логин: ' + req.body.email + '; '+ 'Ваш пароль: ' + req.body.password
+      text: 'Ваш логин: ' + req.body.mail + '; '+ 'Ваш пароль: ' + req.body.password
+
     }
     transporter.sendMail(mailOptions)
     res.send("sucess")

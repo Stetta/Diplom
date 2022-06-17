@@ -25,7 +25,7 @@ const Footer = () => {
                     <a href="tel:+79053727702" class="text-a">+7 905 372-77-02</a>
                     <br/>
                     <h6 class="text-a">&#9993;&nbsp;Почта</h6>
-                    <a href="mailto:ipkashapovra@gmail.com" class="text-a">ipkashapovra@gmail.com</a>
+                    <a href="mailto:ip.kashapov.r.a@yandex.ru" class="text-a">ip.kashapov.r.a@yandex.ru</a>
                 </div>
             </div>
             <div class="column3">

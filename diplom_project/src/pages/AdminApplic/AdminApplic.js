@@ -36,12 +36,12 @@ const AdminApplic = () => {
       }, []);
 
       const getData = async () => {
-        const result = await request("/api/application/getapplicbyuser/" + 1, "GET");
+        const result = await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET");
         setData(result);
       }
     useEffect(() => {
         const getData = async () => {
-            const result = await request("/api/application/getapplicbyuser/" + 1, "GET");
+            const result = await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET");
             setData(result);
           }
         getData()
@@ -68,7 +68,7 @@ const AdminApplic = () => {
                                 return;
                             }
                             await sleep(100)
-                            setData(Array.from(await request("/api/application/getapplicbyuser/" + 1, "GET")).filter(c => c.Status == e.target.value))
+                            setData(Array.from(await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET")).filter(c => c.Status == e.target.value))
                             }}>
                         <option key="0" value="0">Выберите статус</option>
                         {Array.from(status).map((status, index) => {

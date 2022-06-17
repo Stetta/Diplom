@@ -175,9 +175,9 @@ const Chat = () => {
                 <button class="btnPAddChat" onClick={sendMessage}>
                     <p class="buttonMessageChat">Отправить</p>
                 </button>
-                <MyButton onClick={sendMessage}>
+                {/* <MyButton onClick={sendMessage}>
                     <p class="buttonTelMessageChat"></p>
-                </MyButton>
+                </MyButton> */}
             
             </div>
         </div>

@@ -85,7 +85,7 @@ const Header = () => {
       <div class="headerTop">
         <a class="headerTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
         <a class="headerTopA" href="tel:+79053727702">&#9990;&nbsp;+7 905 372-77-02</a>
-        <a class="headerTopA" href="mailto:ipkashapovra@gmail.com">&#9993;&nbsp;ipkashapovra@gmail.com</a>
+        <a class="headerTopA" href="mailto:ip.kashapov.r.a@yandex.ru">&#9993;&nbsp;ip.kashapov.r.a@yandex.ru</a>
       </div>
       <div class="headerBottom">
       <div class="header">

@@ -87,7 +87,9 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
                 <MyButton onClick={() => navigate(CHAT_ROUTE, {state: {param: IdApplication}})} >
                 <p class="btnPListMyAppAdm" style={{ width: 70, height: 20}}>Чат</p>
                 </MyButton>
-                <p class="dateMyAppAdm">{CurDate.replace('T', ' ').replace('00:00:00.000Z', '')}</p>
+                {/* <p class="dateMyAppAdm">{CurDate.replace('T', ' ').replace('00:00:00.000Z', '')}</p> */}
+                <p class="dateMyAppAdm">{CurDate.split('T')[0].split('-')[0] + '.' + CurDate.split('T')[0].split('-')[2] + '.' + CurDate.split('T')[0].split('-')[1] + ' '}{CurDate.split('T')[1].split(':')[0]+':'+CurDate.split('T')[1].split(':')[1]}</p>
+                {/* <p class="dateMyAppAdm">{CurDate.split('T')[1].split(':')[0]+':'+CurDate.split('T')[1].split(':')[1]}</p> */}
             </div>
         </div>
         );
