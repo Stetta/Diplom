@@ -39,7 +39,7 @@ const MyApplic = () => {
                 {Array.from(data).map((apl) => {
                         console.log(apl.Status)
                     return (
-                        <div class={apl.Status == '5' ? 'containerMyApp canceled' : 'containerMyApp'}>
+                        <div class={apl.Status == '5' ? 'containerMyApp canceled' : (apl.Status == '3' ? 'containerMyApp finished' : 'containerMyApp')}>
                             <div class="pMyApp">
                                 <p class="descriptionMyApp">{apl.Description}</p>
                                 <p class="typeMyApp">&bull;	&shy;{apl.Type}</p>

@@ -284,14 +284,23 @@
 .containerRR{
     justify-content: right;
     grid-column-start: 2;
-    margin-top: 15%;
+    margin-top: 7%;
     margin-left: 5%;
     margin-right: 0 !important;
 }
-.containerRR p{
+.containerRRpFirst{
+    /* text-align: center; */
+    font-size: 30px;
+    margin-bottom: 6%;
+    width: 800px;
+    color: #282652;
+    font-weight: bold;
+}
+.containerRR .containerRRpSEcond{
     font-size: 50px;
 }
 .containerRR span{
+    margin-left: 25px;
     font-size: 25px;
     /* border-color: #fff;
     border-width: 3px; */
@@ -754,7 +763,10 @@
         margin-top: 35%;
         margin-left: 5%;
     }
-    .containerRR p{
+    .containerRRpFirst{
+        font-size: 20px;
+    }
+    .containerRR .containerRRpSEcond{
         font-size: 35px;
     }
     .logoMainText{

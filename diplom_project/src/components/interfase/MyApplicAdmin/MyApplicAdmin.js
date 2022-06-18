@@ -31,7 +31,7 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
 
 
 
-      async function sendMessage() {
+    async function sendMessage() {
         const send = await request("/api/chat", "POST", {
             Text: 'Заявка отменена',
             IdApplication: IdApplication,
@@ -39,7 +39,14 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
         })
     }
 
-    console.log(Status)
+    async function sendMessageEnd() {
+        const send = await request("/api/chat", "POST", {
+            Text: 'Работа с заявкой завершена',
+            IdApplication: IdApplication,
+            IdUser: JSON.parse(localStorage.getItem("clientData")).IdClient
+        })
+    }
+
 
 
     useEffect(() => {
@@ -49,7 +56,7 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
     if (status && statusPayment) {
         
         return (
-            <div class={curStatus == '5' ? 'containerMyAppAdm canceled' : 'containerMyAppAdm'}>
+            <div class={curStatus == '5' ? 'containerMyAppAdm canceled' : (curStatus == '3' ? 'containerMyAppAdm finished' : 'containerMyAppAdm')}>
             <div class="pMyAppAdm">
                 <ToastContainer/>
                 <p class="descriptionMyAppAdm">{Description}</p>
@@ -62,9 +69,12 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
                             if (e.target.value == '5') {
                                 sendMessage()
                             }
+                            if (e.target.value == '3') {
+                                sendMessageEnd()   
+                            }
                             setCurStatus(e.target.value)
                             await request("/api/application/applicationstatus/" + IdApplication, 'PUT', {
-                            IdStatus: e.target.value
+                                IdStatus: e.target.value
                             });
                             toast.success('Статус изменён')
                         }}>

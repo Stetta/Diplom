@@ -9,13 +9,13 @@ import { APPLICTEXT_ROUTE } from "../../utils/const";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import validator from 'validator'
 
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 // import Slider from "react-slick";
 
 const Applic = () => {
-
     // var settings = {
     //     dots: true,
     //     infinite: true,
@@ -62,15 +62,29 @@ const Applic = () => {
         if (name === "" || surname === "" || email === "" || password === "") {
             toast.error("Заполните все поля");
             return;
-          }
-           else{
+        }
+
+        if (!validator.isAlphanumeric(name, ['ru-RU'], {ignore: ' -'}) || !validator.isAlphanumeric(surname, ['ru-RU'], {ignore: ' -'})) {
+            toast.error('Используйте только кириллицу')
+            return;
+        }
+           
+        if (!validator.isEmail(email)) {
+            toast.error('Соблюдайте формат почты!')
+            return;
+        }
+
+        if (!validator.isNumeric(password) || password.length > 5 || password.length < 4) {
+            toast.error('Пароль может содержать от 4 до 5 цифр')
+            return;
+        }
             //applicHandler();
             applicHandler().then(
                 sendMail()
             );
             //console.log("a");
             navigate(APPLICTEXT_ROUTE);
-        } 
+         
     } 
     return (
         <div>

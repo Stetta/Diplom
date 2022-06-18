@@ -11,6 +11,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PassIcon from "../../assets/image/PassIcon.png";
+import validator from 'validator'
 
 const Header = () => {
   /*Состояние видимости модального окна*/
@@ -44,20 +45,33 @@ const Header = () => {
 
   const registrr = () => {
     if (email === "" || password === "") {
-        toast.error("Заполните все поля");
-        return;
-      }
-      else{
-        loginHandler();
+      toast.error("Заполните все поля");
+      return;
+    }
+    if (!validator.isEmail(email)) {
+      toast.error('Соблюдайте формат почты!')
+      return;
+    }
+
+    else{
+      loginHandler();
+      setLogin(false)
+
    }
   }
+
   const registrrUser = () => {
     if (email === "" || password === "") {
-        toast.error("Заполните все поля");
-        return;
-      }
+      toast.error("Заполните все поля");
+      return;
+    }
+    // if (!validator.isEmail(email)) {
+    //   toast.error('Соблюдайте формат почты!')
+    //   return;
+    // }
       else{
         loginHandlerUser();
+        setLogin(false)
    }
   } 
   //
@@ -82,6 +96,7 @@ const Header = () => {
   return (
     // <header className="header">
     <header>
+      <ToastContainer style={{zIndex: 1000000000}}/>
       <div class="headerTop">
         <a class="headerTopButton" onClick={() => navigate(APPLIC_ROUTE)}>&#9998;&nbsp;Оставить заявку</a>
         <a class="headerTopA" href="tel:+79053727702">&#9990;&nbsp;+7 905 372-77-02</a>

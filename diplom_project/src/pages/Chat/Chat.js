@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import accountimg from "../../assets/image/account.png";
 import addMesBtn from "../../assets/image/addMesBtn.png";
 import back from "../../assets/image/backk.png";
+import MyLoader from '../../components/loader/Loader';
 
 
 const Chat = () => {
@@ -29,8 +30,10 @@ const Chat = () => {
     const defaultImg = require("../../assets/image/account.png");
     const [photo, setPhoto] = useState("");
     const [photoMess, setPhotoMess] = useState("");
+    const [loading, setLoading] = useState(true)
 
     const inputFile = useRef(null);
+
     const getImage = (e) => {
         let file = e.target.files[0];
     
@@ -69,6 +72,7 @@ const Chat = () => {
     const getData = async () => {
         const result = await request("/api/chat/getchatuser/" + param, "GET");
         setData(result);
+        setLoading(false)
       }
 
     async function sendMessage() {
@@ -94,7 +98,6 @@ const Chat = () => {
         }
     
     }
-    console.log(status)
     async function NavigateApplic(){
         if(roleId ===undefined) {
             navigate(MYAPPLIC_ROUTE)
@@ -103,7 +106,7 @@ const Chat = () => {
         }
     }
 
-    if(data != ""){
+    if (!loading && (data != "")) {
         return (
             <div class="elementChat">
                 <div class="backElementChat">
@@ -158,16 +161,21 @@ const Chat = () => {
             </div>
             {status == '5' && (
                 <div class='addChat'>
-                    <h4>Заявка отменена, отправка запрещена</h4>
+                    <h4>Заявка отменена, отправка сообщений запрещена</h4>
                 </div>
             )}
-            {status != '5' && (
+            {status == '3' && (
+                <div class='addChat'>
+                    <h4>Работа с заявкой завершена</h4>
+                </div>
+            )}
+            {status != '5' && status != '3' && (
                 <div class="addChat">
                     <input style={{display: 'none'}} onChange={getImage} ref={inputFile} type="file" accept='.jpeg, .png, .jpg'></input>
-                    <MyButton style={{width: 30, height:30, textAlign: 'center', alignItem: 'center', padding: 5, marginTop: 50}} 
+                    <button class="addPhotoFileBtn" 
                     onClick={() => {inputFile.current.click()}}>
                         <p class="pAddPhotoBtn" src={`data:image/png;base64,${photoMess}`} >+</p>
-                    </MyButton>
+                    </button>
                     <div>
                         <div class="photoAddBox">
                             <textarea class="textareaChat" onChange={(e) => setMessage(e.target.value)} value={message}/>
@@ -182,9 +190,9 @@ const Chat = () => {
                     <button class="btnPAddChat" onClick={sendMessage}>
                         <p class="buttonMessageChat">Отправить</p>
                     </button>
-                    {/* <MyButton onClick={sendMessage}>
-                        <p class="buttonTelMessageChat"></p>
-                    </MyButton> */}
+                    <button class="btnPAddChatPhone" onClick={sendMessage}>
+                        <p class="buttonMessageChatPhone">&#10148;</p>
+                    </button>
             </div>
             )}
         </div>
@@ -193,13 +201,32 @@ const Chat = () => {
     return(
         <div>
         <div class="elementNotMyApp">
-            <p class="notApplic">История чата пуста</p>
-            <a class="notAApplic" onClick={() => (navigate(APPLICTEXT_ROUTE))}>Напишите Ваше сообщение, чтобы начать чат...</a>
+
+            <div class="backElementChatNot">
+                <div class="backBoxElementChatNot">
+                    <MyButton style={{paddingLeft: 0, paddingRight: 5}} onClick={NavigateApplic}>
+                        <p class="pBackBox">Вернуться к заявкам</p>
+                    </MyButton>
+                </div>
+            </div>
+
+            {
+                loading
+                ?
+                <div style={{width: "auto", height: 400, marginTop: "20%"}}>
+                    <MyLoader/>
+                </div>
+                :
+                <div>
+                    <p class="notApplic">История чата пуста</p>
+                    {/* <a class="notAApplic" onClick={() => (navigate(APPLICTEXT_ROUTE))}>Напишите Ваше сообщение, чтобы начать чат...</a> */}
+                </div>
+            }
         </div>
         
         {status == '5' && (
                 <div class='addChat'>
-                    <h4>Заявка отменена, отправка запрещена</h4>
+                    <h4>Заявка отменена, отправка сообщений запрещена</h4>
                 </div>
             )}
             {status != '5' && (
@@ -221,11 +248,8 @@ const Chat = () => {
                         </div>
                     </div>
                     <button class="btnPAddChat" onClick={sendMessage}>
-                        <p class="buttonMessageChat">Отправить</p>
+                        <p class="buttonMessageChat">Отправть</p>
                     </button>
-                    {/* <MyButton onClick={sendMessage}>
-                        <p class="buttonTelMessageChat"></p>
-                    </MyButton> */}
             </div>
             )}
         </div>

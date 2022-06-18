@@ -18,6 +18,25 @@
     display: grid;
     grid-template-columns: 80px auto 80px;
 }
+/*  */
+/*  */
+.elementNotMyApp{
+    height: auto;
+    display: flex;
+    /* grid-template-columns: 80px auto 80px; */
+}
+.backElementChatNot{
+    /* grid-column-start: 2; */
+    margin-top: -20%;
+    margin-left: -70%;
+    /* display: grid;
+    grid-template-columns: 80px auto 80px; */
+}
+.notApplic{
+    margin-top: 35%;
+}
+/*  */
+/*  */
 .backBoxElementChat{
     grid-column-start: 2;
 }
@@ -143,12 +162,14 @@
     height: 100px;
     width: 100px;
     border-radius: 90px;
+    object-fit: scale-down;
+    background: #767676;
 }
 
 
 .addChat{
     height: auto;
-    background: #f0f1f8;
+    background: #d4d9fa;
     text-align: center;
     justify-content: center;
     padding: 3%;
@@ -207,8 +228,8 @@
 .imgphotoAddBox {
     margin: auto;
     margin-top: 10px;
-    width: 30%;
-    height: 30%;
+    width: 15%;
+    height: 15%;
 }
 .buttonTelMessageChat{
     display: none;
@@ -227,6 +248,33 @@
     font-size: 18px;
     height: 30px;
 }
+/*  */
+/*  */
+.addPhotoFileBtn{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: 'center';
+    align-items: 'center';
+    padding: 5px;
+    margin-top: 50px;
+    color: #fff;
+    background: #3B377C;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    transition: 0.2s;
+    cursor: pointer;
+    font-size: 18px;
+}
+.addPhotoFileBtn:hover{
+    background: #5652a3;
+}
+.btnPAddChatPhone{
+    display: none;
+}
+/*  */
+/*  */
 .btnPAddChat:hover{
     background: #5652a3;
 }
@@ -255,19 +303,28 @@
         margin-top: 3%;
     }
     .addChat {
+        width: 78%;
         align-items: center;
+        /* margin-left: -45px;
+        margin-right: 55px; */
+    }
+    .imgphotoAddBox {
+        margin: auto;
+        margin-top: 10px;
+        width: 15%;
+        height: 15%;
     }
     .textareaChat{
         height: 50%;
-        min-height: 20px;
+        min-height: 30px;
         min-width: 200px;
-        width: 100%;
-        margin: 10px;
+        width: 80%;
+        margin: 5px;
         resize: none;
         border-radius: 5px;
         cursor: pointer;
     
-        font-size: 16px;
+        font-size: 15px;
         padding-top: 7px;
         padding-bottom: 7px;
         padding-left: 15px;
@@ -286,5 +343,31 @@
     }
     .buttonListChat {
         margin-left: 35px;
+    }
+    .btnPAddChat{
+        display: none;
+    }
+
+    .addPhotoFileBtn{
+        margin-top: -5px;
+        /* font-size: 18px; */
+    }
+    .btnPAddChatPhone{
+        display: inline-block;
+        width: 40px;
+        height: 30px;
+        text-align: 'center';
+        align-items: 'center';
+        padding-left: 3px;
+        padding-right: 8px;
+        padding-top: 5px;
+        padding-bottom: 8px;
+        margin-top: -3px;
+        color: #fff;
+        background: #3B377C;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        transition: 0.2s;
     }
 }
