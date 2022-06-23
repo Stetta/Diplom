@@ -9,8 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import chatBtn from "../../../assets/image/chatBtn.png";
 
-const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate, Status, StatusPayment}) => {
-
+const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate, Status, StatusPayment, CompanyName, Activity, Pricing, Staff}) => {
     const { request } = useHttp();
     const navigate = useNavigate();
     const [data, setData] = useState({});
@@ -51,16 +50,19 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
 
     useEffect(() => {
         getStatus().then(getStatusPayment());
-      }, []);
+    }, []);
 
     if (status && statusPayment) {
-        
         return (
             <div class={curStatus == '5' ? 'containerMyAppAdm canceled' : (curStatus == '3' ? 'containerMyAppAdm finished' : 'containerMyAppAdm')}>
             <div class="pMyAppAdm">
                 <ToastContainer/>
                 <p class="descriptionMyAppAdm">{Description}</p>
+                <p class="typeMyApp">&shy;Название компании: {CompanyName}</p>
+                <p class="typeMyApp">&shy;Деятельность компании: {Activity}</p>
                 <p class="typeMyAppAdm">&bull;	&shy;{Type}</p>
+                <p class="typeStyleMyApp">&#8195;&bull;&shy;Штат сотрудников: {Staff}</p>
+                <p class="typeStyleMyApp">&#8195;&bull;&shy;Ценовой диапозон: {Pricing}</p>
                 <div class="selectBoxApplAdm">
                     <div class="labelSelectApplicAdm">
                     <label class="labelSelectAppAdm">Статус заявки</label>

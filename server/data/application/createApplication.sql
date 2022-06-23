@@ -5,7 +5,11 @@ INSERT INTO [dbo].[application] (
         [IdStatus],
         [IdStatusPayment],
         [IdType],
-        [Date]
+        [Date],
+        [Name],
+        [Activity],
+        [IdStaff],
+        [IdPricing]
     )
 VALUES (
     @Description,
@@ -14,5 +18,9 @@ VALUES (
     @IdStatus,
     @IdStatusPayment,
     @IdType,
-    CURRENT_TIMESTAMP
+    CURRENT_TIMESTAMP,
+    @Name,
+    @Activity,
+    @IdStaff,
+    @IdPricing
 )

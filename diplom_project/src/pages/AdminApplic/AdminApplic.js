@@ -24,6 +24,7 @@ const AdminApplic = () => {
     const [curStatus, setCurStatus] = useState();
     const [statusPayment, setStatusPayment] = useState("");
     const [curStatusPayment, setCurStatusPayment] = useState();
+    const [sorting, setSorting] = useState(false)
 
     async function getStatus() {
         const result = await request('/api/status');
@@ -41,9 +42,12 @@ const AdminApplic = () => {
     }
     
     useEffect(() => {
-        const getData = async () => {
-            const result = await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET");
-            setData(result);
+        // console.log(sorting)
+        if (!sorting) {
+            const getData = async () => {
+                const result = await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET");
+                setData(result);
+            }
         }
         getData().then(getStatus()).then(getStatusPayment())
     }, [request])
@@ -57,7 +61,6 @@ const AdminApplic = () => {
     }
 
     if (loading) {
-        console.log('a')
         return (
             <div class="elementMyAppAdmin">
                 <MyLoader/>
@@ -67,14 +70,21 @@ const AdminApplic = () => {
         return (
             <div class="elementMyAppAdmin">
                 <div class="countBoxAdmin" style={{background: '#d4d9fa'}}>
-                    <MySelect value={curStatus} style={{height: 35, background: '#fff', fontSize: 16, width: 220, margin: 5}}                     
+                    <MySelect value={curStatus} style={{height: 35, background: '#fff', fontSize: 16, width: 220, margin: 10}}                     
                             onChange={async (e) => { 
                                 if (e.target.value == 0) {
+                                    setCurStatus(e.target.value)
+                                    setSorting(false)
                                     getData()
                                     return;
+                                } else {
+                                    setCurStatus(e.target.value)
+                                    setSorting(true)
+                                    let a = (await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET"))
+                                    await sleep(200)
+                                    a = a.filter(c => c.Status == e.target.value)
+                                    setData(a)
                                 }
-                                await sleep(100)
-                                setData(Array.from(await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET")).filter(c => c.Status == e.target.value))
                                 }}>
                             <option key="0" value="0">Выберите статус</option>
                             {Array.from(status).map((status, index) => {
@@ -93,8 +103,20 @@ const AdminApplic = () => {
                     {data != "" && (
                         <div class='elementMyAppAdmin'>
                             {Array.from(data).map((d) => {
+                                // console.log(data)
                                 return (
-                                    <MyApplicAdmin Description={d.Description} Type={d.Type} IdApplication={d.IdApplication} Client={d.Client} Mail={d.Mail} CurDate={d.Date} Status={d.Status} StatusPayment={d.StatusPayment}/>
+                                    <MyApplicAdmin Description={d.Description} 
+                                                   Type={d.Type}
+                                                   IdApplication={d.IdApplication}
+                                                   Client={d.Client} 
+                                                   Mail={d.Mail} 
+                                                   CurDate={d.Date} 
+                                                   Status={d.Status} 
+                                                   StatusPayment={d.StatusPayment}
+                                                   CompanyName={d.CompanyName}
+                                                   Activity={d.Activity}
+                                                   Staff={d.Staff}
+                                                   Pricing={d.Pricing}/>
                                 )
                             })}
                         </div>

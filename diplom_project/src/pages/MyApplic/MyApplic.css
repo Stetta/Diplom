@@ -148,5 +148,14 @@
     }
     .containerMyApp {
         width: 90%;
+        grid-template-columns: none;
+        grid-template-rows: auto 125px;
+    }
+    .buttonListMyApp {
+        grid-column-start: inherit;
+        grid-row-start: 2;
+    }
+    .pMyApp_ma {
+        grid-column-end: 3;
     }
 }

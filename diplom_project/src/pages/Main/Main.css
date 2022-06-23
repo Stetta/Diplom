@@ -397,11 +397,6 @@
   }
   .sliderButtonPrev{
    position: absolute;   
-   /* justify-content: center; */
-   /* text-align: center; */
-   /* align-items: center;
-   align-content: center;
-   align-self: center; */
    margin-top: 220px;
    margin-left: 5%;
    float: left;
@@ -765,6 +760,7 @@
     }
     .containerRRpFirst{
         font-size: 20px;
+        width: 350px;
     }
     .containerRR .containerRRpSEcond{
         font-size: 35px;

@@ -27,6 +27,10 @@ const createApplication = async (applicationData) => {
                     .input('IdStatus', sql.Int, applicationData.IdStatus)
                     .input('IdStatusPayment', sql.Int, applicationData.IdStatusPayment)
                     .input('IdType', sql.Int, applicationData.IdType)
+                    .input('Name', sql.NVarChar(sql.MAX), applicationData.Name)
+                    .input('Activity', sql.NVarChar(sql.MAX), applicationData.Activity)
+                    .input('IdStaff', sql.Int, applicationData.IdStaff)
+                    .input('IdPricing', sql.Int, applicationData.IdStaff)
                     .query(sqlQueries.createApplication);
         return insertApplication.recordset;
     } catch (error) {

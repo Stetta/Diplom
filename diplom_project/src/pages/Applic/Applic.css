@@ -40,7 +40,7 @@
     color: black;
 }
 .topic-textApp{
-    margin-top: 5%;
+    margin-top: 3%;
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -62,7 +62,7 @@
 
 .passwordBoxApp{
     display: flex;
-    width: 1151px;
+    width: 1150px;
     margin-right: 8px;
 }
 
@@ -212,11 +212,13 @@
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1000px) {
     .backElementChat {
         grid-template-columns: 10px auto 70px !important;
     }
-    
+    .passwordBoxApp{
+        width: 300px;
+    }
     .backBoxElementChat {
         justify-content: center;
         align-items: center;

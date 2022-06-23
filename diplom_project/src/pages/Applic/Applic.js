@@ -121,7 +121,7 @@ const Applic = () => {
                                 <MyInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="email" name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/>
                                 <div class="passwordBoxApp">
                                     <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" title="Только цифры"/>
-                                    <MyButton  onClick={() => generatePassword()} style={{width: 200, fontSize: 16}}>Сгенерировать пароль</MyButton>
+                                    <MyButton  onClick={() => generatePassword()} style={{width: 200, fontSize: 16, marginRight: 5}}>Сгенерировать пароль</MyButton>
                                 </div>
                                 <MyButton style={{width: 150, height: 45}} onClick={() => registr()} >Далее</MyButton>
                             </div>                            

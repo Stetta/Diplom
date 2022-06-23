@@ -182,6 +182,9 @@ const Header = () => {
                 {/* <ToastContainer/> */}
                 <div class="buttonFormboxModal">
                   <MyButton style={{ width: 200, height: 35, marginRight: 5, marginLeft: 5 }} onClick={registrr} id="SendApplic">Авторизоваться</MyButton>
+                  {/* <button>
+                    <a></a>
+                  </button> */}
                   <a class="aFormboxModal" onClick={registrrUser} id="SendApplic">Авторизоваться как сотрудник</a>
                   {/* <MyButton style={{ width: 130, height: 40, marginLeft: 5, marginRight: 5 }} onClick={registrrUser} id="SendApplic">Авторизоваться как сотрудник</MyButton> */}
                 </div>

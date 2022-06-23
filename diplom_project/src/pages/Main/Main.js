@@ -166,9 +166,6 @@ const Main = () => {
                 </div>
             <Slider {...settings}>
                 <div>
-                    {/* <div class="slidaerText">
-                        <p class="sliderTextP">Примеры работ бла бла</p>
-                    </div> */}
                     <div class="imgPSlider">
                         <img src={img1} alt="img1" class="imgSlider"/>
                         <div>

@@ -1,0 +1,51 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+.chartVisitClient{
+    display: grid;
+    grid-template-columns: 15% 600px 600px 15%;
+    margin-top: 3%;
+}
+.chartVisitClientFirst{
+    grid-column-start: 2;
+}
+.chartVisitClientSecond{
+    grid-column-start: 3;
+}
+
+@media only screen and (max-width:700px) {
+    .chartVisitClient{
+        grid-template-columns: inherit;
+        display: flex;
+        flex-direction: column;
+        /* margin-top: 3%; */
+        /* grid-template-rows: 50% 50%; */
+    }
+    .chartVisitClientFirst{
+        /* grid-row-start: 1;
+        height: 100%;
+        width: 100%; */
+        margin-top: 10%;
+    }
+    /* .chartVisitClientSecond{
+        grid-row-start: 2;
+    } */
+}
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*,
+*::after,
+*::before{
+    box-sizing: inherit;
+} */
+/* .elementChartttt{
+    height: auto;
+    height: 1000px;
+    margin: 5%;
+    display: grid;
+}
+.chartStyle{
+    width: 500px;
+    margin: 0 auto;
+} */

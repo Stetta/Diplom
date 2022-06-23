@@ -40,12 +40,15 @@ const MyApplic = () => {
                         console.log(apl.Status)
                     return (
                         <div class={apl.Status == '5' ? 'containerMyApp canceled' : (apl.Status == '3' ? 'containerMyApp finished' : 'containerMyApp')}>
-                            <div class="pMyApp">
+                            <div class="pMyApp_ma">
                                 <p class="descriptionMyApp">{apl.Description}</p>
-                                <p class="typeMyApp">&bull;	&shy;{apl.Type}</p>
+                                <p class="typeMyApp">&shy;Название компании: {apl.CompanyName}</p>
+                                <p class="typeMyApp">&shy;Деятельность компании: {apl.Activity}</p>
+                                <p class="typeMyApp">&shy;Тип: {apl.Type}</p>
                                 <p class="typeStyleMyApp">&#8195;&bull;&shy;Статус заявки: {apl.StatusName}</p>
                                 <p class="typeStyleMyApp">&#8195;&bull;&shy;Статус оплаты заявки: {apl.StatusPaymentName}</p>
-                                {/* <p class="clientMyApp">{apl.Client}</p> */}
+                                <p class="typeStyleMyApp">&#8195;&bull;&shy;Штат сотрудников: {apl.Staff}</p>
+                                <p class="typeStyleMyApp">&#8195;&bull;&shy;Ценовой диапозон: {apl.Pricing}</p>
                             </div>
                             <div class="buttonListMyApp">
                                 {/* <MyButton style={{ width: 70, height: 20}} onClick={() => navigate(CHAT_ROUTE, {state: {param: apl.IdApplication}})}>Чат</MyButton> */}
@@ -54,7 +57,7 @@ const MyApplic = () => {
                                     >Чат
                                     </p>
                                 </MyButton>
-                                <p class="dateMyApp">{apl.Date.replace('T', ' ').replace('00:00:00.000Z', '')}</p>
+                                <p class="dateMyApp">{apl.Date.split('T')[0].split('-')[0] + '.' + apl.Date.split('T')[0].split('-')[2] + '.' + apl.Date.split('T')[0].split('-')[1] + ' '}{apl.Date.split('T')[1].split(':')[0]+':'+apl.Date.split('T')[1].split(':')[1]}</p>
                             </div>
                         </div>
                     );
