@@ -62,48 +62,7 @@ const Main = () => {
                 </div>
             </div>
             </div>
-
-
-                {/*2/ <section class="homeSection">
-                <div class="animationText">
-                    <p>Что мы разрабатываем?</p>
-                    <p>
-                        <span class="word wisteria">Разработка мобильных приложений</span>
-                        <span class="word belize">Разработка веб-сервисов</span>
-                        <span class="word pomegranate">Разработка комплексных решений</span>
-                        <span class="word green">Техническую документацию</span>
-                        <span class="word midnight">Прототипы интерфейсов</span>
-                        <spa class="word">Дизайн интерфейсов</spa>
-                    </p>
-                </div>
-                </section> */}
-
-                {/*1/ <section class="homeSection">
-                    <div class="containerSection">
-                        <div class="row">
-                            <div class="homeText">
-                                <h1>Что мы разрабатываем?</h1>
-                                <p class="animationText">
-                                    <span>Разработка мобильных приложений</span>
-                                    <span>Разработка веб-сервисов</span>
-                                    <span>Разработка комплексных решений</span>
-                                    <span>Техническую документацию</span>
-                                    <span>Прототипы интерфейсов</span>
-                                    <span>Дизайн интерфейсов</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section> */}
-
-                {/* <img src={back} alt="back" class="backMain" />
-                <img src={back1} alt="back1" class="back1Main" /> */}
             </div>
-
-
-
-
-            {/*  */}
           <div clacc="textPageMain">
 
             <div class="text-service1Main">
@@ -156,11 +115,6 @@ const Main = () => {
 
 
             <div class="slider">
-            {/* <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
-            <a class="slick-next slider__control_next" href="#" role="button" data-slide="next"></a> */}
-            {/* <div class="sliderButton sliderButtonPrev">
-            <MyButton style={{width: 10, height:15}} data-slide="prev" href="#">&lt;</MyButton>
-            </div> */}
                 <div class="sliderTitle">
                     <p class="sliderTitleP">Наши работы</p>
                 </div>
@@ -184,9 +138,6 @@ const Main = () => {
                 </div>
 
                 <div>
-                    {/* <div class="slidaerText">
-                        <p class="sliderTextP">Примеры работ бла бла</p>
-                    </div> */}
                     <div class="imgPSlider">
                         <img src={img3} alt="img3" class="imgSlider"/>
                         <div>
@@ -222,9 +173,6 @@ const Main = () => {
                 </div>
             </Slider> 
             </div>
-
-
-            {/*  */}
             <div class="text-service2Main">
                 <div class="hText-1Main">
                     <p>Создание программного обеспечения для вашего бизнеса</p>
@@ -260,70 +208,8 @@ const Main = () => {
                 </div>
             </div>
           </div>
-
-
-
-
-
-            {/* <div>
-                Перечеь этопов нашей работы
-                    <br/>
-                1 Сбор требований
-                    <br/>
-                Собираем информацию по проекту для предварительного расчета стоимости
-                    <br/>
-                2 Предварительный расчет
-                    <br/>
-                Отправляем примерные цены/сроки, заключаем договор на разработку ТЗ
-                    <br/>
-                3 Подготовка тех.задания
-                    <br/>
-                Разрабатываем тех.задание, модель данных и интерактивный прототип
-                    <br/>
-                4 Точная стоимость
-                    <br/>
-                Мы рассчитаем точную стоимость разработки и согласуем с вами
-                    <br/>
-                5 Разработка дизайна
-                    <br/>
-                Разрабатывается дизайн компонентов системы и осуществляется верстка
-                    <br/>
-                6 Разработка проекта
-                    <br/>
-                Разрабатывается серверная часть, API, мобильные приложения и веб-сервисы
-                    <br/>
-                7 Тестирование и отладка
-                    <br/>
-                Занимаемся тестированием и отладкой всех компонентов проекта
-                    <br/>
-                8 Тестовый запуск проекта
-                    <br/>
-                Запускаем систему в тестовом режиме с небольшим количеством пользователей
-                    <br/>
-                9 Поддержка и обновление
-                    <br/>
-                Обеспечиваем работоспособность проекта и обновляем функционал
-            </div>
-            <div>
-                <div>Технологии</div>
-                <div>
-                    <a>Java</a>
-                    <a>JavaScript</a>
-                    <a>Bitrix</a>
-                    <a>C#/.NET</a>
-                    <a>1С</a>
-                    <a>PHP</a>
-                    <a>iOS</a>
-                    <a>Android</a>
-                    <a>Python</a>
-                </div>
-            </div> */}
         </div>
     );
 };
 
 export default Main;
-                        // <script type="text/javascript" charset="utf-8" 
-                        //     async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aef96730b9557470214b42d4e5c25a0135889b1ea45c9094193e7b07c08b6f5de&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true">
-                                
-                        //     </script>

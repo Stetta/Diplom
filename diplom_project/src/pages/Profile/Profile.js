@@ -12,7 +12,6 @@ import validator from 'validator'
 import Loader from '../../components/loader/Loader'
 
 const Profile = () => {
-
     const {request} = useHttp();
     const defaultImg = require("../../assets/image/account.png");
     const [name, setName] = useState("");
@@ -47,7 +46,6 @@ const Profile = () => {
         setSurname((await request("/api/client/byid/" + id))[0]["Surname"]);
         setPatronymic((await request("/api/client/byid/" + id))[0]["Patronymic"]);
         setEmail((await request("/api/client/byid/" + id))[0]["Mail"]);
-        setPassword((await request("/api/client/byid/" + id))[0]["Password"]);
         setPhoto((await request("/api/client/byid/" + id))[0]["Photo"]);
         setLoading(false)
       };
@@ -59,7 +57,6 @@ const Profile = () => {
         setSurname((await request("/api/user/byidu/" + idUser))[0]["Surname"]);
         setPatronymic((await request("/api/user/byidu/" + idUser))[0]["Patronymic"]);
         setEmail((await request("/api/user/byidu/" + idUser))[0]["Login"]);
-        setPassword((await request("/api/user/byidu/" + idUser))[0]["Password"]);
         setPhoto((await request("/api/user/byidu/" + idUser))[0]["Photo"]);
         setLoading(false)
     };
@@ -107,11 +104,15 @@ const Profile = () => {
     };
 
     const handleSave = () => {
-        if(!surname || !name || !email || !password) {
+        if(!surname || !name || !email) {
             toast.error("Запоните все поля!\n(Поле отчества необязательно)");
             return;
         }
 
+        if(!password) {
+            toast.error("Введите пароль для подтверждения изменений")
+            return;
+        }
         if (!validator.isAlphanumeric(name, ['ru-RU'], {ignore: ' -'}) || !validator.isAlphanumeric(surname, ['ru-RU'], {ignore: ' -'}) || (patronymic && !validator.isAlphanumeric(patronymic, ['ru-RU'], {ignore: ' -'}))) {
             toast.error('Используйте только кириллицу')
             return;
@@ -160,7 +161,7 @@ const Profile = () => {
                         <MyInput value={name} onChange={(e) => setName(e.target.value)} placeholder="Введите имя" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="name" name="name" data-reg="^[А-я ё Ё]+" title="Только русские буквы"/>
                         <MyInput value={patronymic} onChange={(e) => setPatronymic(e.target.value)} placeholder="Введите отчество" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="patronymic" name="patronymic" data-reg="^[А-я ё Ё]+" title="Только русские буквы"/>
                         <MyInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="email" name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/>
-                        <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ваш пароль" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" />
+                        <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль для подтверждения" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" />
                     </div>
                         <MyButton style={{marginTop: 30, width: 150, height: 45}} onClick={() => handleSave()} >Сохранить</MyButton>
                     

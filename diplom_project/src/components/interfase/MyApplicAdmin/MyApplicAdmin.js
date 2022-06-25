@@ -56,7 +56,6 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
         return (
             <div class={curStatus == '5' ? 'containerMyAppAdm canceled' : (curStatus == '3' ? 'containerMyAppAdm finished' : 'containerMyAppAdm')}>
             <div class="pMyAppAdm">
-                <ToastContainer/>
                 <p class="descriptionMyAppAdm">{Description}</p>
                 <p class="typeMyApp">&shy;Название компании: {CompanyName}</p>
                 <p class="typeMyApp">&shy;Деятельность компании: {Activity}</p>
@@ -73,14 +72,14 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
                             }
                             if (e.target.value == '3') {
                                 sendMessageEnd()   
-                            }
+                            } 
                             setCurStatus(e.target.value)
                             await request("/api/application/applicationstatus/" + IdApplication, 'PUT', {
                                 IdStatus: e.target.value
-                            });
+                            })
                             toast.success('Статус изменён')
+                            
                         }}>
-                        {/* <option key="0" value="0">Выберите статус</option> */}
                         {Array.from(status).map((status, index) => {
                             return (
                                 <option key={index} value={status.IdStatus}>{status.Name}</option>
@@ -98,7 +97,6 @@ const MyApplicAdmin = ({Description, Type, IdApplication, Client, Mail, CurDate,
                             });
                             toast.success('Статус оплаты изменён')
                     }}>
-                        {/* <option key="1" value="0">Выберите статус оплаты</option> */}
                         {Array.from(statusPayment).map((statusPayment, index) => {
                             return (
                                 <option key={index} value={statusPayment.IdStatusPayment}>{statusPayment.Name}</option>

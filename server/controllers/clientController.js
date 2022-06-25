@@ -1,8 +1,8 @@
 'use strict';
-
 const jwt = require('jsonwebtoken');
 const clientData = require("../data/client");
 const {SECRET} = process.env;
+const bcrypt = require('bcryptjs')
 
 const getClient = async (req, res, next) => {
   try {
@@ -25,7 +25,8 @@ const getLastClient = async (req, res, next) => {
 const addClient = async (req, res, next) => {
   try {
     const data = req.body;
-    const created = await clientData.createClient(data);
+    const hashpassword = bcrypt.hashSync(data.Password, 4);
+    const created = await clientData.createClient({Name: data.Name, Surname: data.Name, Patronymic: data.Patronymic, Mail: data.Mail, Photo: data.Photo, Password: hashpassword});
     res.send(created);
   } catch (error) {
     res.status(400).send(error.message);
@@ -36,7 +37,8 @@ const updateClient = async (req, res, next) => {
   try {
     const clientId = req.params.id;
     const data = req.body;
-    const updated = await clientData.updateClient(clientId, data);
+    const hashpassword = bcrypt.hashSync(data.Password, 4);
+    const updated = await clientData.updateClient(clientId, {Name: data.Name, Surname: data.Name, Patronymic: data.Patronymic, Mail: data.Mail, Photo: data.Photo, Password: hashpassword});
     res.send(updated)
   } catch (error) {
     res.status(400).send(error.message);
@@ -86,10 +88,11 @@ const login = async (req, res) => {
     if (!user[0]) {
       return res.status(400).json({message: 'Пользователь с таким логином не найден'})
     }
-    if (user[0]['Password'] != password) {
+
+    const validpassword = bcrypt.compareSync(password, user[0]['Password'])
+    if (!validpassword) {
       return res.status(400).json({message: 'Неправильный пароль'})
     }
-
     const token = generateAccessToken(user[0]['IdClient'])
     res.json({token: token, clientId: user[0]['IdClient']});
   } catch (error) {

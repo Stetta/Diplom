@@ -1,6 +1,5 @@
 'use strict';
-
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './Applic.css';
 import MyInput from '../../components/interfase/MyInput/MyInput';
 import MyButton from '../../components/interfase/MyButton/MyButton';
@@ -10,24 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import validator from 'validator'
-
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-// import Slider from "react-slick";
+import agree from '../../assets/image/agree.doc'
 
 const Applic = () => {
-    // var settings = {
-    //     dots: true,
-    //     infinite: true,
-    //     speed: 500,
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1
-    //   };
-
-
     const navigate = useNavigate();
-
-    
     const {error, request, clearError} = useHttp();
 
     function generatePassword () {
@@ -35,30 +20,20 @@ const Applic = () => {
         setPassword(x);
     }
 
-    async function applicHandler () {
-        const client = await request('/api/client', "POST", {
-            Name: name,
-            Surname: surname,
-            Mail: email,
-            Patronymic: null,
-            Photo: null,
-            Password: password
-        });
-    }
-
     async function sendMail () {
-        const client = await request('http://localhost:8080/api/client/sendmail', "POST", {
+        const client = await request('/api/client/sendmail', "POST", {
             mail: email,
             password: password
         });
     }
 
+    const ch = useRef(null);
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
-    const registr = () => {
+    const registr = async () => {
         if (name === "" || surname === "" || email === "" || password === "") {
             toast.error("Заполните все поля");
             return;
@@ -78,33 +53,34 @@ const Applic = () => {
             toast.error('Пароль может содержать от 4 до 5 цифр')
             return;
         }
-            //applicHandler();
-            applicHandler().then(
+
+        if(!ch.current.checked){
+            toast.error('Примите соглашение на обработку данных')
+            return;
+        }
+        await new Promise(async () => {
+            const clients = await request('api/client');
+            if (clients.filter(e => e.Mail == email).length > 0) {
+                toast.error('Пользователь с такой почтой уже зарегистрирован')
+                return;
+            } else {
+                const client = await request('/api/client', "POST", {
+                    Name: name,
+                    Surname: surname,
+                    Mail: email,
+                    Patronymic: null,
+                    Photo: null,
+                    Password: password
+                });
                 sendMail()
-            );
-            //console.log("a");
-            navigate(APPLICTEXT_ROUTE);
-         
+                navigate(APPLICTEXT_ROUTE)
+            }
+        })
+        // await new Promise(() => {
+        // })
     } 
     return (
         <div>
-            {/* <Slider {...settings}>
-      <div>
-        <img src="C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\1.jpg" alt="logo-text"/>
-      </div>
-      <div>
-        <img src="C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\2.jpg" alt="logo-text"/>
-      </div>
-      <div>
-        <img src="C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\3.jpg" alt="logo-text"/>
-      </div>
-      <div>
-        <img src="C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\4.jpg" alt="logo-text"/>
-      </div>
-      <div>
-        <img src="C:\Users\Света\Desktop\Diplom\diplom_project\src\assets\image\5.jpg" alt="logo-text"/>
-      </div>
-    </Slider> */}
             <ToastContainer/>
             <div class="containerApp">
                 <div class="contentApp">
@@ -122,7 +98,12 @@ const Applic = () => {
                                 <div class="passwordBoxApp">
                                     <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" title="Только цифры"/>
                                     <MyButton  onClick={() => generatePassword()} style={{width: 200, fontSize: 16, marginRight: 5}}>Сгенерировать пароль</MyButton>
-                                </div>
+                                </div>   
+                                <div style={{marginTop: 20, display: 'flex', textAlign: 'center'}}>
+                                    <input type='checkbox' ref={ch} style={{width: "20px", height: 20}}/>
+                                    <a href={agree} download='Согласие на обработку данных.doc'
+                                    style={{fontSize: 14, margin: 0, marginLeft: 10, marginTop: 5}}>Соглашение на обработку данных</a>
+                                </div>          
                                 <MyButton style={{width: 150, height: 45}} onClick={() => registr()} >Далее</MyButton>
                             </div>                            
                         </div>

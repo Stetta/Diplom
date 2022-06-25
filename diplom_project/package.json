@@ -10,6 +10,7 @@
     "chart.js": "^3.8.0",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.2.0",
+    "react-data-grid": "^7.0.0-beta.13",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",

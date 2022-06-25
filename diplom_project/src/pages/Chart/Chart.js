@@ -1,26 +1,33 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./Chart.css";
-// import { Line } from "react-chartjs-2";
 import { ColumnSeries, LineSegment, HistogramSeries, Line, ChartComponent, Inject, LineSeries, SeriesCollectionDirective, SeriesDirective, Category, SegmentDirective, Legend, DataLabel,
 AccumulationChartComponent, PieSeries, AccumulationSeriesCollectionDirective, AccumulationSeriesDirective, AccumulationDataLabel, AccumulationLegend, AccumulationTooltip,
  DateTime, Tooltip, StripLine} from '@syncfusion/ej2-react-charts';
 import { salesData, sampleData } from "./data";
 import { useHttp } from "../../hooks/useHttp";
-// import { Chart } from "./components";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import { useNavigate } from "react-router-dom";
-// import { MAIN_ROUTE } from "../../utils/const";
-// import { Doughnut, Line } from 'react-chartjs-2';
-// import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, } from 'chart.js';
-// import { Line } from 'react-chartjs-2';
-// import faker from 'faker';
+import DataGrid from 'react-data-grid';
 
 const Chart = () => {
   const {request} = useHttp()
   const [data, setData] = useState({})
+  const [users, setUsers] = useState({})
   const [finalstatistic, setfinalstatic] = useState([])
   const [finalstatisticVisit, setfinalstaticVisit] = useState([])
+
+  const columns = [
+    { key: 'IdUser', name: 'ID' },
+    { key: 'Surname', name: 'Фамилия' },
+    { key: 'Name', name: 'Имя' },
+    { key: 'Patronymic', name: 'Отчество' },
+    { key: 'Login', name: 'Почта' },
+    { key: 'Count', name: 'Кол-во заявок' },
+  ];
+
+  const rows = [
+    { IdClient: 0, Name: 'Example' },
+    { id: 1, title: 'Demo' }
+  ];
+  
 
   const statistic = [
     {name: 'Windows приложение', value: 0}, 
@@ -49,8 +56,13 @@ const Chart = () => {
   }
 
   useMemo(async() => {
+    const getUsers = async () => {
+      const users = await request('/api/user')
+      setUsers(users);
+    }
+
     const getData = async () => {
-        const result = await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET");
+        const result = await request("/api/application");
         setData(result);
         for(const e of result) {
           if (e.Type == 'Windows приложение') {
@@ -64,9 +76,10 @@ const Chart = () => {
           }
         }
         setfinalstatic(statistic)
-      }
+    }
+
     const getDataVisit = async () => {
-      const resultVisit = await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET");
+      const resultVisit = await request("/api/application");
       setData(resultVisit);
       for(const e of resultVisit){
         if (e.Date.split('T')[0].split('-')[1] == '01') {
@@ -97,76 +110,39 @@ const Chart = () => {
       }
       setfinalstaticVisit(statisticVisit)
     }
-      getData().then(getDataVisit())
-    }, [])
-  return(
-    <div class="chartVisitClient">
-      {/* <ChartComponent title="Analysis" primaryXAxis={{valueType:"Category"}}>
-        <Inject services={[LineSeries, Category]}></Inject>
-        <SeriesCollectionDirective>
-          <SeriesDirective type="Line"
-           visible="true" backgroundColor="#000000" borderColor="#000000" dataSource={lineChartData}
-          xName="labels" yName="data">
-          </SeriesDirective>
-        </SeriesCollectionDirective>
-      </ChartComponent> */}
-      <div class="chartVisitClientFirst">
-      <AccumulationChartComponent title="Статистика типов приложений на разработку ПО" legendSettings={{position: "Bottom"}} tooltip={{enable:true}}>
-        <Inject services={[PieSeries, AccumulationDataLabel, AccumulationLegend, AccumulationTooltip]}></Inject>
-        <AccumulationSeriesCollectionDirective>
-          <AccumulationSeriesDirective type="Pie" dataSource={finalstatistic}
-          xName="name" yName="value"
-          dataLabel={{visible: true, name:"text", position: "Inside"}}></AccumulationSeriesDirective>
-        </AccumulationSeriesCollectionDirective>
-      </AccumulationChartComponent>
-</div>
-<div class="chartVisitClientSecond">
-      <AccumulationChartComponent title="Статистика обращений в компанию по месяцам" legendSettings={{position: "Bottom"}} tooltip={{enable:true}}>
-        <Inject services={[PieSeries, AccumulationDataLabel, AccumulationLegend, AccumulationTooltip]}></Inject>
-        <AccumulationSeriesCollectionDirective>
-          <AccumulationSeriesDirective type="Pie" dataSource={finalstatisticVisit}
-          xName="name" yName="value"
-          dataLabel={{visible: true, name:"text", position: "Inside"}}></AccumulationSeriesDirective>
-        </AccumulationSeriesCollectionDirective>
-      </AccumulationChartComponent>
-      </div>
-      {/* <ChartComponent title="Статистика обращений в компанию" primaryXAxis={{valueType:"Category"}}>
-        <Inject services={[LineSeries, Category]}></Inject>
-        <SeriesCollectionDirective>
-          <SeriesDirective type="Line" dataSource={salesData} xName="month" yName="sales"></SeriesDirective>
-        </SeriesCollectionDirective>
-      </ChartComponent> */}
-      {/* <ChartComponent title="Статистика" primaryXAxis={{valueType:"Category", title:"Месяц"}}
-      primaryYAxis={{title:"Количество заявок"}} legendSettings={{visible:true}}>
-        <Inject services={[LineSeries, Category]}></Inject>
-        <SeriesCollectionDirective>
-          <SeriesDirective type="Line"
-          dataSource={salesData}
-          xName="month" 
-          yName="sales"
-          width={2}
-          // marker={{dataLabel:{visible:true}, visible: true}}
-          >
-          </SeriesDirective>
-        </SeriesCollectionDirective>
-      </ChartComponent> */}
-       {/* <ChartComponent id='charts'
-                        primaryXAxis={{
-                            valueType: 'Category',
-                            majorGridLines: { width: 1 }
-                        }}
+    getData().then(getDataVisit()).then(getUsers())
+  }, [])
 
-                        chartArea={{ border: { width: 1 } }}
-                        tooltip={{ enable: true }}
-                        title='Inflation - Consumer Price'>
-                        <Inject services={[LineSeries, Category, Legend, Tooltip]} />
-                        <SeriesCollectionDirective>
-                            <SeriesDirective dataSource={salesData} xName='month' yName='sales' name='Germany' fill="rgba(255,130,255, 1)"
-                                width={2} marker={{ visible: true, width: 10, height: 10 }} type='Line'>
-                            </SeriesDirective>
-                        </SeriesCollectionDirective>
-                    </ChartComponent> */}
-      
+  return(
+    <div style={{display: 'grid', gridTemplateRows: 'auto 400px'}}>
+      <div class="chartVisitClient">
+        <div class="chartVisitClientFirst">
+          <AccumulationChartComponent title="Статистика типов приложений на разработку ПО" legendSettings={{position: "Bottom"}} tooltip={{enable:true}}>
+            <Inject services={[PieSeries, AccumulationDataLabel, AccumulationLegend, AccumulationTooltip]}></Inject>
+            <AccumulationSeriesCollectionDirective>
+              <AccumulationSeriesDirective type="Pie" dataSource={finalstatistic}
+              xName="name" yName="value"
+              dataLabel={{visible: true, name:"text", position: "Inside"}}></AccumulationSeriesDirective>
+            </AccumulationSeriesCollectionDirective>
+          </AccumulationChartComponent>
+        </div>
+      <div class="chartVisitClientSecond">
+            <AccumulationChartComponent title="Статистика обращений в компанию по месяцам" legendSettings={{position: "Bottom"}} tooltip={{enable:true}}>
+              <Inject services={[PieSeries, AccumulationDataLabel, AccumulationLegend, AccumulationTooltip]}></Inject>
+              <AccumulationSeriesCollectionDirective>
+                <AccumulationSeriesDirective type="Pie" dataSource={finalstatisticVisit}
+                xName="name" yName="value"
+                dataLabel={{visible: true, name:"text", position: "Inside"}}></AccumulationSeriesDirective>
+              </AccumulationSeriesCollectionDirective>
+            </AccumulationChartComponent>
+        </div>    
+      </div>
+      {(JSON.parse(localStorage.getItem('clientData')).IdClient) && (
+        <div style={{display: 'grid', gridTemplateColumns: '60px auto 60px' }}>
+          <DataGrid columns={columns} rows={users} style={{gridColumnStart: '2'}}/>
+          
+        </div>
+      )}
     </div>
   )
 };

@@ -76,7 +76,7 @@ const ApplicText = () => {
         IdPricing: price,
         IdStaff: staff
     }).then(
-    toast.success("Успешно.\n Авторизуйтесь данными которые пришли вам на почту"))
+    toast.success("Успешно"))
     } catch (error) {
       
     }
@@ -146,7 +146,12 @@ const ApplicText = () => {
                     <option value={2}>от 5 до 20 людей</option>
                     <option value={3}>от 20 людей</option>
                   </MySelect>
-              </div>              
+              </div>    
+              {/* <div style={{marginTop: 20, display: 'flex', textAlign: 'center'}}>
+                <input type='checkbox' ref={ch} style={{width: "20px", height: 20}}/>
+                <a href={agree} download='Согласие на обработку данных.doc'
+                  style={{fontSize: 14, margin: 0, marginLeft: 10, marginTop: 5}}>Соглашение на обработку данных</a>
+              </div>           */}
               <MyButton style={{ width: 150, height: 45 }} onClick={() => bHandler()}>Отправить</MyButton>
             </div>
           </div>

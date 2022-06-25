@@ -2,6 +2,7 @@
 
 const express = require('express');
 const clientController = require('../controllers/clientController');
+const authMiddleware = require('../middlewares/authMiddleware');
 const router = express.Router();
 
 const {getClient, addClient, updateClient, sendMail, getByLogin, login, getLastClient, getById} = clientController;
@@ -13,7 +14,7 @@ router.post('/client/sendmail', sendMail);
 router.get('/client/:mail', getByLogin);
 router.post('/client/login', login);
 router.get('/client/getlast/last', getLastClient)
-router.get('/client/byid/:id', getById);
+router.get('/client/byid/:id', authMiddleware, getById);
 
 
 module.exports = {

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Header.css";
 import logo_text from "../../assets/image/LogoText.png";
 import MyModal from "../interfase/MyModal/MyModal";
@@ -14,18 +14,16 @@ import PassIcon from "../../assets/image/PassIcon.png";
 import validator from 'validator'
 
 const Header = () => {
-  /*Состояние видимости модального окна*/
   const [login, setLogin] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = useContext(AuthContext);
-
+  const [width, setWidth] = useState(window.innerWidth)
   const [isNavVisible, setIsNavVisible] = useState(true);
 
   const navigate = useNavigate();
-  // auth.logout()
 
-  const {request} = useHttp();
+  const {request, error} = useHttp();
   const loginHandler = async () => {
     const data = await request('/api/client/login', "POST", {
       username: email,
@@ -33,6 +31,7 @@ const Header = () => {
     })
     auth.login(data.token, data.clientId)
     navigate(PROFILE_ROUTE);
+    if (data.token) setLogin(false)
   }
   const loginHandlerUser = async () => {
     const data = await request('/api/user/login', "POST", {
@@ -41,22 +40,18 @@ const Header = () => {
     })
     auth.login(data.token, data.userId, data.IdRole)
     navigate(ADMINPROFILE_ROUTE);
+    if (data.token) setLogin(false)
   }
 
   const registrr = () => {
     if (email === "" || password === "") {
       toast.error("Заполните все поля");
       return;
-    }
-    if (!validator.isEmail(email)) {
+    } if (!validator.isEmail(email)) {
       toast.error('Соблюдайте формат почты!')
       return;
-    }
-
-    else{
+    } else{
       loginHandler();
-      setLogin(false)
-
    }
   }
 
@@ -64,22 +59,22 @@ const Header = () => {
     if (email === "" || password === "") {
       toast.error("Заполните все поля");
       return;
-    }
-    // if (!validator.isEmail(email)) {
-    //   toast.error('Соблюдайте формат почты!')
-    //   return;
-    // }
-      else{
+    } else {
         loginHandlerUser();
-        setLogin(false)
    }
   } 
-  //
+
+  useEffect(() => {
+    setWidth(window.innerWidth)
+    if (width < 700) {
+      setIsNavVisible(false)
+    }
+  }, [width])
 
   function togglePassword() {
     var MyInput = document.getElementById('password');
     var icon = document.getElementById(icon);
-    if(MyInput.type === "password") {
+    if (MyInput.type === "password") {
       MyInput.type = "text";
       icon.classList.add('selected');
     } else {
@@ -92,9 +87,53 @@ const Header = () => {
     auth.logout();
     navigate(MAIN_ROUTE);
   }
+  
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function recover() {
+    if (email === "") {
+      toast.error("Заполните поле почты");
+      return;
+    } if (!validator.isEmail(email)) {
+      toast.error('Соблюдайте формат почты!')
+      return;
+    } else {
+      const clients = await request('/api/client')
+      if (!clients.filter(c => c.Mail == email)) {
+        toast.error("Пользователь с такой почтой не найден!");
+        return;
+      } else {
+        let a = String(Math.round(Math.random() * 100000));
+        const id = (await request('api/client/' + email))[0];
+        
+        async function sendM () {
+          const client = await request('/api/client/sendmail', "POST", {
+            mail: email,
+            password: a
+          })
+        }
+        async function save () {
+          const save = await request("/api/client/" + id['IdClient'], "PUT", {
+            Surname: id['Surname'],
+            Name: id['Name'],
+            Patronymic: id['Patronymic'],
+            Mail: id['Mail'],
+            Photo: id['Photo'],
+            Password: a
+          })
+        }
+        function end() {
+          toast.success('Новые данные отправлены на указанную почту')
+          setLogin(false)
+        }
+        sendM().then(save()).then(end())
+        };
+      }
+    }  
 
   return (
-    // <header className="header">
     <header>
       <ToastContainer style={{zIndex: 1000000000}}/>
       <div class="headerTop">
@@ -115,25 +154,11 @@ const Header = () => {
           <a class="navigate__link" onClick={() => setLogin(true)}>Авторизация</a>
           <a class="navigate__link" onClick={() => navigate(APPLIC_ROUTE)}>Оставить заявку</a>
           <a class="navigate__link"></a>
-          {/* <a class="navigate__link" href="#">Контакты</a> */}
         </nav>
         )} 
 
         {isNavVisible && auth.token && ( 
         <nav class="navigate" style={{zIndex: 1000}}>
-          {/* {JSON.parse(localStorage.getItem("clientData")).IdRole && (
-            <div>
-          <a class="navigate__link" onClick={() => navigate(ADMINAPPLIC_ROUTE)} style={{marginTop: 25}}>Заявки</a>
-          <a class="navigate__link" onClick={() => navigate(CHART_ROUTE)} style={{marginTop: 25}}>Статистика</a>
-          </div>
-          )}
-          {!JSON.parse(localStorage.getItem("clientData")).IdRole && (
-            <div>
-          <a class="navigate__link" onClick={() => navigate(MYAPPLIC_ROUTE)} style={{marginTop: 25}}>Мои заявки</a>
-          <a class="navigate__link" onClick={() => navigate(APPLICTEXT_ROUTE)} style={{marginTop: 25}}>Создать заявку</a>
-          </div>
-          )} */}
-         
           {JSON.parse(localStorage.getItem("clientData")).IdRole && (
           <a class="navigate__link" onClick={() => navigate(ADMINAPPLIC_ROUTE)}>Заявки</a>
           )}
@@ -147,22 +172,24 @@ const Header = () => {
           <a class="navigate__link" onClick={() => navigate(APPLICTEXT_ROUTE)}>Создать заявку</a>
           )}
           <a class="navigate__link" onClick={() => navigate(PROFILE_ROUTE)} style={{padding: 0, width: 130, marginRight:0, alignSelf: 'center'}}>Профиль</a>
-          {/* <a/>
-          <a/> */}
           <a class="navigate__link navlinklast" onClick={() => Logoout()} style={{marginLeft: -80, width: 100, alignSelf: 'center'}}>Выход</a>
-          {/* <MyButton style={{ width: 100, height: 40, marginRight: 5, marginLeft: 5 }} onClick={() => Logoout()} id="SendApplic">Выход</MyButton> */}
         </nav>
         )}
 
     
         <button
-        onClick={() => setIsNavVisible(!isNavVisible)} className="toggle-btn">
+        onClick={() => {
+          if (window.innerWidth <= 700) {
+            setIsNavVisible(!isNavVisible)
+          }
+        }} className="toggle-btn">
         <div>
           <span class="span-btn"></span>
           <span class="span-btn"></span>
           <span class="span-btn"></span>
         </div>
         </button>
+
         <MyModal visible={login} setVisible={setLogin}>
         <div class="containerModal">
           <div class="contentModal">
@@ -173,22 +200,17 @@ const Header = () => {
 
                 <MyInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="email" name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/>
                 <div class="input-wrapperModal">
-                  <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" style={{ height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" type="password"/>
-                  <div class="input-icon" id="icon" onClick={togglePassword}>
-                    <img src={PassIcon} alt="PassIcon"></img>
-                  </div>
+                <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" style={{ height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" type="password"/>
+                <div class="input-icon" id="icon" onClick={togglePassword}>
+                  <img src={PassIcon} alt="PassIcon"></img>
+                </div>
 
                 </div>
-                {/* <ToastContainer/> */}
                 <div class="buttonFormboxModal">
                   <MyButton style={{ width: 200, height: 35, marginRight: 5, marginLeft: 5 }} onClick={registrr} id="SendApplic">Авторизоваться</MyButton>
-                  {/* <button>
-                    <a></a>
-                  </button> */}
                   <a class="aFormboxModal" onClick={registrrUser} id="SendApplic">Авторизоваться как сотрудник</a>
-                  {/* <MyButton style={{ width: 130, height: 40, marginLeft: 5, marginRight: 5 }} onClick={registrrUser} id="SendApplic">Авторизоваться как сотрудник</MyButton> */}
+                  <a style={{marginTop: 20}} class="aFormboxModal" onClick={recover}>Восстановить пароль</a>
                 </div>
-
               </div>
             </div>
           </div>

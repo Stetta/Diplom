@@ -42,13 +42,6 @@ const AdminApplic = () => {
     }
     
     useEffect(() => {
-        // console.log(sorting)
-        if (!sorting) {
-            const getData = async () => {
-                const result = await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET");
-                setData(result);
-            }
-        }
         getData().then(getStatus()).then(getStatusPayment())
     }, [request])
 
@@ -71,15 +64,14 @@ const AdminApplic = () => {
             <div class="elementMyAppAdmin">
                 <div class="countBoxAdmin" style={{background: '#d4d9fa'}}>
                     <MySelect value={curStatus} style={{height: 35, background: '#fff', fontSize: 16, width: 220, margin: 10}}                     
-                            onChange={async (e) => { 
+                            onChange={async (e) => {
+                                setData({}) 
                                 if (e.target.value == 0) {
                                     setCurStatus(e.target.value)
-                                    setSorting(false)
                                     getData()
                                     return;
                                 } else {
                                     setCurStatus(e.target.value)
-                                    setSorting(true)
                                     let a = (await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET"))
                                     await sleep(200)
                                     a = a.filter(c => c.Status == e.target.value)
@@ -103,7 +95,6 @@ const AdminApplic = () => {
                     {data != "" && (
                         <div class='elementMyAppAdmin'>
                             {Array.from(data).map((d) => {
-                                // console.log(data)
                                 return (
                                     <MyApplicAdmin Description={d.Description} 
                                                    Type={d.Type}

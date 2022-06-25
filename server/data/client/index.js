@@ -64,7 +64,7 @@ const createClient = async (clientData) => {
                             .input('Patronymic', sql.NVarChar(50), clientData.Patronymic)
                             .input('Photo', sql.NVarChar(sql.MAX), clientData.Photo)
                             .input('Mail', sql.NVarChar(50), clientData.Mail)
-                            .input('Password', sql.NVarChar(30), clientData.Password)
+                            .input('Password', sql.NVarChar(100), clientData.Password)
                             .query(sqlQueries.createClient);
         console.log(insertClient)
         return insertClient.recordset;
@@ -84,7 +84,7 @@ const updateClient = async (IdClient, clientData) => {
                         .input('Patronymic', sql.NVarChar(50), clientData.Patronymic)
                         .input('Photo', sql.NVarChar(sql.MAX), clientData.Photo)
                         .input('Mail', sql.NVarChar(50), clientData.Mail)
-                        .input('Password', sql.NVarChar(30), clientData.Password)
+                        .input('Password', sql.NVarChar(100), clientData.Password)
                         .query(sqlQueries.updateClient);
         return update.recordset;
     } catch (error) {

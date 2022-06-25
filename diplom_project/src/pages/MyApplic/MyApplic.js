@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import "./MyApplic.css";
 import MyInput from "../../components/interfase/MyInput/MyInput";
@@ -31,9 +30,6 @@ const MyApplic = () => {
     if(data != ""){
     return (
         <div class="elementMyApp">
-            {/* <div class="buttonMyApp">
-                <MyButton style={{marginTop: 30, width: 150, height: 45}} onClick={() => navigate(APPLICTEXT_ROUTE)}>Создать зявку</MyButton>
-            </div> */}
             <div class="pageMyApp">
             <div class="listMyApp">
                 {Array.from(data).map((apl) => {
