@@ -72,7 +72,7 @@ const Header = () => {
   }, [width])
 
   function togglePassword() {
-    var MyInput = document.getElementById('password');
+    var MyInput = document.getElementById('passwordHeader');
     var icon = document.getElementById(icon);
     if (MyInput.type === "password") {
       MyInput.type = "text";
@@ -200,10 +200,10 @@ const Header = () => {
               <p class="p-textModal">Заполните Ваши данные для дальнейшей работы.</p>
               <div action="#" class="formboxModal" id="formlog" name="formlog">
 
-                <MyInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="email" name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/>
+                <MyInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}}  name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/>
                 {/* <input class="inputMyInputHeader" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" id="email" name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/> */}
                 <div class="input-wrapperModal">
-                <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" style={{ height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" type="password"/>
+                <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" style={{ height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="passwordHeader"  name="password" type="password"/>
                 {/* <input class="inputMyInputHeader inputMyInputHeaderPassword" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" id="password" name="password" type="password"/> */}
                 <div class="input-icon" id="icon" onClick={togglePassword}>
                   <img src={PassIcon} alt="PassIcon"></img>

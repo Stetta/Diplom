@@ -38,7 +38,7 @@ const AdminApplic = () => {
     
     const getData = async () => {
         const result = await request("/api/application/getapplicbyuser/" + JSON.parse(localStorage.getItem("clientData")).IdClient, "GET");
-        setData(result);
+        setData(result.filter(c => c.Status != 3 && c.Status != 5));
     }
     
     useEffect(() => {

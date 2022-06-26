@@ -167,7 +167,7 @@ const AdminProfile = () => {
                         <MyInput value={name} onChange={(e) => setName(e.target.value)} placeholder="Введите имя" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="name" name="name" data-reg="^[А-я ё Ё]+" title="Только русские буквы"/>
                         <MyInput value={patronymic} onChange={(e) => setPatronymic(e.target.value)} placeholder="Введите отчество" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="patronymic" name="patronymic" data-reg="^[А-я ё Ё]+" title="Только русские буквы"/>
                         <MyInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="email" name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/>
-                        <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль для подтверждения изменений" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" />
+                        <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль для подтверждения" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" />
                     </div>
                     <div class="divForButtonAdminProfile">
                         <MyButton style={{marginTop: 30, width: 250, height: 35}} onClick={() => handleSave()} >Сохранить</MyButton>
