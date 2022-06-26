@@ -76,8 +76,6 @@ const Applic = () => {
                 navigate(APPLICTEXT_ROUTE)
             }
         })
-        // await new Promise(() => {
-        // })
     } 
     return (
         <div>

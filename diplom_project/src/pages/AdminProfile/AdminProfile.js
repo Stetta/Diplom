@@ -8,9 +8,10 @@ import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-import { MAIN_ROUTE } from "../../utils/const";
+import { CHART_ROUTE, MAIN_ROUTE } from "../../utils/const";
 import validator from 'validator'
 import Loader from '../../components/loader/Loader'
+
 
 const AdminProfile = () => {
 
@@ -23,6 +24,7 @@ const AdminProfile = () => {
     const [password, setPassword] = useState("");
     const [photo, setPhoto] = useState("");
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate();
 
     const id = JSON.parse(localStorage.getItem("clientData")).IdClient;
     const idUser = JSON.parse(localStorage.getItem("clientData")).IdClient;
@@ -48,7 +50,6 @@ const AdminProfile = () => {
         setSurname((await request("/api/client/byid/" + id))[0]["Surname"]);
         setPatronymic((await request("/api/client/byid/" + id))[0]["Patronymic"]);
         setEmail((await request("/api/client/byid/" + id))[0]["Mail"]);
-        setPassword((await request("/api/client/byid/" + id))[0]["Password"]);
         setPhoto((await request("/api/client/byid/" + id))[0]["Photo"]);
         setLoading(false)
       };
@@ -60,7 +61,6 @@ const AdminProfile = () => {
         setSurname((await request("/api/user/byidu/" + idUser))[0]["Surname"]);
         setPatronymic((await request("/api/user/byidu/" + idUser))[0]["Patronymic"]);
         setEmail((await request("/api/user/byidu/" + idUser))[0]["Login"]);
-        setPassword((await request("/api/user/byidu/" + idUser))[0]["Password"]);
         setPhoto((await request("/api/user/byidu/" + idUser))[0]["Photo"]);
         setLoading(false)
       };
@@ -128,6 +128,11 @@ const AdminProfile = () => {
             return;
         }
 
+        if(!password) {
+            toast.error("Введите пароль для подтверждения изменений")
+            return;
+        }
+
         if(roleId == 1) {
             saveUser().then(toast.success("Успешно"));
         } else {
@@ -162,10 +167,20 @@ const AdminProfile = () => {
                         <MyInput value={name} onChange={(e) => setName(e.target.value)} placeholder="Введите имя" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="name" name="name" data-reg="^[А-я ё Ё]+" title="Только русские буквы"/>
                         <MyInput value={patronymic} onChange={(e) => setPatronymic(e.target.value)} placeholder="Введите отчество" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="patronymic" name="patronymic" data-reg="^[А-я ё Ё]+" title="Только русские буквы"/>
                         <MyInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 5}} id="email" name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/>
-                        <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ваш пароль" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" />
+                        <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль для подтверждения изменений" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" />
                     </div>
-                        <MyButton style={{marginTop: 30, width: 150, height: 45}} onClick={() => handleSave()} >Сохранить</MyButton>
-                    
+                    <div class="divForButtonAdminProfile">
+                        <MyButton style={{marginTop: 30, width: 250, height: 35}} onClick={() => handleSave()} >Сохранить</MyButton>
+                        <div>
+                            {JSON.parse(localStorage.getItem("clientData")).IdClient == 1 && (
+                                <div class="divForButtonAdminProfileChart">
+                                    <p>Просмотр информации о статистике:</p>
+                                    {/* // <a class="navigate__link" onClick={() => navigate(CHART_ROUTE)}>Статистика</a> */}
+                                    <MyButton style={{marginTop: 10, width: 250, height: 35}} onClick={() => navigate(CHART_ROUTE)}>Статистика</MyButton>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         );

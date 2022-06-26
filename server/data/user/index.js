@@ -26,7 +26,7 @@ const createUser = async (userData) => {
                             .input('Patronymic', sql.NVarChar(50), userData.Patronymic)
                             .input('Photo', sql.NVarChar(sql.MAX), userData.Photo)
                             .input('Login', sql.NVarChar(50), userData.Login)
-                            .input('Password', sql.NVarChar(30), userData.Password)
+                            .input('Password', sql.NVarChar(100), userData.Password)
                             .input('IdRole', sql.Int, userData.IdRole)
                             .query(sqlQueries.createUser);
         return insertUser.recordset;
@@ -46,7 +46,7 @@ const updateUser = async (IdUser, userData) => {
                         .input('Patronymic', sql.NVarChar(50), userData.Patronymic)
                         .input('Photo',  sql.NVarChar(sql.MAX), userData.Photo)
                         .input('Login', sql.NVarChar(50), userData.Login)
-                        .input('Password', sql.NVarChar(30), userData.Password)
+                        .input('Password', sql.NVarChar(100), userData.Password)
                         .input('IdRole', sql.Int, userData.IdRole)
                         .query(sqlQueries.updateUser);
         return update.recordset;
@@ -78,10 +78,25 @@ const getByLoginUser = async (Login) => {
         return error.message;
     }
 }
+
+const deleteUser = async (id) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('user');
+        const update = await pool.request()
+                        .input('IdUser', sql.Int, id)
+                        .query(sqlQueries.deleteUser);
+        return update.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
+
 module.exports = {
     getUsers,
     createUser,
     updateUser,
     getByIdUser,
-    getByLoginUser
+    getByLoginUser,
+    deleteUser
 }

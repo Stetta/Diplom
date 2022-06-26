@@ -3,7 +3,6 @@ const utils = require('../utils');
 const config = require('../../config');
 const sql = require('mssql');
 
-//Неправильный запрос берет последний непонятный баг
 const getClient = async () => {
     try {
         let pool = await sql.connect(config.sql);

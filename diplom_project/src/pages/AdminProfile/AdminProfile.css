@@ -29,10 +29,31 @@
     width: 250px;
     border: 5px;
 }
+.divForButtonAdminProfile{
+    justify-content: center;
+    display: grid;
+    justify-items: center;
+}
+/* .divForButtonAdminProfile:first{
+    justify-self: center;
+    margin: auto;
+    align-items: center;
+    justify-items: center;
+} */
+.divForButtonAdminProfileChart{
+    margin-top: 25px;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+.divForButtonAdminProfileChart p{
+    margin-right: 20px;
+    margin-top: 5px;
+}
 @media only screen and (max-width: 700px) {
     .accountBox{
         margin-top: 30%;
-        height: 600px;
+        height: 700px;
         margin-bottom: 20%;
     }
     .inputBox {
@@ -41,4 +62,17 @@
         margin-top: 5%;
     }    
 
+    .divForButtonAdminProfileChart{
+        justify-content: center;
+        justify-items: center;
+        margin-top: 25px;
+        align-items: center;
+        display: grid;
+        text-align: center;
+    }
+    .divForButtonAdminProfileChart p{
+        margin-right: 10px;
+        margin-top: 5px;
+        font-size: 18px;
+    }
 }

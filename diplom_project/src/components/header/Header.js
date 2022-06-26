@@ -132,7 +132,6 @@ const Header = () => {
         };
       }
     }  
-
   return (
     <header>
       <ToastContainer style={{zIndex: 1000000000}}/>
@@ -159,17 +158,20 @@ const Header = () => {
 
         {isNavVisible && auth.token && ( 
         <nav class="navigate" style={{zIndex: 1000}}>
+          {/* {JSON.parse(localStorage.getItem("clientData")).IdClient == 1 && (
+          <a class="navigate__link" onClick={() => navigate(CHART_ROUTE)}>Статистика</a>
+          )} */}
+          {JSON.parse(localStorage.getItem("clientData")).IdRole && (
+          <a style={{cursor: "default"}}>&shy;</a>
+          )}
+          {!JSON.parse(localStorage.getItem("clientData")).IdRole && (
+          <a class="navigate__link" onClick={() => navigate(APPLICTEXT_ROUTE)}>Создать заявку</a>
+          )}
           {JSON.parse(localStorage.getItem("clientData")).IdRole && (
           <a class="navigate__link" onClick={() => navigate(ADMINAPPLIC_ROUTE)}>Заявки</a>
           )}
           {!JSON.parse(localStorage.getItem("clientData")).IdRole && (
           <a class="navigate__link" onClick={() => navigate(MYAPPLIC_ROUTE)}>Мои заявки</a>
-          )}
-          {JSON.parse(localStorage.getItem("clientData")).IdRole && (
-          <a class="navigate__link" onClick={() => navigate(CHART_ROUTE)}>Статистика</a>
-          )}
-          {!JSON.parse(localStorage.getItem("clientData")).IdRole && (
-          <a class="navigate__link" onClick={() => navigate(APPLICTEXT_ROUTE)}>Создать заявку</a>
           )}
           <a class="navigate__link" onClick={() => navigate(PROFILE_ROUTE)} style={{padding: 0, width: 130, marginRight:0, alignSelf: 'center'}}>Профиль</a>
           <a class="navigate__link navlinklast" onClick={() => Logoout()} style={{marginLeft: -80, width: 100, alignSelf: 'center'}}>Выход</a>
@@ -199,17 +201,20 @@ const Header = () => {
               <div action="#" class="formboxModal" id="formlog" name="formlog">
 
                 <MyInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" style={{height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="email" name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/>
+                {/* <input class="inputMyInputHeader" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" id="email" name="email" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" title="В формате: name@gmail.com"/> */}
                 <div class="input-wrapperModal">
                 <MyInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" style={{ height: 50, marginTop: 10, marginLeft: 5, marginRight: 10}} id="password" name="password" type="password"/>
+                {/* <input class="inputMyInputHeader inputMyInputHeaderPassword" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" id="password" name="password" type="password"/> */}
                 <div class="input-icon" id="icon" onClick={togglePassword}>
                   <img src={PassIcon} alt="PassIcon"></img>
                 </div>
 
                 </div>
                 <div class="buttonFormboxModal">
-                  <MyButton style={{ width: 200, height: 35, marginRight: 5, marginLeft: 5 }} onClick={registrr} id="SendApplic">Авторизоваться</MyButton>
+                  {/* <MyButton style={{ width: 200, height: 35, marginRight: 5, marginLeft: 5 }} onClick={registrr} id="SendApplic">Авторизоваться</MyButton> */}
+                  <button class="buttonMyButtonHeader" onClick={registrr} id="SendApplic">Авторизоваться</button>
                   <a class="aFormboxModal" onClick={registrrUser} id="SendApplic">Авторизоваться как сотрудник</a>
-                  <a style={{marginTop: 20}} class="aFormboxModal" onClick={recover}>Восстановить пароль</a>
+                  <a class="aFormboxModal" onClick={recover}>Восстановить пароль</a>
                 </div>
               </div>
             </div>

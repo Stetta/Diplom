@@ -1,8 +1,8 @@
 'use strict';
-
 const jwt = require('jsonwebtoken');
 const userData = require("../data/user");
 const {SECRET} = process.env;
+const bcrypt = require('bcryptjs')
 
 const getUser = async (req, res, next) => {
   try {
@@ -16,7 +16,8 @@ const getUser = async (req, res, next) => {
 const addUser = async (req, res, next) => {
   try {
     const data = req.body;
-    const created = await userData.createUser(data);
+    const hashpassword = bcrypt.hashSync(data.Password, 4);
+    const created = await userData.createUser({Surname: data.Surname, Name: data.Name, Patronymic: data.Patronymic, Photo: data.Photo, Login: data.Login, Password: hashpassword, IdRole: data.IdRole});
     res.send(created);
   } catch (error) {
     res.status(400).send(error.message);
@@ -27,7 +28,8 @@ const updateUser = async (req, res, next) => {
   try {
     const userId = req.params.id;
     const data = req.body;
-    const updated = await userData.updateUser(userId, data);
+    const hashpassword = bcrypt.hashSync(data.Password, 4);
+    const updated = await userData.updateUser(userId, {Surname: data.Surname, Name: data.Name, Patronymic: data.Patronymic, Photo: data.Photo, Login: data.Login, Password: hashpassword, IdRole: data.IdRole});
     res.send(updated)
   } catch (error) {
     res.status(400).send(error.message);
@@ -48,7 +50,9 @@ const login = async (req, res) => {
     if (!user[0]) {
       return res.status(400).json({message: 'Пользователь с таким логином не найден'})
     }
-    if (user[0]['Password'] != password) {
+
+    const validpassword = bcrypt.compareSync(password, user[0]['Password'])
+    if (!validpassword) {
       return res.status(400).json({message: 'Неправильный пароль'})
     }
 
@@ -76,11 +80,21 @@ const getByIdUser = async (req, res, next) => {
     res.status(400).send(error.message);
   }
 }
+const deleteUser = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const updated = await userData.deleteUser(userId);
+    res.send(updated);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
 module.exports = {
   getUser,
   addUser,
   updateUser,
   getByIdUser,
   getByLoginUser,
-  login
+  login,
+  deleteUser
 };

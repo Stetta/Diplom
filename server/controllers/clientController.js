@@ -26,7 +26,7 @@ const addClient = async (req, res, next) => {
   try {
     const data = req.body;
     const hashpassword = bcrypt.hashSync(data.Password, 4);
-    const created = await clientData.createClient({Name: data.Name, Surname: data.Name, Patronymic: data.Patronymic, Mail: data.Mail, Photo: data.Photo, Password: hashpassword});
+    const created = await clientData.createClient({Name: data.Name, Surname: data.Surname, Patronymic: data.Patronymic, Mail: data.Mail, Photo: data.Photo, Password: hashpassword});
     res.send(created);
   } catch (error) {
     res.status(400).send(error.message);
@@ -38,7 +38,7 @@ const updateClient = async (req, res, next) => {
     const clientId = req.params.id;
     const data = req.body;
     const hashpassword = bcrypt.hashSync(data.Password, 4);
-    const updated = await clientData.updateClient(clientId, {Name: data.Name, Surname: data.Name, Patronymic: data.Patronymic, Mail: data.Mail, Photo: data.Photo, Password: hashpassword});
+    const updated = await clientData.updateClient(clientId, {Name: data.Name, Surname: data.Surname, Patronymic: data.Patronymic, Mail: data.Mail, Photo: data.Photo, Password: hashpassword});
     res.send(updated)
   } catch (error) {
     res.status(400).send(error.message);
